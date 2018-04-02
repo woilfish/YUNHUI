@@ -1,0 +1,204 @@
+{
+  "defaultExtraInfo": {
+    "buildDate": "20171220"
+  },
+
+  "channelInfoList": [
+    {
+      "channel": "0",
+      "alias": "拉卡拉",
+      "extraInfo": {
+        "chname": "lakala"
+      }
+    },
+    {
+      "channel": "1",
+      "alias": "安卓市场",
+      "extraInfo": {
+        "chname": "anzhuo"
+      }
+    },
+    {
+      "channel": "2",
+      "alias": "91手机安卓",
+      "extraInfo": {
+        "chname": "91"
+      }
+    },
+    {
+      "channel": "3",
+      "alias": "百度手机助手",
+      "extraInfo": {
+        "chname": "baidu"
+      }
+    },
+    {
+      "channel": "4",
+      "alias": "腾讯应用宝",
+      "extraInfo": {
+        "chname": "myapp"
+      }
+    },
+    {
+      "channel": "5",
+      "alias": "360商店",
+      "extraInfo": {
+        "chname": "360"
+      }
+    },
+    {
+      "channel": "6",
+      "alias": "华为智汇云",
+      "extraInfo": {
+        "chname": "huawei"
+      }
+    },
+    {
+      "channel": "7",
+      "alias": "联想乐商店",
+      "extraInfo": {
+        "chname": "lenovo"
+      }
+    },
+    {
+      "channel": "8",
+      "alias": "魅族商店",
+      "extraInfo": {
+        "chname": "meizu"
+      }
+    },
+    {
+      "channel": "9",
+      "alias": "易用汇总",
+      "extraInfo": {
+        "chname": "yiyonghui"
+      }
+    },
+    {
+      "channel": "10",
+      "alias": "三星商店",
+      "extraInfo": {
+        "chname": "samsung"
+      }
+    },
+    {
+      "channel": "11",
+      "alias": "豌豆荚",
+      "extraInfo": {
+        "chname": "wandoujia"
+      }
+    },
+    {
+      "channel": "12",
+      "alias": "安智市场",
+      "extraInfo": {
+        "chname": "anzhi"
+      }
+    },
+    {
+      "channel": "13",
+      "alias": "应用汇",
+      "extraInfo": {
+        "chname": "appchina"
+      }
+    },
+    {
+      "channel": "14",
+      "alias": "N多市场",
+      "extraInfo": {
+        "chname": "nduo"
+      }
+    },
+    {
+      "channel": "15",
+      "alias": "木蚂蚁",
+      "extraInfo": {
+        "chname": "mumayi"
+      }
+    },
+    {
+      "channel": "16",
+      "alias": "安极市场",
+      "extraInfo": {
+        "chname": "angeeks"
+      }
+    },
+    {
+      "channel": "17",
+      "alias": "机锋市场",
+      "extraInfo": {
+        "chname": "gfan"
+      }
+    },
+    {
+      "channel": "18",
+      "alias": "GooglePlay",
+      "extraInfo": {
+        "chname": "googleplay"
+      }
+    },
+    {
+      "channel": "19",
+      "alias": "优亿市场",
+      "extraInfo": {
+        "chname": "eoeandroid"
+      }
+    },
+    {
+      "channel": "20",
+      "alias": "十字猫",
+      "extraInfo": {
+        "chname": "crossmo"
+      }
+    },
+    {
+      "channel": "21",
+      "alias": "网易应用中心",
+      "extraInfo": {
+        "chname": "netes"
+      }
+    },
+    {
+      "channel": "22",
+      "alias": "应用酷",
+      "extraInfo": {
+        "chname": "mgyapp"
+      }
+    },
+    {
+      "channel": "23",
+      "alias": "小米社区",
+      "extraInfo": {
+        "chname": "xiaomi"
+      }
+    },
+    {
+      "channel": "24",
+      "alias": "华军软件园",
+      "extraInfo": {
+        "chname": "onlinedown"
+      }
+    },
+    {
+      "channel": "25",
+      "alias": "3G门户",
+      "extraInfo": {
+        "chname": "3g"
+      }
+    },
+    {
+      "channel": "26",
+      "alias": "搜狗",
+      "extraInfo": {
+        "chname": "sogou"
+      }
+    },
+    {
+      "channel": "27",
+      "alias": "历趣市场",
+      "extraInfo": {
+        "chname": "liqucn"
+      }
+    }
+  ]
+}

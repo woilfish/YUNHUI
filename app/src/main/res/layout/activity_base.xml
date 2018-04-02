@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/id_web_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_gray_f7f5f5"
+    android:orientation="vertical">
+
+    <view
+        android:id="@+id/navigation_bar"
+        class="com.yunhui.component.NavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_162"
+        android:layout_gravity="center_horizontal"
+        app:backBg="@mipmap/nav_back"
+        app:navBg="@color/AppTheThemeColor"
+        app:titleMaxLength="11"
+        app:titleTextSize="@dimen/font_size_large"
+        app:textColor="@color/white" />
+
+    <FrameLayout
+        android:id="@+id/base_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+apply plugin: 'walle'
+apply from: 'channel-build/channel-build.gradle'
+
+android {
+
+    signingConfigs {
+        signingConfigs {
+            keyAlias 'JamesPeng'
+            keyPassword 'xinjiapopm12'
+            storeFile file('/Users/pengmin/AndroidKeystore.jks')
+            storePassword 'xinjiapopm12'
+        }
+    }
+
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.yunhui"
+        minSdkVersion 20
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions 'versionCode'
+
+    productFlavors {
+        remote_test {
+            //this can override the defaultConfig attribute
+            dimension 'versionCode'
+        }
+        inner_test {
+            dimension 'versionCode'
+        }
+        product {
+            dimension 'versionCode'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.signingConfigs
+        }
+        debug {
+            minifyEnabled false
+        }
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
+            assets.srcDirs = ['src/main/assets']
+        }
+    }
+
+    dexOptions {
+        javaMaxHeapSize "2g"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.0.0-beta1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:0.5'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+    implementation 'com.android.support:multidex:1.0.0'
+    implementation 'com.umeng.analytics:analytics:6.1.2'
+    implementation 'com.meituan.android.walle:library:1.1.6'
+    implementation project(path: ':request')
+}
+
+walle {
+    // 指定渠道包的输出路径
+    apkOutputFolder = new File("${projectDir.path}/channel-build/out");
+    // 定制渠道包的APK的文件名称
+    apkFileNameFormat = 'YUNHUI-v${versionName}-${versionCode}-${buildType}-${buildTime}-${channel}.apk';
+    // 渠道配置文件
+    configFile = new File("${projectDir.path}/channel-build/config.json")
+}

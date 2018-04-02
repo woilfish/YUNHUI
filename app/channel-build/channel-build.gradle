@@ -1,0 +1,41 @@
+//noinspection GroovyAssignabilityCheck
+//在工程的build.gradle 文件中添加  "apply from: 'channel-build/channel-build.gradle'"
+
+
+
+//注意!!!该任务命指定生成的apk必须唯一,任务变种参见官网介绍,由 productFlavors + buildTypes 的组合构成
+//def taskName = "ProductRelease"   //外网生产环境包,也就是正式包
+//def taskName   = "ProductDebug"     //外网生产环境内部包
+//def taskName   = "Remote_testRelease"      //外网测试环境外部包,代码混淆过,且无日志输出
+//def taskName   = "Remote_testDebug"        //外网测试环境内部包
+//def taskName   = "Inner_testRelease"           //内网测试环境外部包,代码混淆过,且无日志输出,发给测试组测试用
+def taskName   = "Inner_testDebug"             //内网测试环境内部包
+
+task deleteGraphicsAssets(type: Delete) {
+
+    def dirName = projectDir.path + File.separator + "channel-build" + File.separator + "out"
+
+    file( dirName ).list().each{
+        f ->
+            delete "${dirName}/${f}"
+    }
+}
+
+//需要打渠道包时,配置好taskName 打开 terminal 输入 gradle -q buildChannels 即可
+task buildChannels(dependsOn: ['assemble' + taskName +"Channels"]){}
+
+//打印执行脚本输出
+//def printProcessOutput(process) {
+//    try {
+//        def inputStream = process.getInputStream()
+//        def bufferedReader = new BufferedReader(new InputStreamReader(inputStream))
+//        def line
+//        while ((line = bufferedReader.readLine()) != null) {
+//            println line
+//        }
+//        inputStream.close()
+//        bufferedReader.close()
+//    } finally {
+//        process.destroy()
+//    }
+//}

@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="AppClientTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <item name="android:windowBackground">@color/color_white_eceff6</item>
+        <item name="android:colorBackground">@color/color_white_eceff6</item>
+    </style>
+
+</resources>
