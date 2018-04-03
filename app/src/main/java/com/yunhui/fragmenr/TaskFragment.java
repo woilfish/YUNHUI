@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.yunhui.HomeActivity;
+import com.yunhui.activity.HomeActivity;
 import com.yunhui.R;
 
 /**

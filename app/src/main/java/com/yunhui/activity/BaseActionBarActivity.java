@@ -1,4 +1,4 @@
-package com.yunhui;
+package com.yunhui.activity;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.umeng.analytics.MobclickAgent;
+import com.yunhui.R;
 import com.yunhui.common.Dimension;
 import com.yunhui.common.StatusBarUtil;
 import com.yunhui.component.NavigationBar;

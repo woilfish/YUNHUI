@@ -12,7 +12,7 @@
 
         <meta-data android:value="5abb30fea40fa36fca0000a6" android:name="UMENG_APPKEY"/>
 
-        <activity android:name=".HomeActivity">
+        <activity android:name=".activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

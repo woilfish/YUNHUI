@@ -10,7 +10,7 @@ import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.HttpRequestParams;
 import com.loopj.common.httpEx.IHttpRequestEvents;
-import com.yunhui.HomeActivity;
+import com.yunhui.activity.HomeActivity;
 import com.yunhui.R;
 import com.yunhui.adapter.ConsultingAdapter;
 import com.yunhui.component.NavigationBar;

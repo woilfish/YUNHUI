@@ -1,4 +1,4 @@
-package com.yunhui;
+package com.yunhui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.yunhui.R;
 import com.yunhui.component.NavigationBar;
 import com.yunhui.controller.FragmentController;
 import com.yunhui.fragmenr.ConsultingFragment;
