@@ -13,4 +13,22 @@
     <string name="com_not_updated_yet">暂未更新过</string>
     <string name="com_updated_at">上次更新于%1$s前</string>
     <string name="com_updated_just_now">刚刚更新</string>
+    <string name="ui_certain">确定</string>
+    <string name="ui_cancel">取消</string>
+    <string name="ui_retry">重试</string>
+    <string name="ui_yes">是</string>
+    <string name="ui_no">否</string>
+    <string name="ui_back">返回</string>
+    <string name="com_noupdate">以后在说</string>
+    <string name="plat_retry">重试</string>
+    <string name="plat_download">正在下载</string>
+    <string name="plat_upgrade">立即更新</string>
+    <string name="core_upgrade_lakala">升级云慧助手</string>
+    <string name="core_download_lakala">开始下载云慧助手</string>
+    <string name="core_downloading_lakala">正在下载云慧助手</string>
+    <string name="core_downloading_progress">正在下载云慧助手%d</string>
+    <string name="core_download_lakala_complete">下载云慧助手</string>
+    <string name="core_download_lakala_complete_prompt">下载云慧助手完成,确定安装</string>
+    <string name="core_download_lakala_fail">下载云慧助手失败</string>
+    <string name="core_install">安装</string>
 </resources>
