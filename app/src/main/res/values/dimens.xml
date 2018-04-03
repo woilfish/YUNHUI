@@ -110,4 +110,6 @@
     <dimen name="dimen_592">296dp</dimen>
     <dimen name="dimen_640">320dp</dimen>
     <dimen name="dimen_400">200dp</dimen>
+
+    <dimen name="ui_progress_dialog_message_textsize">16sp</dimen>
 </resources>

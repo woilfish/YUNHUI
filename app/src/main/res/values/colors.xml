@@ -15,5 +15,12 @@
     <color name="color_white_d6d6d7">#d6d6d7</color>
     <color name="color_white_8c8fa3">#8c8fa3</color>
     <color name="gray_999999">#999999</color>
+    <color name="ui_alert_dialog_button_divider_color">#d4dfe3</color>
+    <color name="ui_alert_dialog_button_divider_color_d6d6da">#d6d6da</color>
+    <color name="color_blue_3b4a78">#3b4a78</color>
+    <color name="ui_alert_dialog_message_color">#828282</color>
+    <color name="color_gray_d9d9d9">#d9d9d9</color>
+    <color name="gray_727485">#727485</color>
+    <color name="color_3dc187">#3dc187</color>
 </resources>
 

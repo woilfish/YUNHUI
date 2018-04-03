@@ -1,13 +1,19 @@
 package com.yunhui.request;
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.loopj.common.exception.BaseException;
+import com.yunhui.component.dialog.ProgressDialog;
 import com.yunhui.config.Config;
 import com.loopj.common.httpEx.DefaultHttpResponseHandler;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.HttpRequestParams;
 import com.loopj.common.httpEx.HttpResponseHandler;
+import com.yunhui.util.LogUtil;
+import com.yunhui.util.ToastUtil;
 
 /**
  * Created by pengmin on 2018/3/27.
@@ -19,6 +25,11 @@ public class RequestUtil  extends HttpRequest{
     public static final String SCHEME_MSVR = "lklopenapi://";
     private static final String LOG_TAG = RequestUtil.class.getName();
     private boolean isAddCommonParams = true;
+    //自动处理 progress dialog
+    private boolean autoShowProgress;
+    private ProgressDialog progressDialog;
+    private String progressMessage;
+    private boolean autoShowToast = true;
 
     public RequestUtil(Context context) {
         this(context, new DefaultHttpResponseHandler());
@@ -47,7 +58,39 @@ public class RequestUtil  extends HttpRequest{
         RequestUtil request = new RequestUtil(context);
         request.setRequestURL(url);
         request.setRequestMethod(method);
+        request.setAutoShowProgress(true);
         return request;
+    }
+
+    /**
+     * 设置自动处理 progress dialog
+     *
+     * @param autoShowProgress 设置是否显示 ProgressBar
+     */
+    public RequestUtil setAutoShowProgress(boolean autoShowProgress) {
+        this.autoShowProgress = autoShowProgress;
+        return this;
+    }
+
+    /**
+     * 设置自动toast
+     *
+     * @param autoToast 设置是否自动显示 设置自动toast
+     */
+    public RequestUtil setAutoShowToast(boolean autoToast) {
+        this.autoShowToast = autoToast;
+        return this;
+    }
+
+    /**
+     * 设置 progress message
+     *
+     * @param message ProgressBar 的消息文本
+     * @return
+     */
+    public RequestUtil setProgressMessage(String message) {
+        this.progressMessage = message;
+        return this;
     }
 
 
@@ -82,6 +125,25 @@ public class RequestUtil  extends HttpRequest{
      */
     public void isAddCommonParams(boolean isAddCommonParams) {
         this.isAddCommonParams = isAddCommonParams;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (autoShowProgress) {
+            showProgressDialog();
+        }
+    }
+
+    @Override
+    public void onSuccess() {
+        super.onSuccess();
+    }
+
+    @Override
+    public void onFailure(BaseException error) {
+        super.onFailure(error);
+        autoToastErrorMessage(error.getMessage());
     }
 
     @Override
@@ -131,6 +193,9 @@ public class RequestUtil  extends HttpRequest{
     @Override
     public void onFinish() {
         super.onFinish();
+        if(autoShowProgress){
+            dismissProgressDialog();
+        }
         if (Config.isDebug()) {
             HttpResponseHandler rp = getResponseHandler();
 
@@ -144,4 +209,61 @@ public class RequestUtil  extends HttpRequest{
             Log.d(LOG_TAG, String.format("Details : " + "\nURL: %s" + "\nPARAMS: %s" + "\nCODE: %s" + "\nMSG: %s" + "\nDATA: %s", objects));
         }
     }
+
+    /**
+     * 显示 ProgressBar
+     */
+    private void showProgressDialog() {
+        if (getContext() == null) {
+            return;
+        }
+        if (getContext() instanceof FragmentActivity) {
+            progressDialog = new ProgressDialog();
+            ((FragmentActivity) getContext()).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (progressDialog == null) {
+                        return;
+                    }
+                    progressDialog.setProgressMessage(progressMessage);
+                    progressDialog.show(((FragmentActivity) context).getSupportFragmentManager());
+                }
+            });
+        }
+    }
+
+    /**
+     * 隐藏 ProgressBar
+     */
+    private void dismissProgressDialog() {
+        Context context = getContext();
+        if (context instanceof Activity) {
+            ((Activity) context).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        if (progressDialog == null) {
+                            return;
+                        }
+                        progressDialog.dismissAllowingStateLoss();
+                        progressDialog = null;
+                    } catch (Exception e) {
+                        LogUtil.print(e.getMessage());
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * toast 提示错误信息
+     *
+     * @param msg
+     */
+    private void autoToastErrorMessage(String msg) {
+        if (autoShowToast) {
+            ToastUtil.toast(context.getApplicationContext(), msg);
+        }
+    }
+
 }

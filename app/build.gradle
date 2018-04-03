@@ -64,7 +64,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.0.0-beta1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
@@ -73,7 +73,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.0'
     implementation 'com.umeng.analytics:analytics:6.1.2'
     implementation 'com.meituan.android.walle:library:1.1.6'
-    implementation project(path: ':request')
+    implementation project(':request')
 }
 
 walle {
