@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">云慧助手</string>
+    <string name="login_hite">足不出户体验云挖矿</string>
+    <string name="login_phonenum">请输入手机号</string>
+    <string name="login_password">请输入密码</string>
+    <string name="login_login">进入云慧助手</string>
+    <string name="login_regist">手机注册</string>
+    <string name="login_forgetpassword">忘记密码</string>
 
 
     <!--自定义下拉刷新上滑加载ListView-->

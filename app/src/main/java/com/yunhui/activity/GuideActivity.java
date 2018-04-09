@@ -15,6 +15,7 @@ import com.yunhui.adapter.GuideAdapter;
 
 /**
  * Created by pengmin on 2018/4/3.
+ * 引导页面
  */
 
 public class GuideActivity extends BaseActionBarActivity implements ViewPager.OnPageChangeListener,GuideAdapter.EnterHomeCallBack{

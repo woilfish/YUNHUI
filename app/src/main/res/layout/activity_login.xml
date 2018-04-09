@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/AppTheThemeColor">
+
+    <ImageView
+        android:id="@+id/imageIcon"
+        android:layout_width="@dimen/dimen_256"
+        android:layout_height="@dimen/dimen_256"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimen_200"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageIcon"
+        android:layout_marginTop="@dimen/dimen_90"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_hite"
+            android:textColor="@color/white"/>
+
+        <com.yunhui.component.edittext.ClearEditTextLogin
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_88"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:hint="@string/login_phonenum"
+            android:textColor="@color/color_black_333333"
+            android:textColorHint="@color/color_gray_c9c9c9"
+            android:textSize="@dimen/font_size_small"
+            android:textCursorDrawable="@drawable/bg_cursor" />
+
+        <com.yunhui.component.edittext.ShowPasswordEditText
+            android:id="@+id/plat_activity_login_password_edit"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:drawablePadding="10dp"
+            android:hint="@string/login_password"
+            android:textColor="@color/color_black_333333"
+            android:textColorHint="@color/color_gray_c9c9c9"
+            android:textSize="@dimen/font_size_small"
+            android:textCursorDrawable="@drawable/bg_cursor" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_88"
+            android:text="@string/login_login"
+            android:background="@color/white"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dimen_24"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_regist"
+            android:layout_marginLeft="@dimen/dimen_12"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_forgetpassword"/>
+    </LinearLayout>
+</RelativeLayout>
