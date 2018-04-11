@@ -31,6 +31,7 @@
             android:textColor="@color/white"/>
 
         <com.yunhui.component.edittext.ClearEditTextLogin
+            android:id="@+id/login_phonenum"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_88"
             android:drawablePadding="10dp"
@@ -42,7 +43,7 @@
             android:textCursorDrawable="@drawable/bg_cursor" />
 
         <com.yunhui.component.edittext.ShowPasswordEditText
-            android:id="@+id/plat_activity_login_password_edit"
+            android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:drawablePadding="10dp"
@@ -53,6 +54,7 @@
             android:textCursorDrawable="@drawable/bg_cursor" />
 
         <Button
+            android:id="@+id/login_enter"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_88"
             android:text="@string/login_login"
@@ -67,11 +69,13 @@
         android:orientation="horizontal"
         android:gravity="center">
         <Button
+            android:id="@+id/login_regist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_regist"
             android:layout_marginLeft="@dimen/dimen_12"/>
         <Button
+            android:id="@+id/login_forgetpassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_forgetpassword"/>
