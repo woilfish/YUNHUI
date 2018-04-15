@@ -13,7 +13,7 @@ import com.yunhui.component.edittext.ShowPasswordEditText;
  * 登录页面
  */
 
-public class LoginActivity extends BaseActionBarActivity implements View.OnClickListener{
+public class LoginActivity extends BaseActionBarActivity{
 
     private ClearEditTextLogin clearEditTextLogin;
     private ShowPasswordEditText showPasswordEditText;
