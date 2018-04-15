@@ -19,6 +19,11 @@
 
     <string name="retrieve_password_phonenum">请输入手机号码</string>
     <string name="retrieve_password_next">下一步</string>
+    <string name="retrieve_password_validation">请输入验证码</string>
+    <string name="retrieve_password_send_validation">发送验证码</string>
+    <string name="retrieve_password_password">请输入您的密码</string>
+    <string name="retrieve_password_confirm_password">请确认您的密码</string>
+    <string name="retrieve_password_done">完成</string>
 
 
     <!--自定义下拉刷新上滑加载ListView-->
