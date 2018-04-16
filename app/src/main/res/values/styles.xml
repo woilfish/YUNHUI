@@ -16,4 +16,170 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
 
+    <declare-styleable name="BaseItemView">
+        <!-- 顶部条颜色-->
+        <attr name="topBarColor" format="reference|color" />
+        <!-- 顶部条高度-->
+        <attr name="topBarHeight" format="dimension" />
+        <!-- 底部条颜色-->
+        <attr name="bottomBarColor" format="reference|color" />
+        <!-- 底部条高度-->
+        <attr name="bottomBarHeight" format="dimension" />
+    </declare-styleable>
+
+    <!-- >>>>>>>>>>>>>>>>>两行文本控件片定义属性 >>>>>>>>>> -->
+    <declare-styleable name="IconItemView">
+        <!-- 左侧图标 -->
+        <attr name="leftIconSrc" format="reference" />
+        <!-- 左侧图标与左侧文本之间的距离-->
+        <attr name="leftIconMarginRight" format="dimension" />
+        <!-- 是否显示左侧图标-->
+        <attr name="leftIconVisibility" >
+            <enum name="VISIBLE" value="0"/>
+            <enum name="INVISIBLE" value="4"/>
+            <enum name="GONE" value="8"/>
+        </attr>
+
+        <!--是否显示坚线-->
+        <attr name="isVerticalLine" format="boolean" />
+        <!--垂直线右则的 Margin-->
+        <attr name="verticalLineMarginRight" format="dimension" />
+
+        <!-- 右侧文本 -->
+        <attr name="rightText" format="reference|string"/>
+        <!-- 右侧按钮文本 -->
+        <attr name="rightButtonText" format="reference|string"/>
+        <!-- 右侧文本的Hint -->
+        <attr name="rightHint" format="reference|string"/>
+        <!-- 右侧文本的大小-->
+        <attr name="rightTextSize" format="dimension"/>
+        <!-- 右侧文本的颜色-->
+        <attr name="rightTextColor" format="reference|color" />
+        <!-- 右侧Hint文本的颜色 -->
+        <attr name="rightHintTextColor" format="reference|color" />
+        <!-- 右侧文本字体样式-->
+        <attr name="rightTextStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold"   value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+        <!-- 右侧文字可视属性-->
+        <attr name="rightTextVisibility" >
+            <enum name="VISIBLE" value="0"/>
+            <enum name="INVISIBLE" value="4"/>
+            <enum name="GONE" value="8"/>
+        </attr>
+        <!-- 右侧文本背景 -->
+        <attr name="rightTextBackground" format="reference" />
+        <!--右侧文本与图标之间的距离-->
+        <attr name="rightTextMarginRight" format="dimension"/>
+
+        <!-- 右侧图标 -->
+        <attr name="rightIconSrc" format="reference" />
+        <!-- 右侧图标可视属性-->
+        <attr name="rightIconVisibility" >
+            <enum name="VISIBLE" value="0"/>
+            <enum name="INVISIBLE" value="4"/>
+            <enum name="GONE" value="8"/>
+        </attr>
+        <!-- 右侧图标与箭头的间距-->
+        <attr name="rightIconMarginRight" format="dimension"/>
+
+        <!--是否显示右箭头-->
+        <attr name="rightArrowVisibility" >
+            <enum name="VISIBLE" value="0"/>
+            <enum name="INVISIBLE" value="4"/>
+            <enum name="GONE" value="8"/>
+        </attr>
+
+        <!-- 是否启用子项目单击事件 -->
+        <attr name="enableOnClickItemEvents" format="boolean"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="LabelItemView">
+        <!-- 标签文本 -->
+        <attr name="labelText" format="reference|string"/>
+        <attr name="labelTextSize" format="dimension"/>
+        <attr name="labelTextColor" format="reference|color" />
+        <attr name="labelTextStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold"   value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+        <!-- 标签文本右侧的 margin 值 -->
+        <attr name="labelTextMarginRight" format="dimension"/>
+        <attr name="minEms" format="integer"/>
+        <attr name="maxEms" format="integer"/>
+        <attr name="gravity">
+            <!-- Push object to the top of its container, not changing its size. -->
+            <flag name="top" value="0x30" />
+            <!-- Push object to the bottom of its container, not changing its size. -->
+            <flag name="bottom" value="0x50" />
+            <!-- Push object to the left of its container, not changing its size. -->
+            <flag name="left" value="0x03" />
+            <!-- Push object to the right of its container, not changing its size. -->
+            <flag name="right" value="0x05" />
+            <!-- Place object in the vertical center of its container, not changing its size. -->
+            <flag name="center_vertical" value="0x10" />
+            <!-- Grow the vertical size of the object if needed so it completely fills its container. -->
+            <flag name="fill_vertical" value="0x70" />
+            <!-- Place object in the horizontal center of its container, not changing its size. -->
+            <flag name="center_horizontal" value="0x01" />
+            <!-- Grow the horizontal size of the object if needed so it completely fills its container. -->
+            <flag name="fill_horizontal" value="0x07" />
+            <!-- Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. -->
+            <flag name="center" value="0x11" />
+            <!-- Grow the horizontal and vertical size of the object if needed so it completely fills its container. -->
+            <flag name="fill" value="0x77" />
+            <!-- Additional option that can be set to have the top and/or bottom edges of
+                 the child clipped to its container's bounds.
+                 The clip will be based on the vertical gravity: a top gravity will clip the bottom
+                 edge, a bottom gravity will clip the top edge, and neither will clip both edges. -->
+            <flag name="clip_vertical" value="0x80" />
+            <!-- Additional option that can be set to have the left and/or right edges of
+                 the child clipped to its container's bounds.
+                 The clip will be based on the horizontal gravity: a left gravity will clip the right
+                 edge, a right gravity will clip the left edge, and neither will clip both edges. -->
+            <flag name="clip_horizontal" value="0x08" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="LineShape">
+        <attr name="lineWidth" format="dimension"/>
+        <attr name="lineShapeOrientation">
+            <flag name="horizontal" value="1" />
+            <flag name="vertical"   value="2" />
+            <flag name="slash" value="4" />
+            <flag name="backSlash" value="8" />
+        </attr>
+        <attr name="type">
+            <enum name="solid" value="0"/>
+            <enum name="dashed" value="1"/>
+        </attr>
+        <attr name="lineColor" format="reference|color" />
+        <!--虚线的实线长，仅在 type = dashed 有效-->
+        <attr name="dashedSolidLength" format="dimension" />
+        <!--虚线的空白长，仅在 type = dashed 有效-->
+        <attr name="dashedSpaceLength" format="dimension" />
+        <!--是否开启反锯齿-->
+        <attr name="antiAliased" format="boolean" />
+    </declare-styleable>
+
+    <style name="item_label_right_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/item_button_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">18dp</item>
+        <item name="android:paddingRight">18dp</item>
+        <item name="android:background">@drawable/item_label_bg_selector</item>
+        <item name="@attr/labelTextSize">@dimen/wallet_left_font_size</item>
+        <item name="@attr/labelTextColor">@color/font_black</item>
+        <item name="@attr/leftIconVisibility">VISIBLE</item>
+        <item name="@attr/rightArrowVisibility">VISIBLE</item>
+        <item name="@attr/rightTextVisibility">VISIBLE</item>
+        <item name="@attr/rightTextSize">@dimen/wallet_right_font_size</item>
+        <item name="@attr/rightTextColor">@color/font_gray</item>
+    </style>
+
 </resources>

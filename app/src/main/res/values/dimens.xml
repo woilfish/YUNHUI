@@ -115,4 +115,7 @@
     <dimen name="dimen_400">200dp</dimen>
 
     <dimen name="ui_progress_dialog_message_textsize">16sp</dimen>
+
+    <!--白色选项条、按钮高度-->
+    <dimen name="item_button_height">50dp</dimen>
 </resources>

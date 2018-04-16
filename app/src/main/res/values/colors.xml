@@ -25,5 +25,8 @@
     <color name="black_3b4255">#3b4255</color>
     <color name="color_black_333333">#333333</color>
     <color name="color_gray_c9c9c9">#c9c9c9</color>
+
+    <!--按钮选中背景色-->
+    <color name="btn_white_selete_bg">#d9d9d9</color>
 </resources>
 
