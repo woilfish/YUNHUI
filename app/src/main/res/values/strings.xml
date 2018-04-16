@@ -25,6 +25,21 @@
     <string name="retrieve_password_confirm_password">请确认您的密码</string>
     <string name="retrieve_password_done">完成</string>
 
+    <string name="earnings_hite_top">我的收益与电量</string>
+    <string name="earnings_hite_day">每日收益</string>
+    <string name="earnings_hite_vip">VIP等级</string>
+    <string name="earnings_hite_mypower">我的电量</string>
+    <string name="earnings_hite_electricity_than">电量占比</string>
+    <string name="earnings_hite_points_num">积分总数</string>
+    <string name="earnings_hite_middle">云慧云矿池</string>
+    <string name="earnings_hite_middle_first">全国电量:</string>
+    <string name="earnings_hite_middle_first_hite">(所有用户贡献总电量)</string>
+    <string name="earnings_hite_middle_second">全部收益:</string>
+    <string name="earnings_hite_middle_second_hite">(按电量占比分配总收益)</string>
+    <string name="earnings_hite_bottom_hite">全网电量排名</string>
+    <string name="earnings_hite_middle_hite">获取云砖太慢？？？尝试购买下面云钻矿机</string>
+    <string name="earnings_hite_buy">立即购买</string>
+
 
     <!--自定义下拉刷新上滑加载ListView-->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
