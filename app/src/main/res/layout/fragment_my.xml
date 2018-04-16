@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/holo_red_dark">
+    android:background="@color/AppTheThemeColor">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,7 +11,7 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
             <com.yunhui.component.image.CircleImageView
                 android:id="@+id/userphoto"
@@ -25,11 +25,13 @@
                 <TextView
                     android:id="@+id/userphonenum"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="13633491655"/>
                 <TextView
                     android:id="@+id/username"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="無敵機密"/>
             </LinearLayout>
         </LinearLayout>
 
