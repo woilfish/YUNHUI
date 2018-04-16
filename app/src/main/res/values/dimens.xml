@@ -118,4 +118,5 @@
 
     <!--白色选项条、按钮高度-->
     <dimen name="item_button_height">50dp</dimen>
+    <dimen name="wallet_left_font_size">17sp</dimen>
 </resources>

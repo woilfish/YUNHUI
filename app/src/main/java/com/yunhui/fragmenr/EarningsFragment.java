@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.yunhui.activity.HomeActivity;
 import com.yunhui.R;
@@ -21,7 +22,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
 
     private HomeActivity homeActivity;
     private View parentView;
-    private EditText et_earningshiteday;
+    private TextView tv_earningshiteday;
     private RefreshListView rlv_earningsrefeesh;
 
     @Nullable
@@ -35,7 +36,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
 
     @SuppressLint("WrongViewCast")
     private void initView() {
-        et_earningshiteday =  parentView.findViewById(R.id.earningshiteday);
+        tv_earningshiteday =  parentView.findViewById(R.id.earningshiteday);
         rlv_earningsrefeesh = parentView.findViewById(R.id.earningsrefeesh);
     }
 

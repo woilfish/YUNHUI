@@ -37,31 +37,66 @@
             android:id="@+id/exchange"
             style="@style/item_label_right_text_style"
             app:labelText="BTC兑换"
-            app:rightText=""/>
+            app:rightText=""
+            app:labelTextSize="@dimen/wallet_left_font_size"
+            app:labelTextColor="@color/font_black"
+            app:leftIconVisibility="VISIBLE"
+            app:rightArrowVisibility="VISIBLE"
+            app:rightTextVisibility="VISIBLE"
+            app:rightTextSize="@dimen/wallet_left_font_size"
+            app:rightTextColor="@color/font_gray"/>
 
         <com.yunhui.component.linearlayout.LabelItemView
             android:id="@+id/myTask"
             style="@style/item_label_right_text_style"
             app:labelText="我的任务"
-            app:rightText=""/>
+            app:rightText=""
+            app:labelTextSize="@dimen/wallet_left_font_size"
+            app:labelTextColor="@color/font_black"
+            app:leftIconVisibility="VISIBLE"
+            app:rightArrowVisibility="VISIBLE"
+            app:rightTextVisibility="VISIBLE"
+            app:rightTextSize="@dimen/wallet_left_font_size"
+            app:rightTextColor="@color/font_gray"/>
 
         <com.yunhui.component.linearlayout.LabelItemView
             android:id="@+id/buy"
             style="@style/item_label_right_text_style"
             app:labelText="购买云钻矿机"
-            app:rightText=""/>
+            app:rightText=""
+            app:labelTextSize="@dimen/wallet_left_font_size"
+            app:labelTextColor="@color/font_black"
+            app:leftIconVisibility="VISIBLE"
+            app:rightArrowVisibility="VISIBLE"
+            app:rightTextVisibility="VISIBLE"
+            app:rightTextSize="@dimen/wallet_left_font_size"
+            app:rightTextColor="@color/font_gray"/>
 
         <com.yunhui.component.linearlayout.LabelItemView
             android:id="@+id/myInvitation"
             style="@style/item_label_right_text_style"
             app:labelText="我的邀请"
-            app:rightText=""/>
+            app:rightText=""
+            app:labelTextSize="@dimen/wallet_left_font_size"
+            app:labelTextColor="@color/font_black"
+            app:leftIconVisibility="VISIBLE"
+            app:rightArrowVisibility="VISIBLE"
+            app:rightTextVisibility="VISIBLE"
+            app:rightTextSize="@dimen/wallet_left_font_size"
+            app:rightTextColor="@color/font_gray"/>
 
         <com.yunhui.component.linearlayout.LabelItemView
             android:id="@+id/aboutMy"
             style="@style/item_label_right_text_style"
             app:labelText="关于我们"
-            app:rightText=""/>
+            app:rightText=""
+            app:labelTextSize="@dimen/wallet_left_font_size"
+            app:labelTextColor="@color/font_black"
+            app:leftIconVisibility="VISIBLE"
+            app:rightArrowVisibility="VISIBLE"
+            app:rightTextVisibility="VISIBLE"
+            app:rightTextSize="@dimen/wallet_left_font_size"
+            app:rightTextColor="@color/font_gray"/>
     </LinearLayout>
 
 </LinearLayout>

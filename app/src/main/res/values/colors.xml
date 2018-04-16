@@ -28,5 +28,8 @@
 
     <!--按钮选中背景色-->
     <color name="btn_white_selete_bg">#d9d9d9</color>
+    <color name="l_gray">#DDDDDD</color>
+    <color name="font_black">#1e1e1e</color><!--黑-->
+    <color name="font_gray">#828282</color><!--灰-->
 </resources>
 
