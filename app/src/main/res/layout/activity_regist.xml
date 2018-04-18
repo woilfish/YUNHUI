@@ -43,7 +43,7 @@
                         android:layout_weight="4"
                         android:background="@null"
                         android:hint="@string/regist_phonenum"/>
-                    <view
+                    <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:background="@color/white"/>
@@ -54,7 +54,7 @@
                         android:layout_weight="2"
                         android:text="@string/regist_send_validation"/>
                 </LinearLayout>
-                <view
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/white"/>
@@ -76,7 +76,7 @@
                         android:background="@null"
                         android:hint="@string/regist_validation"/>
                 </LinearLayout>
-                <view
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/white"/>
@@ -98,7 +98,7 @@
                         android:background="@null"
                         android:hint="@string/regist_password"/>
                 </LinearLayout>
-                <view
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/white"/>
@@ -120,7 +120,7 @@
                         android:background="@null"
                         android:hint="@string/regist_confirm_password"/>
                 </LinearLayout>
-                <view
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/white"/>
@@ -142,7 +142,7 @@
                         android:background="@null"
                         android:hint="@string/regist_invite_code"/>
                 </LinearLayout>
-                <view
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/white"/>
@@ -171,4 +171,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
 </RelativeLayout>

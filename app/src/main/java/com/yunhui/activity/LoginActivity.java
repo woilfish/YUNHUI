@@ -1,5 +1,6 @@
 package com.yunhui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,6 +8,8 @@ import android.widget.Button;
 import com.yunhui.R;
 import com.yunhui.component.edittext.ClearEditTextLogin;
 import com.yunhui.component.edittext.ShowPasswordEditText;
+
+import org.apache.commons.logging.Log;
 
 /**
  * Created by pengmin on 2018/4/9.
@@ -36,6 +39,9 @@ public class LoginActivity extends BaseActionBarActivity{
         btn_LoginEnter = findViewById(R.id.login_enter);
         btn_LoginRegist = findViewById(R.id.login_regist);
         btn_loginForgetPassword = findViewById(R.id.login_forgetpassword);
+        btn_LoginEnter.setOnClickListener(this);
+        btn_LoginRegist.setOnClickListener(this);
+        btn_loginForgetPassword.setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +52,8 @@ public class LoginActivity extends BaseActionBarActivity{
             case R.id.login_enter://登录
                 break;
             case R.id.login_regist://注册
+                Intent registIntent = new Intent(LoginActivity.this,RegistActivity.class);
+                startActivity(registIntent);
                 break;
             case R.id.login_forgetpassword://忘记密码
                 break;

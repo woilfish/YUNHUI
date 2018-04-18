@@ -5,7 +5,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.loopj.common.exception.BaseException;
+import com.loopj.common.httpEx.DefaultHttpResponseHandler;
+import com.loopj.common.httpEx.HttpRequest;
+import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.bean.RequestRegistBean;
+import com.yunhui.request.RegistRequestFactory;
+import com.yunhui.request.RequestUtil;
 
 /**
  * Created by pengmin on 2018/4/11.
@@ -55,9 +62,34 @@ public class RegistActivity extends BaseActionBarActivity{
             case R.id.registsendvalidation://发送验证码
                 break;
             case R.id.registenter://注册
+                registEnter();
                 break;
             case R.id.registloginenter://登录
                 break;
         }
     }
+
+    private void registEnter(){
+
+        RequestRegistBean requestRegistBean = new RequestRegistBean();
+        requestRegistBean.setMobile(et_registphonenum.getText().toString());
+        requestRegistBean.setCode(et_registvalidation.getText().toString());
+        requestRegistBean.setPassword(et_registpassword.getText().toString());
+        requestRegistBean.setConfirmPassword(et_registconfirmpassword.getText().toString());
+        RequestUtil requestUtil = RegistRequestFactory.createRegistRequest(RegistActivity.this,requestRegistBean);
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
+
+    }
+
 }

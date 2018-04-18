@@ -12,13 +12,19 @@
 
         <meta-data android:value="5abb30fea40fa36fca0000a6" android:name="UMENG_APPKEY"/>
 
-        <activity android:name=".activity.HomeActivity">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.RegistActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.RetrievePasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.RetrievePasswordNextActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

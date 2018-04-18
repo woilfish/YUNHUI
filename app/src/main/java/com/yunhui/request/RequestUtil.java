@@ -162,9 +162,6 @@ public class RequestUtil  extends HttpRequest{
         if (isAddCommonParams) {
             addCommonParams(params);
         }
-
-        //添加GIZP 头
-        setHeader("Accept-Encoding", "gzip");
     }
 
     /**
@@ -177,7 +174,10 @@ public class RequestUtil  extends HttpRequest{
         }
 
         //todo 添加公共参数
-
+        params.put("deviceModel","e41");
+        params.put("deviceId","e41");
+        params.put("platform","e41");
+        params.put("channel","10000001");
     }
 
     /**
