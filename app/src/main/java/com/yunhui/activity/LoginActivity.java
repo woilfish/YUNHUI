@@ -5,11 +5,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.loopj.common.exception.BaseException;
+import com.loopj.common.httpEx.HttpRequest;
+import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
 import com.yunhui.component.edittext.ClearEditTextLogin;
 import com.yunhui.component.edittext.ShowPasswordEditText;
+import com.yunhui.request.LoginRequestFactory;
+import com.yunhui.request.RequestUtil;
+import com.yunhui.util.MobileUtil;
+import com.yunhui.util.ToastUtil;
 
 import org.apache.commons.logging.Log;
+import org.json.JSONObject;
 
 /**
  * Created by pengmin on 2018/4/9.
@@ -50,6 +58,11 @@ public class LoginActivity extends BaseActionBarActivity{
 
         switch (view.getId()){
             case R.id.login_enter://登录
+                if(MobileUtil.isPhoneNumber(clearEditTextLogin.getText().toString())){
+                    login();
+                }else{
+                    ToastUtil.toast(LoginActivity.this,getResources().getString(R.string.regist_phonenum_toast));
+                }
                 break;
             case R.id.login_regist://注册
                 Intent registIntent = new Intent(LoginActivity.this,RegistActivity.class);
@@ -58,5 +71,30 @@ public class LoginActivity extends BaseActionBarActivity{
             case R.id.login_forgetpassword://忘记密码
                 break;
         }
+    }
+
+    private void login(){
+        RequestUtil requestUtil = LoginRequestFactory.createLoginRequest(LoginActivity.this,clearEditTextLogin.getText().toString(),"111111",showPasswordEditText.getText().toString());
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+                JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent homeIntent = new Intent(LoginActivity.this,HomeActivity.class);
+                        startActivity(homeIntent);
+                        LoginActivity.this.finish();
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
     }
 }

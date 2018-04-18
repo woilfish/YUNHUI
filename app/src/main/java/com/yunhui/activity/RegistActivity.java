@@ -16,6 +16,8 @@ import com.yunhui.request.RequestUtil;
 import com.yunhui.util.MobileUtil;
 import com.yunhui.util.ToastUtil;
 
+import org.json.JSONObject;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -125,6 +127,8 @@ public class RegistActivity extends BaseActionBarActivity{
             @Override
             public void onSuccess(HttpRequest request) {
                 super.onSuccess(request);
+
+                ToastUtil.toast(RegistActivity.this,"注册成功");
             }
 
             @Override
