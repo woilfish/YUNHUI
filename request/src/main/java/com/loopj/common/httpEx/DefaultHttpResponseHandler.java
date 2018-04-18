@@ -104,8 +104,8 @@ public class DefaultHttpResponseHandler extends HttpResponseHandler {
                     return;
                 }
 
-                this.resultCode = responseData.optString("_code","");
-                this.resultMessage = responseData.optString("_message","");
+                this.resultCode = responseData.optString("code","");
+                this.resultMessage = responseData.optString("message","");
 
                 this.resultData = responseData;
                 if (isSucceed()){

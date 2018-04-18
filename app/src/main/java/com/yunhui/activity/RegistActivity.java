@@ -13,6 +13,11 @@ import com.yunhui.R;
 import com.yunhui.bean.RequestRegistBean;
 import com.yunhui.request.RegistRequestFactory;
 import com.yunhui.request.RequestUtil;
+import com.yunhui.util.MobileUtil;
+import com.yunhui.util.ToastUtil;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by pengmin on 2018/4/11.
@@ -29,6 +34,8 @@ public class RegistActivity extends BaseActionBarActivity{
     private Button b_registsendvalidation;
     private Button b_registenter;
     private Button b_registloginenter;
+    private int smsTime = 60;
+    private Timer timer;
 
 
     @Override
@@ -36,6 +43,7 @@ public class RegistActivity extends BaseActionBarActivity{
         setContentView(R.layout.activity_regist);
         hideNavigationBar();
         initView();
+        listenEvent();
     }
 
     /**
@@ -55,14 +63,50 @@ public class RegistActivity extends BaseActionBarActivity{
         b_registsendvalidation.setOnClickListener(this);
     }
 
+    /**
+     * 监听事件
+     */
+    private void listenEvent(){
+        et_registphonenum.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    if(!MobileUtil.isPhoneNumber(et_registphonenum.getText().toString())){
+                        ToastUtil.toast(RegistActivity.this,getResources().getString(R.string.regist_phonenum_toast));
+                    }
+                }
+            }
+        });
+
+        et_registvalidation.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    if(et_registvalidation.getText().toString().length() < 6 || et_registvalidation.getText().toString().length() > 6){
+                        ToastUtil.toast(RegistActivity.this,getResources().getString(R.string.regist_validation_toast));
+                    }
+                }
+            }
+        });
+    }
+
     @Override
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()){
             case R.id.registsendvalidation://发送验证码
+                if(MobileUtil.isPhoneNumber(et_registphonenum.getText().toString())){
+                    startTimer();
+                    sendSms();
+                    b_registsendvalidation.setEnabled(false);
+                }else{
+                    ToastUtil.toast(RegistActivity.this,getResources().getString(R.string.regist_phonenum_toast));
+                }
                 break;
             case R.id.registenter://注册
-                registEnter();
+                if(MobileUtil.isPhoneNumber(et_registphonenum.getText().toString()) && et_registvalidation.getText().toString().length() == 6) {
+                    registEnter();
+                }
                 break;
             case R.id.registloginenter://登录
                 break;
@@ -90,6 +134,47 @@ public class RegistActivity extends BaseActionBarActivity{
         });
         requestUtil.execute();
 
+    }
+
+    private void sendSms(){
+        RequestUtil requestUtil = RegistRequestFactory.sendSms(RegistActivity.this,et_registphonenum.getText().toString());
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
+    }
+
+    private void startTimer(){
+        timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(smsTime == 1){
+                            b_registsendvalidation.setText("重新发送");
+                            smsTime = 60;
+                            timer.cancel();
+                            b_registsendvalidation.setEnabled(true);
+                            return;
+                        }
+                        smsTime --;
+                        b_registsendvalidation.setText(String.valueOf(smsTime));
+                    }
+                });
+
+            }
+        };
+        timer.schedule(timerTask,0,1000);
     }
 
 }

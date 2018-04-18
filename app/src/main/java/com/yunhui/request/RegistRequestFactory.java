@@ -12,6 +12,12 @@ import com.yunhui.bean.RequestRegistBean;
 
 public class RegistRequestFactory {
 
+    /**
+     * 注册接口
+     * @param context
+     * @param requestRegistBean
+     * @return
+     */
     public static RequestUtil createRegistRequest(Context context, RequestRegistBean requestRegistBean){
         RequestUtil requestUtil = RequestUtil.obtainRequest(context,"signUp", HttpRequest.RequestMethod.POST);
         HttpRequestParams requestParams = requestUtil.getRequestParams();
@@ -22,6 +28,13 @@ public class RegistRequestFactory {
         requestParams.put("userName",requestRegistBean.getUserName());
         requestParams.put("identifier",requestRegistBean.getIdentifler());
 
+        return requestUtil;
+    }
+
+    public static RequestUtil sendSms(Context context,String mobile){
+        RequestUtil requestUtil = RequestUtil.obtainRequest(context,"sendSms", HttpRequest.RequestMethod.POST);
+        HttpRequestParams requestParams = requestUtil.getRequestParams();
+        requestParams.put("Mobile",mobile);
         return requestUtil;
     }
 }
