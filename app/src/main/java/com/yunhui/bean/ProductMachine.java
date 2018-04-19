@@ -76,7 +76,10 @@ public class ProductMachine {
        }
     }
 
-    public static List<ProductMachine> initAttrWithJson(JSONArray jsonArray) {
+    public static List<ProductMachine> initAttrWithJson(JSONArray jsonArray,int pageNo) {
+        if(pageNo == 1){
+            productMachines.clear();
+        }
         for(int i = 0;i < jsonArray.length();i++){
             try {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);

@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.yunhui.R;
-import com.yunhui.bean.ConsultingInfo;
 import com.yunhui.bean.ProductMachine;
 
 import java.util.ArrayList;
@@ -67,6 +66,7 @@ public class ProductMachineAdapter extends BaseAdapter{
             viewHolder.tv_itemrarning = convertView.findViewById(R.id.itemrarning);
             viewHolder.tv_itemrarningday = convertView.findViewById(R.id.itemrarningday);
             viewHolder.tv_itemrarningdayinfo = convertView.findViewById(R.id.itemrarningdayinfo);
+            convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
         }

@@ -74,13 +74,13 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
         productMachineAdapter = new ProductMachineAdapter(homeActivity,productMachines);
         rlv_earningsrefeesh.setAdapter(productMachineAdapter);
         rlv_earningsrefeesh.setOnRefreshListViewListener(this);
-        rlv_earningsrefeesh.setPullRefreshEnable(false);
+        rlv_earningsrefeesh.setPullRefreshEnable(true);
         rlv_earningsrefeesh.setPullLoadEnable(false);
     }
 
     @Override
     public void onRefresh() {
-
+        productMachineRequest();
     }
 
     @Override
@@ -97,7 +97,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
                 super.onSuccess(request);
                 JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
                 if(jsonObject.has("list")){
-                    productMachines = ProductMachine.initAttrWithJson(jsonObject.optJSONArray("list"));
+                    productMachines = ProductMachine.initAttrWithJson(jsonObject.optJSONArray("list"),1);
                     Message message = new Message();
                     message.what = 1;
                     handler.sendMessage(message);
