@@ -1,41 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="wrap_content"
+    android:background="@color/color_2b2e34"
+    android:padding="@dimen/dimen_20">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="@dimen/dimen_16"
+            android:layout_height="@dimen/dimen_16"
+            android:background="@drawable/bg_roundedrectangle"
+            android:layout_gravity="center"/>
         <TextView
             android:id="@+id/itemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/app_name"/>
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_normal"
+            android:layout_marginLeft="@dimen/dimen_8"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_10">
         <TextView
             android:id="@+id/itemTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/app_name"/>
+            android:textColor="@color/color_959697"
+            android:textSize="@dimen/font_size_big_small"
+            android:text="@string/app_name" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_10">
         <TextView
             android:id="@+id/itemContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/app_name"/>
+            android:textColor="@color/color_959697"
+            android:text="@string/app_name"
+            android:textSize="@dimen/font_size_normal"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

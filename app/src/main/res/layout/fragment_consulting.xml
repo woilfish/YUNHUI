@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/AppTheThemeColor">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -45,6 +46,9 @@
         android:clickable="true"
         android:divider="@color/l_gray"
         android:dividerHeight="1dp"
-        android:scrollbars="none" />
+        android:scrollbars="none"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_20"/>
 
 </LinearLayout>
