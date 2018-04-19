@@ -70,12 +70,12 @@ public class ConsultingAdapter extends BaseAdapter{
         ConsultingInfo consultingInfo = getItem(position);
         viewHolder.tv_Title.setText(consultingInfo.getTitle());
         viewHolder.tv_Time.setText(consultingInfo.getTime());
-        viewHolder.tv_Content.setText(consultingInfo.getContent());
+        viewHolder.tv_Content.setText(consultingInfo.getMessage());
 
         return convertView;
     }
 
-    class ViewHolder{
+    private class ViewHolder{
         TextView tv_Title,tv_Time,tv_Content;
     }
 }

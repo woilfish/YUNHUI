@@ -14,9 +14,13 @@ import java.util.List;
 
 public class ConsultingInfo {
 
+    private String msgId;//信息Id
+    private String createtime;//信息创建时间
+    private String updateTime;//信息更新时间
+    private String message;//信息内容
     private String title;//标题
     private String time;//时间
-    private String content;//内容
+    private String type;//类型
 
     private static List<ConsultingInfo> consultingInfos = new ArrayList<>();
 
@@ -33,20 +37,32 @@ public class ConsultingInfo {
     }
 
     private void initAttrWithJson(JSONObject jsonObject) {
-
+        if(jsonObject.has("msgId")){
+            this.setMsgId(jsonObject.optString("msgId"));
+        }
+        if(jsonObject.has("createtime")){
+            this.setCreatetime(jsonObject.optString("createtime"));
+        }
+        if(jsonObject.has("updateTime")){
+            this.setUpdateTime(jsonObject.optString("updateTime"));
+        }
+        if(jsonObject.has("message")){
+            this.setMessage(jsonObject.optString("message"));
+        }
         if(jsonObject.has("title")){
             this.setTitle(jsonObject.optString("title"));
         }
         if(jsonObject.has("time")){
             this.setTime(jsonObject.optString("time"));
         }
-        if(jsonObject.has("content")){
-            this.setContent(jsonObject.optString("content"));
+        if(jsonObject.has("type")){
+            this.setType(jsonObject.optString("type"));
         }
+
     }
 
-    private static List<ConsultingInfo> initAttrWithJson(JSONArray jsonArray, String pageNo) {
-        if("1".equals(pageNo)){
+    public static List<ConsultingInfo> initAttrWithJson(JSONArray jsonArray, int pageNo) {
+        if(pageNo == 1){
             consultingInfos.clear();
         }
         for(int i = 0;i < jsonArray.length();i++){
@@ -59,6 +75,38 @@ public class ConsultingInfo {
             }
         }
         return consultingInfos;
+    }
+
+    public String getMsgId() {
+        return msgId;
+    }
+
+    public void setMsgId(String msgId) {
+        this.msgId = msgId;
+    }
+
+    public String getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
+    }
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getTitle() {
@@ -77,11 +125,19 @@ public class ConsultingInfo {
         this.time = time;
     }
 
-    public String getContent() {
-        return content;
+    public String getType() {
+        return type;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public static List<ConsultingInfo> getConsultingInfos() {
+        return consultingInfos;
+    }
+
+    public static void setConsultingInfos(List<ConsultingInfo> consultingInfos) {
+        ConsultingInfo.consultingInfos = consultingInfos;
     }
 }

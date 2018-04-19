@@ -178,7 +178,7 @@ public class RequestUtil  extends HttpRequest{
         params.put("deviceId","e41");
         params.put("platform","e41");
         params.put("channel","10000001");
-        params.put("token","e41461a6-662e-4321-b240-c966e9c47b2a1");
+        params.put("token","c8bae91d-12ba-4ad6-b255-d1f7fe7ac5d7");
     }
 
     /**

@@ -12,7 +12,7 @@ import com.loopj.common.httpEx.HttpRequestParams;
 public class LoginRequestFactory {
 
     public static RequestUtil createLoginRequest(Context context,String mobile,String code,String password){
-        RequestUtil requestUtil = RequestUtil.obtainRequest(context,"login", HttpRequest.RequestMethod.POST);
+        RequestUtil requestUtil = RequestUtil.obtainRequest(context,"api/login", HttpRequest.RequestMethod.POST);
         HttpRequestParams requestParams = requestUtil.getRequestParams();
         requestParams.put("mobile",mobile);
         requestParams.put("code",code);

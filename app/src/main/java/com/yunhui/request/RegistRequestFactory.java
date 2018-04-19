@@ -19,7 +19,7 @@ public class RegistRequestFactory {
      * @return
      */
     public static RequestUtil createRegistRequest(Context context, RequestRegistBean requestRegistBean){
-        RequestUtil requestUtil = RequestUtil.obtainRequest(context,"signUp", HttpRequest.RequestMethod.POST);
+        RequestUtil requestUtil = RequestUtil.obtainRequest(context,"api/signUp", HttpRequest.RequestMethod.POST);
         HttpRequestParams requestParams = requestUtil.getRequestParams();
         requestParams.put("mobile",requestRegistBean.getMobile());
         requestParams.put("code",requestRegistBean.getCode());
@@ -32,7 +32,7 @@ public class RegistRequestFactory {
     }
 
     public static RequestUtil sendSms(Context context,String mobile){
-        RequestUtil requestUtil = RequestUtil.obtainRequest(context,"sendSms", HttpRequest.RequestMethod.POST);
+        RequestUtil requestUtil = RequestUtil.obtainRequest(context,"api/sendSms", HttpRequest.RequestMethod.POST);
         HttpRequestParams requestParams = requestUtil.getRequestParams();
         requestParams.put("Mobile",mobile);
         return requestUtil;
