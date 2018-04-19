@@ -52,11 +52,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
-        android:divider="@null"
-        android:dividerHeight="0dp"
+        android:dividerHeight="1dp"
         android:scrollbars="none"
-        android:visibility="gone"
-        android:background="@color/white"/>
+        android:divider="@color/l_gray"/>
 
 
 
