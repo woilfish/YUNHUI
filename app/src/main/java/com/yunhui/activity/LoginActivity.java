@@ -42,6 +42,7 @@ public class LoginActivity extends BaseActionBarActivity{
      * 初始话view
      */
     private void initView(){
+        hideNavigationBar();
         clearEditTextLogin = findViewById(R.id.login_phonenum);
         showPasswordEditText = findViewById(R.id.login_password);
         btn_LoginEnter = findViewById(R.id.login_enter);
