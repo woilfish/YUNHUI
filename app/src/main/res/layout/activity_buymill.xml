@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+        <com.yunhui.component.image.CircleImageView
+            android:id="@+id/exchangeuserphoto"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_centerInParent="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/exchangeuserphonenum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13633491655"/>
+            <TextView
+                android:id="@+id/exchangeusername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="无敌寂寞"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.yunhui.component.refreshlistview.RefreshListView
+        android:id="@+id/buyref"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:dividerHeight="1dp"
+        android:scrollbars="none"
+        android:divider="@color/l_gray"/>
+
+</LinearLayout>

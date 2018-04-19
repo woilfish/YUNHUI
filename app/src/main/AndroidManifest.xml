@@ -28,6 +28,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.HomeActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.ExchangeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BuyillMActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

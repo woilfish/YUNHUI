@@ -1,5 +1,6 @@
 package com.yunhui.fragmenr;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.yunhui.activity.BuyillMActivity;
+import com.yunhui.activity.ExchangeActivity;
 import com.yunhui.activity.HomeActivity;
 import com.yunhui.R;
 import com.yunhui.component.image.CircleImageView;
@@ -61,10 +64,14 @@ public class MyFragment extends BaseFragment {
         super.onClick(view);
         switch (view.getId()){
             case R.id.exchange:
+                Intent exchangeIntent = new Intent(homeActivity, ExchangeActivity.class);
+                startActivity(exchangeIntent);
                 break;
             case R.id.myTask:
                 break;
             case R.id.buy:
+                Intent buyIntent = new Intent(homeActivity, BuyillMActivity.class);
+                startActivity(buyIntent);
                 break;
             case R.id.myInvitation:
                 break;
