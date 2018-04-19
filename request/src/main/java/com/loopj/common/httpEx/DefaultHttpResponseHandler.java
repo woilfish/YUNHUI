@@ -2,6 +2,7 @@ package com.loopj.common.httpEx;
 
 import com.loopj.common.exception.ServerResultDataException;
 import com.loopj.common.exception.TradeException;
+import com.loopj.common.util.StringUtil;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -213,7 +214,7 @@ public class DefaultHttpResponseHandler extends HttpResponseHandler {
 
         switch (responseDataType){
             case RESPONSE_DATA_TYPE_JSON:
-                return "OA0000".equals(resultCode);
+                return StringUtil.isEmpty(resultCode);
 
             case RESPONSE_DATA_TYPE_TEXT:
                 return true;
