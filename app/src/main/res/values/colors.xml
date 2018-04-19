@@ -5,7 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <!-- 应用主题颜色 -->
-    <color name="AppTheThemeColor">#fd5c56</color>
+    <color name="AppTheThemeColor">#1E2225</color>
 
 
     <color name="color_gray_f7f5f5">#f7f5f5</color>
@@ -31,5 +31,7 @@
     <color name="l_gray">#DDDDDD</color>
     <color name="font_black">#1e1e1e</color><!--黑-->
     <color name="font_gray">#828282</color><!--灰-->
+    <color name="color_4F5051">#4F5051</color>
+    <color name="color_EE9707">#EE9707</color>
 </resources>
 

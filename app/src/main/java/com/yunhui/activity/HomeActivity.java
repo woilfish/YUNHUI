@@ -1,5 +1,6 @@
 package com.yunhui.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTabHost;
@@ -30,10 +31,10 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
             "咨询", "任务", "收益","我的"
     };
     private int mImageViewArray[] = {
-
+        R.mipmap.consult,R.mipmap.task,R.mipmap.earnings,R.mipmap.my
     };
     private int mImageViewArraySelected[] = {
-
+        R.mipmap.consult_select,R.mipmap.task_select,R.mipmap.earnings_select,R.mipmap.my_select
     };
     public boolean isNewMessage = false;
 
@@ -99,7 +100,7 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
                 }else {
                     imageView.setImageResource(mImageViewArraySelected[index]);
                 }
-                textview.setTextColor(getResources().getColor(R.color.AppTheThemeColor));
+                textview.setTextColor(getResources().getColor(R.color.color_EE9707));
             } else {
                 if(index == 2 && isNewMessage){
 //                    imageView.setImageResource(R.drawable.tab_me_rp_color);
@@ -107,13 +108,14 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
                     imageView.setImageResource(mImageViewArray[index]);
                 }
 
-                textview.setTextColor(getResources().getColor(R.color.gray_999999));
+                textview.setTextColor(getResources().getColor(R.color.white));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onClick(View view) {
         try {

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+        <com.yunhui.component.image.CircleImageView
+            android:id="@+id/exchangeuserphoto"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_centerInParent="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/exchangeuserphonenum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13633491655"/>
+            <TextView
+                android:id="@+id/exchangeusername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="无敌寂寞"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/inviteSuccessCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已成功邀请好友2个"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/invite_code_hite"/>
+        <TextView
+            android:id="@+id/invitecode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/invite_code_qrcode_hite"/>
+        <ImageView
+            android:id="@+id/inviteqrcode"
+            android:layout_width="200dp"
+            android:layout_height="200dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/invite_code_warmprompt_hite"/>
+    </LinearLayout>
+
+</LinearLayout>

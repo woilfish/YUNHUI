@@ -48,6 +48,10 @@
     <string name="exchange_hite_password">您的密码</string>
     <string name="exchange_hite_cancle">取消</string>
     <string name="exchange_hite_confirm">确认兑换</string>
+    
+    <string name="invite_code_hite">我的邀请码</string>
+    <string name="invite_code_qrcode_hite">我的二维码</string>
+    <string name="invite_code_warmprompt_hite">温馨提示：保存二维码照片，发给好友，好友注册云慧助手，每个好友奖励10钻石，最多推荐10个好友</string>
 
 
     <!--自定义下拉刷新上滑加载ListView-->
