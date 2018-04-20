@@ -14,6 +14,7 @@ import com.yunhui.activity.HomeActivity;
 import com.yunhui.R;
 import com.yunhui.component.image.CircleImageView;
 import com.yunhui.component.linearlayout.LabelItemView;
+import com.yunhui.util.DateUtil;
 
 /**
  * Created by pengmin on 2018/4/2.
@@ -32,6 +33,7 @@ public class MyFragment extends BaseFragment {
     private LabelItemView liv_buy;
     private LabelItemView liv_myInvitation;
     private LabelItemView liv_aboutMy;
+    private TextView tv_myData;
 
 
     @Nullable
@@ -52,6 +54,8 @@ public class MyFragment extends BaseFragment {
         liv_buy = parentView.findViewById(R.id.buy);
         liv_myInvitation = parentView.findViewById(R.id.myInvitation);
         liv_aboutMy = parentView.findViewById(R.id.aboutMy);
+        tv_myData = parentView.findViewById(R.id.mydate);
+        tv_myData.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
         liv_exchange.setOnClickListener(this);
         liv_myTask.setOnClickListener(this);
         liv_buy.setOnClickListener(this);

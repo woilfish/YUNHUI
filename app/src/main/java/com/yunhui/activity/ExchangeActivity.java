@@ -37,6 +37,7 @@ public class ExchangeActivity extends BaseActionBarActivity{
     }
 
     private void initView() {
+        navigationBar.setTitle("BTC兑换");
         civ_exchangeUserPhoto = findViewById(R.id.exchangeuserphoto);
         tv_exchangeUserPhoneNum = findViewById(R.id.exchangeuserphonenum);
         tv_exchangeUserName = findViewById(R.id.exchangeusername);
