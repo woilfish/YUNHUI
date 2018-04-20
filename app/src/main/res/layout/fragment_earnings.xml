@@ -5,46 +5,100 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/AppTheThemeColor">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_112"
+        android:layout_marginTop="@dimen/dimen_50"
+        android:background="@color/color_4F5051">
+        <TextView
+            android:id="@+id/earningdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/white"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimen_10"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:layout_marginRight="@dimen/dimen_10"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_log"/>
+        </LinearLayout>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
         android:padding="@dimen/dimen_20">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="@dimen/dimen_10"
+                android:layout_height="@dimen/dimen_10"
+                android:background="@drawable/bg_roundedrectangle"
+                android:layout_gravity="center"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/earnings_hite_top"/>
+                android:text="@string/earnings_hite_top"
+                android:textColor="@color/color_EE9707"
+                android:layout_marginLeft="@dimen/dimen_10"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100"
+                android:textColor="@color/color_EE9707"
+                android:layout_marginLeft="@dimen/dimen_22"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_20">
+        <ImageView
+            android:layout_width="@dimen/dimen_10"
+            android:layout_height="@dimen/dimen_10"
+            android:background="@drawable/bg_roundedrectangle"
+            android:layout_gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/earnings_hite_day"/>
+            android:text="@string/earnings_hite_all_top"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:textColor="@color/color_EE9707"/>
         <TextView
             android:id="@+id/earningshiteday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_22"
+            android:textColor="@color/color_EE9707"
             android:text="0.00000023 BTC"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_20">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/earnings_hite_middle_hite"/>
+            android:text="@string/earnings_hite_middle_hite"
+            android:textColor="@color/color_959697"/>
     </LinearLayout>
 
     <com.yunhui.component.refreshlistview.RefreshListView
@@ -54,7 +108,10 @@
         android:clickable="true"
         android:dividerHeight="1dp"
         android:scrollbars="none"
-        android:divider="@color/l_gray"/>
+        android:divider="@color/l_gray"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_20"
+        android:layout_marginLeft="@dimen/dimen_20"/>
 
 
 

@@ -21,6 +21,7 @@ import com.yunhui.adapter.ProductMachineAdapter;
 import com.yunhui.bean.ProductMachine;
 import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.request.RequestUtil;
+import com.yunhui.util.DateUtil;
 
 import org.json.JSONObject;
 
@@ -39,6 +40,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
     private RefreshListView rlv_earningsrefeesh;
     private List<ProductMachine> productMachines;
     private ProductMachineAdapter productMachineAdapter;
+    private TextView tv_earningdate;
 
     private Handler handler = new Handler(){
         @Override
@@ -71,6 +73,8 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
     private void initView() {
         tv_earningshiteday =  parentView.findViewById(R.id.earningshiteday);
         rlv_earningsrefeesh = parentView.findViewById(R.id.earningsrefeesh);
+        tv_earningdate = parentView.findViewById(R.id.earningdate);
+        tv_earningdate.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
         productMachineAdapter = new ProductMachineAdapter(homeActivity,productMachines);
         rlv_earningsrefeesh.setAdapter(productMachineAdapter);
         rlv_earningsrefeesh.setOnRefreshListViewListener(this);
