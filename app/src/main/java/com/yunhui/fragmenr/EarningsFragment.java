@@ -41,14 +41,19 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
     private List<ProductMachine> productMachines;
     private ProductMachineAdapter productMachineAdapter;
     private TextView tv_earningdate;
+    private TextView tv_allTotalRevenue;
 
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            rlv_earningsrefeesh.stopRefresh();
             switch (msg.what){
                 case 1:
                     productMachineAdapter.refreshData(productMachines);
+                    break;
+                case 2:
+                    tv_allTotalRevenue.setText((String)msg.obj);
                     break;
             }
         }
@@ -67,6 +72,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
     public void onResume() {
         super.onResume();
         productMachineRequest();
+        allTotalRevenueRequets();
     }
 
     @SuppressLint("WrongViewCast")
@@ -74,6 +80,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
         tv_earningshiteday =  parentView.findViewById(R.id.earningshiteday);
         rlv_earningsrefeesh = parentView.findViewById(R.id.earningsrefeesh);
         tv_earningdate = parentView.findViewById(R.id.earningdate);
+        tv_allTotalRevenue = parentView.findViewById(R.id.allTotalRevenue);
         tv_earningdate.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
         productMachineAdapter = new ProductMachineAdapter(homeActivity,productMachines);
         rlv_earningsrefeesh.setAdapter(productMachineAdapter);
@@ -85,6 +92,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
     @Override
     public void onRefresh() {
         productMachineRequest();
+        allTotalRevenueRequets();
     }
 
     @Override
@@ -115,4 +123,30 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
         });
         requestUtil.execute();
     }
+
+    private void allTotalRevenueRequets(){
+        RequestUtil requestUtil = RequestUtil.obtainRequest(homeActivity,"user/queryUserBenefit", HttpRequest.RequestMethod.POST);
+
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+                JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                if(jsonObject != null && jsonObject.has("total")){
+                    String total = jsonObject.optString("total");
+                    Message message = new Message();
+                    message.what = 2;
+                    message.obj = total;
+                    handler.sendMessage(message);
+                }
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
+    }
+
 }
