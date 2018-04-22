@@ -12,6 +12,7 @@ import com.yunhui.activity.BuyillMActivity;
 import com.yunhui.activity.ExchangeActivity;
 import com.yunhui.activity.HomeActivity;
 import com.yunhui.R;
+import com.yunhui.activity.InviteCodeActivity;
 import com.yunhui.component.image.CircleImageView;
 import com.yunhui.component.linearlayout.LabelItemView;
 import com.yunhui.util.DateUtil;
@@ -78,6 +79,8 @@ public class MyFragment extends BaseFragment {
                 startActivity(buyIntent);
                 break;
             case R.id.myInvitation:
+                Intent myInvitationIntent = new Intent(homeActivity, InviteCodeActivity.class);
+                startActivity(myInvitationIntent);
                 break;
             case R.id.aboutMy:
                 break;
