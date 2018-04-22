@@ -3,9 +3,11 @@ package com.yunhui.request;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
+import android.util.DebugUtils;
 import android.util.Log;
 
 import com.loopj.common.exception.BaseException;
+import com.loopj.common.util.DeviceUtil;
 import com.yunhui.component.dialog.ProgressDialog;
 import com.yunhui.config.Config;
 import com.loopj.common.httpEx.DefaultHttpResponseHandler;
@@ -174,9 +176,9 @@ public class RequestUtil  extends HttpRequest{
         }
 
         //todo 添加公共参数
-        params.put("deviceModel","e41");
-        params.put("deviceId","e41");
-        params.put("platform","e41");
+        params.put("deviceModel", DeviceUtil.getPhoneModel());
+        params.put("deviceId",DeviceUtil.getDeviceId(context));
+        params.put("platform",DeviceUtil.getPhoneType());
         params.put("channel","10000001");
         params.put("token","c8bae91d-12ba-4ad6-b255-d1f7fe7ac5d7");
     }
