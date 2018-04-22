@@ -34,6 +34,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.InviteCodeActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.SplashActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GuideActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

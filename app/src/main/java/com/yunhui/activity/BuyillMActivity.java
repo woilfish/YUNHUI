@@ -54,6 +54,7 @@ public class BuyillMActivity extends BaseActionBarActivity implements RefreshLis
     }
 
     private void initView() {
+        navigationBar.setTitle("我的机器");
         rlv_BuyRef = findViewById(R.id.buyref);
         productMachineAdapter = new ProductMachineAdapter(BuyillMActivity.this,productMachines);
         rlv_BuyRef.setAdapter(productMachineAdapter);

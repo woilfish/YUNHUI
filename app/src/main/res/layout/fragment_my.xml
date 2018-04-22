@@ -115,7 +115,7 @@
             android:id="@+id/buy"
             android:background="@color/color_2b2e34"
             style="@style/item_label_right_text_style"
-            app:labelText="购买云钻矿机"
+            app:labelText="我的云钻矿机"
             app:rightText=""
             app:labelTextSize="@dimen/wallet_left_font_size"
             app:labelTextColor="@color/color_959697"
