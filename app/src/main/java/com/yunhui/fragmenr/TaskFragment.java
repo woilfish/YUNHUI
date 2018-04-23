@@ -66,7 +66,7 @@ public class TaskFragment extends BaseFragment implements RefreshListView.OnRefr
 
     private void initView() {
 
-        tv_taskdate = parentView.findViewById(R.id.allTotalRevenue);
+        tv_taskdate = parentView.findViewById(R.id.taskdate);
         rlv_taskList = parentView.findViewById(R.id.taskList);
         tv_taskdate.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
         taskAdapter = new TaskAdapter(homeActivity,taskInfoList);
