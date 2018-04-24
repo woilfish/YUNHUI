@@ -7,6 +7,7 @@ import com.loopj.common.util.LogUtil;
 import com.loopj.common.util.StringUtil;
 import com.meituan.android.walle.WalleChannelReader;
 import com.umeng.analytics.MobclickAgent;
+import com.yunhui.bean.UserInfo;
 
 /**
  * Created by pengmin on 2018/3/28.
@@ -22,6 +23,15 @@ public class YhApplication extends Application {
      */
     private String mChannelNo;
 
+    private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
 
     public static YhApplication getInstance() {
         return mInstance;
@@ -46,4 +56,6 @@ public class YhApplication extends Application {
 
 
     }
+
+
 }

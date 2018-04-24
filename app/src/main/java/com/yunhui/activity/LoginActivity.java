@@ -9,6 +9,8 @@ import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.YhApplication;
+import com.yunhui.bean.UserInfo;
 import com.yunhui.component.edittext.ClearEditTextLogin;
 import com.yunhui.component.edittext.ShowPasswordEditText;
 import com.yunhui.request.LoginRequestFactory;
@@ -81,6 +83,8 @@ public class LoginActivity extends BaseActionBarActivity{
             public void onSuccess(HttpRequest request) {
                 super.onSuccess(request);
                 JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                UserInfo userInfo = new UserInfo(jsonObject);
+                YhApplication.getInstance().setUserInfo(userInfo);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
