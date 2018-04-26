@@ -23,9 +23,11 @@ public class ProductMachineAdapter extends BaseAdapter{
     private Context context;
     private List<ProductMachine> productMachines;
     private LayoutInflater layoutInflater;
+    private View.OnClickListener onClickListener;
 
-    public ProductMachineAdapter(Context context, List<ProductMachine> productMachines) {
+    public ProductMachineAdapter(Context context, List<ProductMachine> productMachines, View.OnClickListener onClickListener) {
         this.context = context;
+        this.onClickListener = onClickListener;
         if(productMachines == null){
             this.productMachines = new ArrayList<>();
         }else {
@@ -77,6 +79,10 @@ public class ProductMachineAdapter extends BaseAdapter{
         viewHolder.tv_itemrarning.setText(productMachine.getTotalBenifit());
         viewHolder.tv_itemrarningday.setText(productMachine.getCircle());
         viewHolder.tv_itemrarningdayinfo.setText(productMachine.getContent());
+
+        // 通常将position设置为tag，方便之后判断点击的button是哪一个
+        viewHolder.b_itemearningbuy.setTag(position);
+        viewHolder.b_itemearningbuy.setOnClickListener(this.onClickListener);
         return convertView;
     }
 

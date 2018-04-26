@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.yunhui.bean.ProductMachine;
 import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.DateUtil;
+import com.yunhui.util.ToastUtil;
 
 import org.json.JSONObject;
 
@@ -59,6 +61,16 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
         }
     };
 
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Button btn = (Button) view;
+            int postion = (Integer) btn.getTag();
+            ToastUtil.toast(homeActivity,productMachines.get(postion).getAmout());
+        }
+    };
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,7 +94,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
         tv_earningdate = parentView.findViewById(R.id.earningdate);
         tv_allTotalRevenue = parentView.findViewById(R.id.allTotalRevenue);
         tv_earningdate.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
-        productMachineAdapter = new ProductMachineAdapter(homeActivity,productMachines);
+        productMachineAdapter = new ProductMachineAdapter(homeActivity,productMachines,onClickListener);
         rlv_earningsrefeesh.setAdapter(productMachineAdapter);
         rlv_earningsrefeesh.setOnRefreshListViewListener(this);
         rlv_earningsrefeesh.setPullRefreshEnable(true);

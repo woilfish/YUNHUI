@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.loopj.common.exception.BaseException;
@@ -19,6 +20,7 @@ import com.yunhui.bean.TaskInfo;
 import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.DateUtil;
+import com.yunhui.util.ToastUtil;
 
 import org.json.JSONObject;
 
@@ -49,6 +51,15 @@ public class TaskFragment extends BaseFragment implements RefreshListView.OnRefr
         }
     };
 
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Button btn = (Button) view;
+            int postion = (Integer) btn.getTag();
+            ToastUtil.toast(homeActivity,taskInfoList.get(postion).getName());
+        }
+    };
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,7 +80,7 @@ public class TaskFragment extends BaseFragment implements RefreshListView.OnRefr
         tv_taskdate = parentView.findViewById(R.id.taskdate);
         rlv_taskList = parentView.findViewById(R.id.taskList);
         tv_taskdate.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
-        taskAdapter = new TaskAdapter(homeActivity,taskInfoList);
+        taskAdapter = new TaskAdapter(homeActivity,taskInfoList,onClickListener);
         rlv_taskList.setAdapter(taskAdapter);
         rlv_taskList.setOnRefreshListViewListener(this);
         rlv_taskList.setPullRefreshEnable(false);
@@ -85,6 +96,7 @@ public class TaskFragment extends BaseFragment implements RefreshListView.OnRefr
     public void onLoadMore() {
 
     }
+
 
     private void queryTaskList(){
         RequestUtil requestUtil = RequestUtil.obtainRequest(homeActivity,"user/queryUserTask", HttpRequest.RequestMethod.POST);

@@ -3,6 +3,8 @@ package com.yunhui.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
+import android.widget.Button;
 
 import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
@@ -12,6 +14,7 @@ import com.yunhui.adapter.ProductMachineAdapter;
 import com.yunhui.bean.ProductMachine;
 import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.request.RequestUtil;
+import com.yunhui.util.ToastUtil;
 
 import org.json.JSONObject;
 
@@ -40,6 +43,14 @@ public class BuyillMActivity extends BaseActionBarActivity implements RefreshLis
         }
     };
 
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Button btn = (Button) view;
+            int postion = (Integer) btn.getTag();
+            ToastUtil.toast(BuyillMActivity.this,productMachines.get(postion).getAmout());
+        }
+    };
 
     @Override
     protected void initActivity(Bundle savedInstanceState) {
@@ -56,7 +67,7 @@ public class BuyillMActivity extends BaseActionBarActivity implements RefreshLis
     private void initView() {
         navigationBar.setTitle("我的机器");
         rlv_BuyRef = findViewById(R.id.buyref);
-        productMachineAdapter = new ProductMachineAdapter(BuyillMActivity.this,productMachines);
+        productMachineAdapter = new ProductMachineAdapter(BuyillMActivity.this,productMachines,onClickListener);
         rlv_BuyRef.setAdapter(productMachineAdapter);
         rlv_BuyRef.setOnRefreshListViewListener(this);
         rlv_BuyRef.setPullRefreshEnable(true);

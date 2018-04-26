@@ -24,9 +24,11 @@ public class TaskAdapter extends BaseAdapter{
     private Context context;
     private List<TaskInfo> taskInfos;
     private LayoutInflater layoutInflater;
+    private View.OnClickListener onClickListener;
 
-    public TaskAdapter(Context context, List<TaskInfo> taskInfos) {
+    public TaskAdapter(Context context, List<TaskInfo> taskInfos, View.OnClickListener onClickListener) {
         this.context = context;
+        this.onClickListener = onClickListener;
         if(taskInfos == null){
             this.taskInfos = new ArrayList<>();
         }else {
@@ -73,6 +75,9 @@ public class TaskAdapter extends BaseAdapter{
         TaskInfo taskInfo = getItem(position);
         viewHolder.tv_dayTime.setText("第一天");
         viewHolder.tv_appName.setText(taskInfo.getAppname());
+        // 通常将position设置为tag，方便之后判断点击的button是哪一个
+        viewHolder.b_appDownload.setTag(position);
+        viewHolder.b_appDownload.setOnClickListener(this.onClickListener);
         return convertView;
     }
 
