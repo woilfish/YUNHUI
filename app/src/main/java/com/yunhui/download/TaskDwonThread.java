@@ -1,6 +1,8 @@
 package com.yunhui.download;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 
 import com.yunhui.util.StringUtil;
 
@@ -20,6 +22,7 @@ public class TaskDwonThread extends Thread{
     private String downLoadUrl;
     private Context context;
     private String path;
+    private String filePath;
 
     public TaskDwonThread(Context context,String path,String downLoadUrl){
         this.context = context;
@@ -52,9 +55,11 @@ public class TaskDwonThread extends Thread{
                 fos.write(buffer,0,count);
             }
             fos.flush();
+            connection.disconnect();
             //判断文件的大小和下载的大小是都一样
             if(length == file.length()){
                 //安装APK
+                installApk(new File(filePath));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -78,7 +83,7 @@ public class TaskDwonThread extends Thread{
             return null;
         }
         String name = downLoadUrl.substring(downLoadUrl.lastIndexOf("/") + 1);
-        String filePath = path + File.separator + name;
+        filePath = path + File.separator + name;
         File folder = new File(path);
         if (!folder.exists() || !folder.isDirectory()) {
             if (folder != null && folder.isFile()) {
@@ -91,5 +96,14 @@ public class TaskDwonThread extends Thread{
             file.delete();
         }
         return file;
+    }
+
+    private void installApk(File file){
+        Intent intent = new Intent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setAction(android.content.Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(file),
+                "application/vnd.android.package-archive");
+        context.startActivity(intent);
     }
 }
