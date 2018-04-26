@@ -18,12 +18,14 @@ import com.yunhui.R;
 import com.yunhui.adapter.TaskAdapter;
 import com.yunhui.bean.TaskInfo;
 import com.yunhui.component.refreshlistview.RefreshListView;
+import com.yunhui.download.TaskDwonThread;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.DateUtil;
 import com.yunhui.util.ToastUtil;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -39,6 +41,8 @@ public class TaskFragment extends BaseFragment implements RefreshListView.OnRefr
     private RefreshListView rlv_taskList;
     private List<TaskInfo> taskInfoList;
     private TaskAdapter taskAdapter;
+    private TaskDwonThread taskDwonThread;
+
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -56,9 +60,23 @@ public class TaskFragment extends BaseFragment implements RefreshListView.OnRefr
         public void onClick(View view) {
             Button btn = (Button) view;
             int postion = (Integer) btn.getTag();
-            ToastUtil.toast(homeActivity,taskInfoList.get(postion).getName());
+            taskDwonThread = new TaskDwonThread(homeActivity,downLoadPath(),taskInfoList.get(postion).getApplink());
+            taskDwonThread.start();
         }
     };
+
+    private  String downLoadPath(){
+        // 获取项目包名文件路径
+        File filePath = homeActivity.getFilesDir();
+        String path = filePath.getAbsolutePath();
+
+        File file = new File(path + File.separator + "TaskApk");
+        if (!file.exists()) {
+            file.mkdir();
+        }
+
+        return file.getAbsolutePath();
+    }
 
     @Nullable
     @Override
