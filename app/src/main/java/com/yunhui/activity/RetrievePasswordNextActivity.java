@@ -23,7 +23,7 @@ public class RetrievePasswordNextActivity extends BaseActionBarActivity {
 
     @Override
     protected void initActivity(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_retrieve_password);
+        setContentView(R.layout.activity_retrieve_password_next);
         initView();
     }
 

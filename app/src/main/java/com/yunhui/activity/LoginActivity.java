@@ -72,6 +72,8 @@ public class LoginActivity extends BaseActionBarActivity{
                 startActivity(registIntent);
                 break;
             case R.id.login_forgetpassword://忘记密码
+                Intent forgetPasswordIntent = new Intent(LoginActivity.this,RetrievePasswordActivity.class);
+                startActivity(forgetPasswordIntent);
                 break;
         }
     }
