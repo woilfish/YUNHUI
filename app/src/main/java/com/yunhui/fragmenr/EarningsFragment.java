@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.loopj.common.exception.BaseException;
@@ -44,6 +47,12 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
     private ProductMachineAdapter productMachineAdapter;
     private TextView tv_earningdate;
     private TextView tv_allTotalRevenue;
+    private LinearLayout l_bronze;
+    private LinearLayout l_silver;
+    private TextView tv_allSilver;
+    private TextView tv_allBronze;
+    private TextView tv_bronzeNum;
+    private TextView tv_silverNum;
 
     private Handler handler = new Handler(){
         @Override
@@ -53,6 +62,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
             switch (msg.what){
                 case 1:
                     productMachineAdapter.refreshData(productMachines);
+                    setListViewHeightBasedOnChildren(rlv_earningsrefeesh);
                     break;
                 case 2:
                     tv_allTotalRevenue.setText((String)msg.obj);
@@ -66,7 +76,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
         public void onClick(View view) {
             Button btn = (Button) view;
             int postion = (Integer) btn.getTag();
-            ToastUtil.toast(homeActivity,productMachines.get(postion).getAmout());
+            ToastUtil.toast(homeActivity,productMachines.get(postion).getAmout() + "");
         }
     };
 
@@ -94,6 +104,12 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
         tv_earningdate = parentView.findViewById(R.id.earningdate);
         tv_allTotalRevenue = parentView.findViewById(R.id.allTotalRevenue);
         tv_earningdate.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
+        l_bronze = parentView.findViewById(R.id.bronze);
+        l_silver = parentView.findViewById(R.id.silver);
+        tv_allBronze = parentView.findViewById(R.id.allbronze);
+        tv_allSilver = parentView.findViewById(R.id.allsilver);
+        tv_bronzeNum = parentView.findViewById(R.id.bronzenum);
+        tv_silverNum = parentView.findViewById(R.id.silvernum);
         productMachineAdapter = new ProductMachineAdapter(homeActivity,productMachines,onClickListener);
         rlv_earningsrefeesh.setAdapter(productMachineAdapter);
         rlv_earningsrefeesh.setOnRefreshListViewListener(this);
@@ -161,4 +177,38 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
         requestUtil.execute();
     }
 
+
+    public void setListViewHeightBasedOnChildren(ListView listView) {
+
+            // 获取ListView对应的Adapter
+
+           ListAdapter listAdapter = listView.getAdapter();
+
+           if (listAdapter == null) {
+               return;
+           }
+
+           int totalHeight = 0;
+
+           for (int i = 0; i < listAdapter.getCount(); i++) { // listAdapter.getCount()返回数据项的数目
+
+                View listItem = listAdapter.getView(i, null, listView);
+
+                listItem.measure(0, 0); // 计算子项View 的宽高
+
+                totalHeight += listItem.getMeasuredHeight(); // 统计所有子项的总高度
+
+           }
+
+           ViewGroup.LayoutParams params = listView.getLayoutParams();
+
+           params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+
+           // listView.getDividerHeight()获取子项间分隔符占用的高度
+
+           // params.height最后得到整个ListView完整显示需要的高度
+
+           listView.setLayoutParams(params);
+
+    }
 }

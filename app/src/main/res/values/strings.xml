@@ -41,7 +41,10 @@
     <string name="earnings_hite_bottom_hite">全网电量排名</string>
     <string name="earnings_hite_middle_hite">获取云砖太慢？？？尝试购买下面云钻矿机</string>
     <string name="earnings_hite_buy">立即购买</string>
-    <string name="earnings_hite_all_top">BTC总收益</string>
+    <string name="earnings_hite_all_top">我的BTC</string>
+    <string name="earnings_bronze">青铜矿机</string>
+    <string name="earnings_silver">白银矿机</string>
+    <string name="earnings_dayearn">每日云钻</string>
 
     <string name="exchange_hite_top">云钻兑换BTC(100云钻=0.00035BTC)</string>
     <string name="exchange_hite_num">请您输入云钻数量</string>
