@@ -38,120 +38,148 @@
                 android:src="@mipmap/icon_log"/>
         </LinearLayout>
     </RelativeLayout>
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/dimen_20"
-        android:orientation="vertical">
-
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.yunhui.component.image.CircleImageView
-                android:id="@+id/userphoto"
-                android:layout_width="@dimen/dimen_160"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:src="@mipmap/icon_log" />
-
+            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_160"
-                android:layout_marginLeft="@dimen/dimen_30"
-                android:gravity="center_vertical"
+                android:layout_height="match_parent"
+                android:padding="@dimen/dimen_20"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/userphonenum"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="13633491655"
-                    android:textColor="@color/color_959697"
-                    android:textSize="@dimen/font_size_normal" />
+                    android:orientation="horizontal"
+                    android:background="@color/color_2b2e34"
+                    android:paddingTop="@dimen/dimen_20"
+                    android:paddingBottom="@dimen/dimen_20">
 
-                <TextView
-                    android:id="@+id/username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="無敵機密"
-                    android:textColor="@color/color_959697"
-                    android:textSize="@dimen/font_size_normal" />
+                    <com.yunhui.component.image.CircleImageView
+                        android:id="@+id/userphoto"
+                        android:layout_width="@dimen/dimen_160"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:src="@mipmap/icon_log" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_160"
+                        android:layout_marginLeft="@dimen/dimen_30"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/userphonenum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="13633491655"
+                            android:textColor="@color/color_959697"
+                            android:textSize="@dimen/font_size_normal" />
+
+                        <TextView
+                            android:id="@+id/username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="無敵機密"
+                            android:textColor="@color/color_959697"
+                            android:textSize="@dimen/font_size_normal" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.yunhui.component.linearlayout.LabelItemView
+                    android:id="@+id/exchange"
+                    style="@style/item_label_right_text_style"
+                    android:background="@color/color_2b2e34"
+                    android:layout_marginTop="@dimen/dimen_30"
+                    app:labelText="BTC兑换"
+                    app:rightText=""
+                    app:labelTextSize="@dimen/wallet_left_font_size"
+                    app:labelTextColor="@color/color_959697"
+                    app:leftIconVisibility="VISIBLE"
+                    app:rightArrowVisibility="VISIBLE"
+                    app:rightTextVisibility="VISIBLE"
+                    app:rightTextSize="@dimen/wallet_left_font_size"
+                    app:rightTextColor="@color/font_gray"/>
+
+                <com.yunhui.component.linearlayout.LabelItemView
+                    android:id="@+id/extract"
+                    style="@style/item_label_right_text_style"
+                    android:background="@color/color_2b2e34"
+                    app:labelText="BTC提取"
+                    app:rightText=""
+                    app:labelTextSize="@dimen/wallet_left_font_size"
+                    app:labelTextColor="@color/color_959697"
+                    app:leftIconVisibility="VISIBLE"
+                    app:rightArrowVisibility="VISIBLE"
+                    app:rightTextVisibility="VISIBLE"
+                    app:rightTextSize="@dimen/wallet_left_font_size"
+                    app:rightTextColor="@color/font_gray"/>
+
+
+                <com.yunhui.component.linearlayout.LabelItemView
+                    android:id="@+id/myTask"
+                    android:background="@color/color_2b2e34"
+                    style="@style/item_label_right_text_style"
+                    app:labelText="我的任务"
+                    app:rightText=""
+                    app:labelTextSize="@dimen/wallet_left_font_size"
+                    app:labelTextColor="@color/color_959697"
+                    app:leftIconVisibility="VISIBLE"
+                    app:rightArrowVisibility="VISIBLE"
+                    app:rightTextVisibility="VISIBLE"
+                    app:rightTextSize="@dimen/wallet_left_font_size"
+                    app:rightTextColor="@color/font_gray"/>
+
+                <com.yunhui.component.linearlayout.LabelItemView
+                    android:id="@+id/buy"
+                    android:background="@color/color_2b2e34"
+                    style="@style/item_label_right_text_style"
+                    app:labelText="我的云钻矿机"
+                    app:rightText=""
+                    app:labelTextSize="@dimen/wallet_left_font_size"
+                    app:labelTextColor="@color/color_959697"
+                    app:leftIconVisibility="VISIBLE"
+                    app:rightArrowVisibility="VISIBLE"
+                    app:rightTextVisibility="VISIBLE"
+                    app:rightTextSize="@dimen/wallet_left_font_size"
+                    app:rightTextColor="@color/font_gray"/>
+
+                <com.yunhui.component.linearlayout.LabelItemView
+                    android:id="@+id/myInvitation"
+                    android:background="@color/color_2b2e34"
+                    style="@style/item_label_right_text_style"
+                    app:labelText="我的邀请"
+                    app:rightText=""
+                    app:labelTextSize="@dimen/wallet_left_font_size"
+                    app:labelTextColor="@color/color_959697"
+                    app:leftIconVisibility="VISIBLE"
+                    app:rightArrowVisibility="VISIBLE"
+                    app:rightTextVisibility="VISIBLE"
+                    app:rightTextSize="@dimen/wallet_left_font_size"
+                    app:rightTextColor="@color/font_gray"/>
+
+                <com.yunhui.component.linearlayout.LabelItemView
+                    android:id="@+id/aboutMy"
+                    android:background="@color/color_2b2e34"
+                    style="@style/item_label_right_text_style"
+                    app:labelText="关于我们"
+                    app:rightText=""
+                    app:labelTextSize="@dimen/wallet_left_font_size"
+                    app:labelTextColor="@color/color_959697"
+                    app:leftIconVisibility="VISIBLE"
+                    app:rightArrowVisibility="VISIBLE"
+                    app:rightTextVisibility="VISIBLE"
+                    app:rightTextSize="@dimen/wallet_left_font_size"
+                    app:rightTextColor="@color/font_gray"/>
             </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-        <com.yunhui.component.linearlayout.LabelItemView
-            android:id="@+id/exchange"
-            style="@style/item_label_right_text_style"
-            android:background="@color/color_2b2e34"
-            android:layout_marginTop="@dimen/dimen_30"
-            app:labelText="BTC兑换"
-            app:rightText=""
-            app:labelTextSize="@dimen/wallet_left_font_size"
-            app:labelTextColor="@color/color_959697"
-            app:leftIconVisibility="VISIBLE"
-            app:rightArrowVisibility="VISIBLE"
-            app:rightTextVisibility="VISIBLE"
-            app:rightTextSize="@dimen/wallet_left_font_size"
-            app:rightTextColor="@color/font_gray"/>
-
-
-        <com.yunhui.component.linearlayout.LabelItemView
-            android:id="@+id/myTask"
-            android:background="@color/color_2b2e34"
-            style="@style/item_label_right_text_style"
-            app:labelText="我的任务"
-            app:rightText=""
-            app:labelTextSize="@dimen/wallet_left_font_size"
-            app:labelTextColor="@color/color_959697"
-            app:leftIconVisibility="VISIBLE"
-            app:rightArrowVisibility="VISIBLE"
-            app:rightTextVisibility="VISIBLE"
-            app:rightTextSize="@dimen/wallet_left_font_size"
-            app:rightTextColor="@color/font_gray"/>
-
-        <com.yunhui.component.linearlayout.LabelItemView
-            android:id="@+id/buy"
-            android:background="@color/color_2b2e34"
-            style="@style/item_label_right_text_style"
-            app:labelText="我的云钻矿机"
-            app:rightText=""
-            app:labelTextSize="@dimen/wallet_left_font_size"
-            app:labelTextColor="@color/color_959697"
-            app:leftIconVisibility="VISIBLE"
-            app:rightArrowVisibility="VISIBLE"
-            app:rightTextVisibility="VISIBLE"
-            app:rightTextSize="@dimen/wallet_left_font_size"
-            app:rightTextColor="@color/font_gray"/>
-
-        <com.yunhui.component.linearlayout.LabelItemView
-            android:id="@+id/myInvitation"
-            android:background="@color/color_2b2e34"
-            style="@style/item_label_right_text_style"
-            app:labelText="我的邀请"
-            app:rightText=""
-            app:labelTextSize="@dimen/wallet_left_font_size"
-            app:labelTextColor="@color/color_959697"
-            app:leftIconVisibility="VISIBLE"
-            app:rightArrowVisibility="VISIBLE"
-            app:rightTextVisibility="VISIBLE"
-            app:rightTextSize="@dimen/wallet_left_font_size"
-            app:rightTextColor="@color/font_gray"/>
-
-        <com.yunhui.component.linearlayout.LabelItemView
-            android:id="@+id/aboutMy"
-            android:background="@color/color_2b2e34"
-            style="@style/item_label_right_text_style"
-            app:labelText="关于我们"
-            app:rightText=""
-            app:labelTextSize="@dimen/wallet_left_font_size"
-            app:labelTextColor="@color/color_959697"
-            app:leftIconVisibility="VISIBLE"
-            app:rightArrowVisibility="VISIBLE"
-            app:rightTextVisibility="VISIBLE"
-            app:rightTextSize="@dimen/wallet_left_font_size"
-            app:rightTextColor="@color/font_gray"/>
-    </LinearLayout>
 
 </LinearLayout>
