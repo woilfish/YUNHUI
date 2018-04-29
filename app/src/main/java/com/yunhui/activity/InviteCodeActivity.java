@@ -50,6 +50,8 @@ public class InviteCodeActivity extends BaseActionBarActivity{
     }
 
     private void initView() {
+        navigationBar.setTitle("我的邀请码");
+        navigationBar.setBackground(R.color.color_4F5051);
         tv_inviteSuccessCode = findViewById(R.id.inviteSuccessCode);
         tv_inviteCode = findViewById(R.id.invitecode);
         im_inviteQrCode = findViewById(R.id.inviteqrcode);

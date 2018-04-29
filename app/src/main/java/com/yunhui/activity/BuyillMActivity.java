@@ -65,7 +65,8 @@ public class BuyillMActivity extends BaseActionBarActivity implements RefreshLis
     }
 
     private void initView() {
-        navigationBar.setTitle("我的机器");
+        navigationBar.setTitle("购买云钻矿机");
+        navigationBar.setBackground(R.color.color_4F5051);
         rlv_BuyRef = findViewById(R.id.buyref);
         productMachineAdapter = new ProductMachineAdapter(BuyillMActivity.this,productMachines,onClickListener);
         rlv_BuyRef.setAdapter(productMachineAdapter);
