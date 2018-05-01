@@ -23,8 +23,8 @@ public class UserInfo {
         if(jsonObject.has("time")){
             this.setTime(jsonObject.optLong("time"));
         }
-        if(jsonObject.has("userId")){
-            this.setUserId(jsonObject.optString("userId"));
+        if(jsonObject.has("userid")){
+            this.setUserId(jsonObject.optString("userid"));
         }
         if(jsonObject.has("token")){
             this.setToken(jsonObject.optString("token"));
