@@ -54,6 +54,12 @@ public class InviteCodeActivity extends BaseActionBarActivity{
         generateQrCode();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        queryUserRecommendCount();
+    }
+
     private void initView() {
         navigationBar.setTitle("我的邀请码");
         navigationBar.setBackground(R.color.color_4F5051);
