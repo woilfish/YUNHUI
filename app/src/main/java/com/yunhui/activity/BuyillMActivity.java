@@ -1,5 +1,6 @@
 package com.yunhui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -48,7 +49,9 @@ public class BuyillMActivity extends BaseActionBarActivity implements RefreshLis
         public void onClick(View view) {
             Button btn = (Button) view;
             int postion = (Integer) btn.getTag();
-            ToastUtil.toast(BuyillMActivity.this,productMachines.get(postion).getAmout());
+            Intent intent = new Intent(BuyillMActivity.this, BuyillMInfoActivity.class);
+            intent.putExtra("millInfo",productMachines.get(postion));
+            startActivity(intent);
         }
     };
 

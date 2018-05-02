@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * 挖矿机器
  */
 
-public class ProductMachine {
+public class ProductMachine implements Serializable{
 
     private String id;
     private String title;

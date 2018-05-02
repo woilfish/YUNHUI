@@ -1,6 +1,7 @@
 package com.yunhui.fragmenr;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,6 +20,7 @@ import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.HttpRequestParams;
 import com.loopj.common.httpEx.IHttpRequestEvents;
+import com.yunhui.activity.BuyillMInfoActivity;
 import com.yunhui.activity.HomeActivity;
 import com.yunhui.R;
 import com.yunhui.adapter.ProductMachineAdapter;
@@ -76,7 +78,9 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
         public void onClick(View view) {
             Button btn = (Button) view;
             int postion = (Integer) btn.getTag();
-            ToastUtil.toast(homeActivity,productMachines.get(postion).getAmout() + "");
+            Intent intent = new Intent(homeActivity, BuyillMInfoActivity.class);
+            intent.putExtra("millInfo",productMachines.get(postion));
+            startActivity(intent);
         }
     };
 

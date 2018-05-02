@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.yunhui.R;
+import com.yunhui.bean.ProductMachine;
 
 /**
  * Created by pengmin on 2018/5/2.
@@ -26,11 +27,25 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
     private Button b_add;
     private TextView tv_allWallet;
     private Button b_pay;
+    private ProductMachine productMachine;
 
     @Override
     protected void initActivity(Bundle savedInstanceState) {
         setContentView(R.layout.activity_buymill_info);
+        productMachine = (ProductMachine) getIntent().getSerializableExtra("millInfo");
         initView();
+        initData();
+    }
+
+    private void initData() {
+        navigationBar.setTitle("购买云钻矿机");
+        navigationBar.setBackground(R.color.color_4F5051);
+        tv_buyMillTitle.setText(productMachine.getTitle());
+        tv_buyRarningsInfo.setText(productMachine.getDayBenifit());
+        tv_buyRarning.setText(productMachine.getTotalBenifit());
+        tv_buyRarningDay.setText(productMachine.getCircle());
+        tv_buyRarningDayInfo.setText(productMachine.getContent());
+        tv_millSinge.setText("每台单价:￥" + productMachine.getAmout());
     }
 
     private void initView() {
