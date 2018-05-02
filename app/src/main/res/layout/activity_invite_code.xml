@@ -55,7 +55,9 @@
             android:id="@+id/invitecode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""/>
+            android:textColor="@color/color_EE9707"
+            android:text=""
+            android:layout_marginLeft="@dimen/dimen_20"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
