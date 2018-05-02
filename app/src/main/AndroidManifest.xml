@@ -40,6 +40,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.ExtractActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BuyillMInfoActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
