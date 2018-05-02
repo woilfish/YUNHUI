@@ -60,6 +60,7 @@ public class InviteCodeActivity extends BaseActionBarActivity{
         tv_inviteSuccessCode = findViewById(R.id.inviteSuccessCode);
         tv_inviteCode = findViewById(R.id.invitecode);
         im_inviteQrCode = findViewById(R.id.inviteqrcode);
+        tv_inviteCode.setText(YhApplication.getInstance().getUserInfo().getUserId());
     }
 
     private void queryUserRecommendCount(){

@@ -57,6 +57,12 @@
     <string name="invite_code_qrcode_hite">我的二维码</string>
     <string name="invite_code_warmprompt_hite">温馨提示：保存二维码照片，发给好友，好友注册云慧助手，每个好友奖励10钻石，最多推荐10个好友</string>
 
+    <string name="extract_top_hite">提取BTC</string>
+    <string name="extract_all_num">全部BTC</string>
+    <string name="extract_wallet">您的钱包地址（手续费0.002 BTC）</string>
+    <string name="extract_SMS">短信验证码</string>
+    <string name="extract__hite_confirm">确认提取</string>
+
 
     <!--自定义下拉刷新上滑加载ListView-->
     <string name="xlistview_header_hint_normal">下拉刷新</string>

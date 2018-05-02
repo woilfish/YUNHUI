@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.yunhui.activity.BuyillMActivity;
 import com.yunhui.activity.ExchangeActivity;
+import com.yunhui.activity.ExtractActivity;
 import com.yunhui.activity.HomeActivity;
 import com.yunhui.R;
 import com.yunhui.activity.InviteCodeActivity;
@@ -34,6 +35,7 @@ public class MyFragment extends BaseFragment {
     private LabelItemView liv_buy;
     private LabelItemView liv_myInvitation;
     private LabelItemView liv_aboutMy;
+    private LabelItemView liv_extract;
     private TextView tv_myData;
 
 
@@ -56,12 +58,14 @@ public class MyFragment extends BaseFragment {
         liv_myInvitation = parentView.findViewById(R.id.myInvitation);
         liv_aboutMy = parentView.findViewById(R.id.aboutMy);
         tv_myData = parentView.findViewById(R.id.mydate);
+        liv_extract = parentView.findViewById(R.id.extract);
         tv_myData.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
         liv_exchange.setOnClickListener(this);
         liv_myTask.setOnClickListener(this);
         liv_buy.setOnClickListener(this);
         liv_myInvitation.setOnClickListener(this);
         liv_aboutMy.setOnClickListener(this);
+        liv_extract.setOnClickListener(this);
     }
 
     @Override
@@ -71,6 +75,10 @@ public class MyFragment extends BaseFragment {
             case R.id.exchange:
                 Intent exchangeIntent = new Intent(homeActivity, ExchangeActivity.class);
                 startActivity(exchangeIntent);
+                break;
+            case R.id.extract:
+                Intent extractIntent = new Intent(homeActivity, ExtractActivity.class);
+                startActivity(extractIntent);
                 break;
             case R.id.myTask:
                 break;
