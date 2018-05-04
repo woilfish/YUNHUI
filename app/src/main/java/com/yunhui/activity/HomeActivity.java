@@ -28,7 +28,7 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
             ConsultingFragment.class, TaskFragment.class, EarningsFragment.class,MyFragment.class
     };
     private String mTextArray[] = {
-            "咨询", "任务", "收益","我的"
+            "资讯", "任务", "收益","我的"
     };
     private int mImageViewArray[] = {
         R.mipmap.consult,R.mipmap.task,R.mipmap.earnings,R.mipmap.my

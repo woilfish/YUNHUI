@@ -49,6 +49,7 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
     private ProductMachine productMachine;
     private String billId;
     private String signData;
+    private int buyNum = 1;
 
     private Handler handler = new Handler(){
         @Override
@@ -92,6 +93,8 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
         tv_buyRarningDay.setText(productMachine.getCircle());
         tv_buyRarningDayInfo.setText(productMachine.getContent());
         tv_millSinge.setText("每台单价:￥" + productMachine.getAmout());
+        tv_allWallet.setText("合计:￥" + productMachine.getAmout());
+        tv_num.setText(String.valueOf(buyNum));
     }
 
     private void initView() {
@@ -116,8 +119,26 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
         super.onClick(view);
         switch (view.getId()){
             case R.id.reduction:
+                if(buyNum != 1){
+                    buyNum --;
+                    tv_num.setText(String.valueOf(buyNum));
+                    tv_allWallet.setText("合计:￥" + productMachine.getAmout() * buyNum);
+                }
                 break;
             case R.id.add:
+                if(productMachine.getAmout() == 1000){
+                    if(buyNum != 50){
+                        buyNum ++;
+                        tv_num.setText(String.valueOf(buyNum));
+                        tv_allWallet.setText("合计:￥" + productMachine.getAmout() * buyNum);
+                    }
+                }else if(productMachine.getAmout() == 5000){
+                    if(buyNum != 10){
+                        buyNum ++;
+                        tv_num.setText(String.valueOf(buyNum));
+                        tv_allWallet.setText("合计:￥" + productMachine.getAmout() * buyNum);
+                    }
+                }
                 break;
             case R.id.pay:
                 //创建订单
