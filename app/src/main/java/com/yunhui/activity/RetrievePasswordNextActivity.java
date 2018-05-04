@@ -4,8 +4,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.loopj.common.exception.BaseException;
+import com.loopj.common.httpEx.HttpRequest;
+import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.request.RegistRequestFactory;
+import com.yunhui.request.RequestUtil;
+import com.yunhui.request.RetrievePasswordFactory;
+import com.yunhui.util.StringUtil;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by pengmin on 2018/4/15.
@@ -19,12 +30,16 @@ public class RetrievePasswordNextActivity extends BaseActionBarActivity {
     private EditText et_retrievepasswordconfirmpassword;
     private Button b_retrievepasswordsendvalidation;
     private Button b_retrievepassworddone;
+    private String mobile;
+    private int smsTime = 60;
+    private Timer timer;
 
 
     @Override
     protected void initActivity(Bundle savedInstanceState) {
         setContentView(R.layout.activity_retrieve_password_next);
         initView();
+        mobile = getIntent().getStringExtra("Mobile");
     }
 
     /**
@@ -43,5 +58,84 @@ public class RetrievePasswordNextActivity extends BaseActionBarActivity {
     @Override
     public void onClick(View view) {
         super.onClick(view);
+        switch (view.getId()){
+            case R.id.retrievepasswordsendvalidation:
+                startTimer();
+                sendSms();
+                b_retrievepasswordsendvalidation.setEnabled(false);
+                break;
+            case R.id.retrievepassworddone:
+                if(StringUtil.isEmpty(et_retrievepasswordvalidation.getText().toString())){
+                    Toast.makeText(RetrievePasswordNextActivity.this,"请输入验证码",Toast.LENGTH_LONG);
+                    return;
+                }
+                if(et_retrievepasswordpassword.getText().toString().equals(et_retrievepasswordconfirmpassword.getText().toString()) &&
+                        StringUtil.isNotEmpty(et_retrievepasswordpassword.getText().toString()) && StringUtil.isNotEmpty(et_retrievepasswordconfirmpassword.getText().toString())){
+                    updataPwd();
+                }else{
+                    Toast.makeText(RetrievePasswordNextActivity.this,"请输入新密码",Toast.LENGTH_LONG);
+                    return;
+                }
+
+                break;
+        }
+    }
+
+    private void sendSms(){
+
+        RequestUtil requestUtil = RetrievePasswordFactory.sendNoSms(RetrievePasswordNextActivity.this,mobile);
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
+    }
+
+    private void updataPwd(){
+        RequestUtil requestUtil = RetrievePasswordFactory.updataPwd(RetrievePasswordNextActivity.this,mobile,et_retrievepasswordvalidation.getText().toString(),et_retrievepasswordpassword.getText().toString(),et_retrievepasswordconfirmpassword.getText().toString());
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
+    }
+
+    private void startTimer(){
+        timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(smsTime == 1){
+                            b_retrievepasswordsendvalidation.setText("重新发送");
+                            smsTime = 60;
+                            timer.cancel();
+                            b_retrievepasswordsendvalidation.setEnabled(true);
+                            return;
+                        }
+                        smsTime --;
+                        b_retrievepasswordsendvalidation.setText(String.valueOf(smsTime));
+                    }
+                });
+
+            }
+        };
+        timer.schedule(timerTask,0,1000);
     }
 }
