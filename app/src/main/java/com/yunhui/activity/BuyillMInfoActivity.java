@@ -1,12 +1,31 @@
 package com.yunhui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.loopj.common.exception.BaseException;
+import com.loopj.common.httpEx.HttpRequest;
+import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.YhApplication;
 import com.yunhui.bean.ProductMachine;
+import com.yunhui.bean.UserInfo;
+import com.yunhui.pay.AlRunnable;
+import com.yunhui.pay.PayResult;
+import com.yunhui.request.BuyRequestFactory;
+import com.yunhui.request.LoginRequestFactory;
+import com.yunhui.request.RequestUtil;
+
+import org.json.JSONObject;
+
+import java.util.Map;
 
 /**
  * Created by pengmin on 2018/5/2.
@@ -28,6 +47,33 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
     private TextView tv_allWallet;
     private Button b_pay;
     private ProductMachine productMachine;
+    private String billId;
+    private String signData;
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case AlRunnable.SDK_PAY_FLAG:
+                    PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+                    /**
+                     对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                     */
+                    String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                    String resultStatus = payResult.getResultStatus();
+                    // 判断resultStatus 为9000则代表支付成功
+                    if (TextUtils.equals(resultStatus, "9000")) {
+                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                        Toast.makeText(BuyillMInfoActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                        Toast.makeText(BuyillMInfoActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void initActivity(Bundle savedInstanceState) {
@@ -74,7 +120,62 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
             case R.id.add:
                 break;
             case R.id.pay:
+                //创建订单
+                createPayBill();
                 break;
         }
+    }
+
+    private void createPayBill(){
+
+        RequestUtil requestUtil = BuyRequestFactory.createPayBill(BuyillMInfoActivity.this,"0.01","CZ");
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+                JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                billId = jsonObject.optString("billId");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        alPay();
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+                Toast.makeText(BuyillMInfoActivity.this,"创建支付订单失败，请重试",Toast.LENGTH_SHORT);
+            }
+        });
+        requestUtil.execute();
+    }
+
+    private void alPay(){
+        RequestUtil requestUtil = BuyRequestFactory.doAlPay(BuyillMInfoActivity.this,billId);
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+                JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                signData = jsonObject.optString("signData");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AlRunnable alRunnable = new AlRunnable(BuyillMInfoActivity.this,handler,signData);
+                        Thread payThread = new Thread(alRunnable);
+                        payThread.start();
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+                Toast.makeText(BuyillMInfoActivity.this,"创建支付订单失败，请重试",Toast.LENGTH_SHORT);
+            }
+        });
+        requestUtil.execute();
     }
 }
