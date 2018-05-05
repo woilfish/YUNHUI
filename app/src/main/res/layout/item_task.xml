@@ -41,5 +41,6 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:text="下载"
-        android:background="@drawable/bg_roundedrectangle"/>
+        android:background="@drawable/bg_roundedrectangle"
+        android:textColor="@color/white"/>
 </RelativeLayout>
