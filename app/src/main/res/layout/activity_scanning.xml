@@ -7,7 +7,7 @@
         android:layout_height="match_parent">
 
 
-        <com.lakala.zxing.scanner.ScannerView
+        <com.pengmin.zxing.ScannerView
             android:id="@+id/scanner_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

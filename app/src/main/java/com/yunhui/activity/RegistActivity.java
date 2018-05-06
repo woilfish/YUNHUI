@@ -11,6 +11,7 @@ import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
 import com.yunhui.bean.RequestRegistBean;
+import com.yunhui.encryption.CommonEncrypt;
 import com.yunhui.request.RegistRequestFactory;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.MobileUtil;
@@ -120,8 +121,8 @@ public class RegistActivity extends BaseActionBarActivity{
         RequestRegistBean requestRegistBean = new RequestRegistBean();
         requestRegistBean.setMobile(et_registphonenum.getText().toString());
         requestRegistBean.setCode(et_registvalidation.getText().toString());
-        requestRegistBean.setPassword(et_registpassword.getText().toString());
-        requestRegistBean.setConfirmPassword(et_registconfirmpassword.getText().toString());
+        requestRegistBean.setPassword(CommonEncrypt.loginEncrypt(et_registpassword.getText().toString()));
+        requestRegistBean.setConfirmPassword(CommonEncrypt.loginEncrypt(et_registconfirmpassword.getText().toString()));
         RequestUtil requestUtil = RegistRequestFactory.createRegistRequest(RegistActivity.this,requestRegistBean);
         requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
             @Override

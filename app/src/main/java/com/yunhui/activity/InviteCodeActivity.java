@@ -12,10 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.zxing.client.result.ParsedResultType;
-import com.lakala.zxing.scanner.encode.QREncode;
 import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
+import com.pengmin.zxing.encode.QREncode;
 import com.yunhui.R;
 import com.yunhui.YhApplication;
 import com.yunhui.request.RequestUtil;

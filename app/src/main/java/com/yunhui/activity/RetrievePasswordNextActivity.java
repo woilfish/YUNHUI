@@ -10,6 +10,7 @@ import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.encryption.CommonEncrypt;
 import com.yunhui.request.RegistRequestFactory;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.request.RetrievePasswordFactory;
@@ -99,7 +100,7 @@ public class RetrievePasswordNextActivity extends BaseActionBarActivity {
     }
 
     private void updataPwd(){
-        RequestUtil requestUtil = RetrievePasswordFactory.updataPwd(RetrievePasswordNextActivity.this,mobile,et_retrievepasswordvalidation.getText().toString(),et_retrievepasswordpassword.getText().toString(),et_retrievepasswordconfirmpassword.getText().toString());
+        RequestUtil requestUtil = RetrievePasswordFactory.updataPwd(RetrievePasswordNextActivity.this,mobile,et_retrievepasswordvalidation.getText().toString(), CommonEncrypt.loginEncrypt(et_retrievepasswordpassword.getText().toString()),CommonEncrypt.loginEncrypt(et_retrievepasswordconfirmpassword.getText().toString()));
         requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
             @Override
             public void onSuccess(HttpRequest request) {

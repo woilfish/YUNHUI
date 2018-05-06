@@ -13,6 +13,7 @@ import com.yunhui.YhApplication;
 import com.yunhui.bean.UserInfo;
 import com.yunhui.component.edittext.ClearEditTextLogin;
 import com.yunhui.component.edittext.ShowPasswordEditText;
+import com.yunhui.encryption.CommonEncrypt;
 import com.yunhui.request.LoginRequestFactory;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.MobileUtil;
@@ -79,7 +80,7 @@ public class LoginActivity extends BaseActionBarActivity{
     }
 
     private void login(){
-        RequestUtil requestUtil = LoginRequestFactory.createLoginRequest(LoginActivity.this,clearEditTextLogin.getText().toString(),"111111",showPasswordEditText.getText().toString());
+        RequestUtil requestUtil = LoginRequestFactory.createLoginRequest(LoginActivity.this,clearEditTextLogin.getText().toString(),"111111", CommonEncrypt.loginEncrypt(showPasswordEditText.getText().toString()));
         requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
             @Override
             public void onSuccess(HttpRequest request) {

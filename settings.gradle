@@ -1,1 +1,4 @@
-include ':app', ':request'
+include ':app', ':request', ':encryption', ':zxing'
+//include ':Zxing'
+
+//project(':Zxing').projectDir    = new File('../YHZXING');
