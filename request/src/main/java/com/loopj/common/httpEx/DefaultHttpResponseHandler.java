@@ -214,7 +214,7 @@ public class DefaultHttpResponseHandler extends HttpResponseHandler {
 
         switch (responseDataType){
             case RESPONSE_DATA_TYPE_JSON:
-                return StringUtil.isEmpty(resultCode);
+                return StringUtil.isNotEmpty(resultCode) && "0000".equals(resultCode);
 
             case RESPONSE_DATA_TYPE_TEXT:
                 return true;
