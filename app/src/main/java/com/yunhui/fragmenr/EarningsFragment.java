@@ -51,10 +51,13 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
     private TextView tv_allTotalRevenue;
     private LinearLayout l_bronze;
     private LinearLayout l_silver;
+    private LinearLayout l_gold;
     private TextView tv_allSilver;
     private TextView tv_allBronze;
     private TextView tv_bronzeNum;
     private TextView tv_silverNum;
+    private TextView tv_allGold;
+    private TextView tv_goldNum;
 
     private Handler handler = new Handler(){
         @Override
@@ -110,10 +113,13 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
         tv_earningdate.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
         l_bronze = parentView.findViewById(R.id.bronze);
         l_silver = parentView.findViewById(R.id.silver);
+        l_gold = parentView.findViewById(R.id.gold);
         tv_allBronze = parentView.findViewById(R.id.allbronze);
         tv_allSilver = parentView.findViewById(R.id.allsilver);
         tv_bronzeNum = parentView.findViewById(R.id.bronzenum);
         tv_silverNum = parentView.findViewById(R.id.silvernum);
+        tv_allGold = parentView.findViewById(R.id.allgold);
+        tv_goldNum = parentView.findViewById(R.id.goldnum);
         productMachineAdapter = new ProductMachineAdapter(homeActivity,productMachines,onClickListener);
         rlv_earningsrefeesh.setAdapter(productMachineAdapter);
         rlv_earningsrefeesh.setOnRefreshListViewListener(this);

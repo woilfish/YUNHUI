@@ -44,6 +44,7 @@
     <string name="earnings_hite_all_top">我的BTC</string>
     <string name="earnings_bronze">青铜矿机</string>
     <string name="earnings_silver">白银矿机</string>
+    <string name="earnings_gold">黄金矿机</string>
     <string name="earnings_dayearn">每日云钻</string>
 
     <string name="exchange_hite_top">云钻兑换BTC(100云钻=0.00035BTC)</string>

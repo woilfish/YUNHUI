@@ -115,74 +115,76 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/bronze"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/dimen_20"
-            android:paddingRight="@dimen/dimen_20">
-
             <LinearLayout
-                android:layout_width="0dp"
+                android:id="@+id/gold"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:padding="@dimen/dimen_20">
+                android:paddingLeft="@dimen/dimen_20"
+                android:paddingRight="@dimen/dimen_20">
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:layout_width="@dimen/dimen_10"
-                        android:layout_height="@dimen/dimen_10"
-                        android:background="@drawable/bg_roundedrectangle"
-                        android:layout_gravity="center"/>
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_20">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="@dimen/dimen_10"
+                            android:layout_height="@dimen/dimen_10"
+                            android:background="@drawable/bg_roundedrectangle"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/earnings_gold"
+                            android:textColor="@color/color_EE9707"
+                            android:layout_marginLeft="@dimen/dimen_10"/>
+                    </LinearLayout>
+
                     <TextView
+                        android:id="@+id/allgold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/earnings_bronze"
+                        android:text="0"
                         android:textColor="@color/color_EE9707"
-                        android:layout_marginLeft="@dimen/dimen_10"/>
+                        android:layout_marginLeft="@dimen/dimen_22"/>
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/allbronze"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="@color/color_EE9707"
-                    android:layout_marginLeft="@dimen/dimen_22"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:padding="@dimen/dimen_20">
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="@dimen/dimen_10"
-                        android:layout_height="@dimen/dimen_10"
-                        android:background="@drawable/bg_roundedrectangle"
-                        android:layout_gravity="center"/>
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_20">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="@dimen/dimen_10"
+                            android:layout_height="@dimen/dimen_10"
+                            android:background="@drawable/bg_roundedrectangle"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/earnings_dayearn"
+                            android:layout_marginLeft="@dimen/dimen_10"
+                            android:textColor="@color/color_EE9707"/>
+                    </LinearLayout>
                     <TextView
+                        android:id="@+id/goldnum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/earnings_dayearn"
-                        android:layout_marginLeft="@dimen/dimen_10"
-                        android:textColor="@color/color_EE9707"/>
+                        android:layout_marginLeft="@dimen/dimen_22"
+                        android:textColor="@color/color_EE9707"
+                        android:text="0.00000023 BTC"/>
                 </LinearLayout>
-                <TextView
-                    android:id="@+id/bronzenum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dimen_22"
-                    android:textColor="@color/color_EE9707"
-                    android:text="0.00000023 BTC"/>
             </LinearLayout>
-        </LinearLayout>
+
+
 
         <LinearLayout
             android:id="@+id/silver"
@@ -251,6 +253,74 @@
                     android:text="0.00000023 BTC"/>
             </LinearLayout>
         </LinearLayout>
+            <LinearLayout
+                android:id="@+id/bronze"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dimen_20"
+                android:paddingRight="@dimen/dimen_20">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_20">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="@dimen/dimen_10"
+                            android:layout_height="@dimen/dimen_10"
+                            android:background="@drawable/bg_roundedrectangle"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/earnings_bronze"
+                            android:textColor="@color/color_EE9707"
+                            android:layout_marginLeft="@dimen/dimen_10"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/allbronze"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/color_EE9707"
+                        android:layout_marginLeft="@dimen/dimen_22"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:padding="@dimen/dimen_20">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="@dimen/dimen_10"
+                            android:layout_height="@dimen/dimen_10"
+                            android:background="@drawable/bg_roundedrectangle"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/earnings_dayearn"
+                            android:layout_marginLeft="@dimen/dimen_10"
+                            android:textColor="@color/color_EE9707"/>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/bronzenum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_22"
+                        android:textColor="@color/color_EE9707"
+                        android:text="0.00000023 BTC"/>
+                </LinearLayout>
+            </LinearLayout>
 
 
         <LinearLayout
