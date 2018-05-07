@@ -16,31 +16,39 @@
             android:text="@string/extract_top_hite"
             android:textColor="@color/color_959697"
             android:textSize="@dimen/font_size_normal"/>
-        <EditText
-            android:id="@+id/extractnum"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawablePadding="10dp"
-            android:hint="@string/exchange_hite_num"
-            android:textColor="@color/white"
-            android:textColorHint="@color/color_646565"
-            android:textSize="@dimen/font_size_small"
-            android:textCursorDrawable="@drawable/bg_cursor"
-            android:theme="@style/MyEditText"/>
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/extractnum"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:drawablePadding="10dp"
+                android:hint="@string/exchange_hite_num"
+                android:textColor="@color/white"
+                android:textColorHint="@color/color_646565"
+                android:textSize="@dimen/font_size_small"
+                android:textCursorDrawable="@drawable/bg_cursor"
+                android:theme="@style/MyEditText"/>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <Button
+                    android:id="@+id/extractAllNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_80"
+                    android:background="@drawable/bg_roundedrectangle"
+                    android:text="@string/extract_all_num"
+                    android:textColor="@color/white"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingRight="@dimen/dimen_20">
-        <Button
-            android:id="@+id/extractAllNum"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dimen_80"
-            android:background="@drawable/bg_roundedrectangle"
-            android:text="@string/extract_all_num"
-            android:textColor="@color/white"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,7 +75,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/dimen_20">
+        android:padding="@dimen/dimen_20"
+        android:visibility="gone">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

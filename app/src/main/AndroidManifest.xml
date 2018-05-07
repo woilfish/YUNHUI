@@ -42,6 +42,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.BuyillMInfoActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.SendSMSActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- ALPay-->
         <activity
