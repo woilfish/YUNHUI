@@ -14,11 +14,13 @@ public class BuyRequestFactory {
     /**
      * 创建订单
      */
-    public static RequestUtil createPayBill(Context context,String amount,String BusinessId){
+    public static RequestUtil createPayBill(Context context,String amount,String BusinessId,String coinProductId,String coinCount){
         RequestUtil requestUtil = RequestUtil.obtainRequest(context,"user/yhPrePay", HttpRequest.RequestMethod.POST);
         HttpRequestParams requestParams = requestUtil.getRequestParams();
         requestParams.put("amount",amount);
         requestParams.put("businessid",BusinessId);
+        requestParams.put("coinProductId",coinProductId);
+        requestParams.put("coinCount",coinCount);
         return requestUtil;
     }
 

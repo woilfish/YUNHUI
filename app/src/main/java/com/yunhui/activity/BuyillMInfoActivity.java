@@ -22,6 +22,7 @@ import com.yunhui.pay.PayResult;
 import com.yunhui.request.BuyRequestFactory;
 import com.yunhui.request.LoginRequestFactory;
 import com.yunhui.request.RequestUtil;
+import com.yunhui.util.ToastUtil;
 
 import org.json.JSONObject;
 
@@ -131,12 +132,25 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
                         buyNum ++;
                         tv_num.setText(String.valueOf(buyNum));
                         tv_allWallet.setText("合计:￥" + productMachine.getAmout() * buyNum);
+                    }else{
+                        ToastUtil.toast(BuyillMInfoActivity.this,"购买数量已达今日最大值，如需购买请明天继续");
                     }
                 }else if(productMachine.getAmout() == 5000){
                     if(buyNum != 10){
                         buyNum ++;
                         tv_num.setText(String.valueOf(buyNum));
                         tv_allWallet.setText("合计:￥" + productMachine.getAmout() * buyNum);
+                    }else{
+                        ToastUtil.toast(BuyillMInfoActivity.this,"购买数量已达今日最大值，如需购买请明天继续");
+                    }
+                }else if(productMachine.getAmout() == 10000){
+                    if(buyNum != 5){
+                        buyNum ++;
+                        tv_num.setText(String.valueOf(buyNum));
+                        tv_allWallet.setText("合计:￥" + productMachine.getAmout() * buyNum);
+                    }
+                    else{
+                        ToastUtil.toast(BuyillMInfoActivity.this,"购买数量已达今日最大值，如需购买请明天继续");
                     }
                 }
                 break;
@@ -149,7 +163,7 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
 
     private void createPayBill(){
 
-        RequestUtil requestUtil = BuyRequestFactory.createPayBill(BuyillMInfoActivity.this,"0.01","CZ");
+        RequestUtil requestUtil = BuyRequestFactory.createPayBill(BuyillMInfoActivity.this,"0.01","CZ",productMachine.getId(),tv_num.getText().toString());
         requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
             @Override
             public void onSuccess(HttpRequest request) {
