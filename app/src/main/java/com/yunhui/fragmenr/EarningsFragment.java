@@ -24,6 +24,7 @@ import com.yunhui.activity.BuyillMInfoActivity;
 import com.yunhui.activity.HomeActivity;
 import com.yunhui.R;
 import com.yunhui.adapter.ProductMachineAdapter;
+import com.yunhui.bean.MyEarnings;
 import com.yunhui.bean.ProductMachine;
 import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.request.RequestUtil;
@@ -70,7 +71,9 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
                     setListViewHeightBasedOnChildren(rlv_earningsrefeesh);
                     break;
                 case 2:
-                    tv_allTotalRevenue.setText((String)msg.obj);
+                    MyEarnings myEarnings = (MyEarnings) msg.obj;
+                    tv_allTotalRevenue.setText(myEarnings.getTotal());
+                    tv_earningshiteday.setText(myEarnings.getTotal() + " BTC");
                     break;
             }
         }
@@ -170,11 +173,11 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
             public void onSuccess(HttpRequest request) {
                 super.onSuccess(request);
                 JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
-                if(jsonObject != null && jsonObject.has("total")){
-                    String total = jsonObject.optString("total");
+                if(jsonObject != null && jsonObject.has("total") && jsonObject.has("btcoin")){
+                    MyEarnings myEarnings = new MyEarnings(jsonObject);
                     Message message = new Message();
                     message.what = 2;
-                    message.obj = total;
+                    message.obj = myEarnings;
                     handler.sendMessage(message);
                 }
             }

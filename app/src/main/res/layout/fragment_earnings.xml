@@ -79,7 +79,7 @@
                     android:id="@+id/allTotalRevenue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text=""
                     android:textColor="@color/color_EE9707"
                     android:layout_marginLeft="@dimen/dimen_22"/>
             </LinearLayout>
@@ -111,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_22"
                     android:textColor="@color/color_EE9707"
-                    android:text="0.00000023 BTC"/>
+                    android:text=""/>
             </LinearLayout>
         </LinearLayout>
 
@@ -148,7 +148,7 @@
                         android:id="@+id/allgold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text=""
                         android:textColor="@color/color_EE9707"
                         android:layout_marginLeft="@dimen/dimen_22"/>
                 </LinearLayout>
@@ -180,7 +180,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dimen_22"
                         android:textColor="@color/color_EE9707"
-                        android:text="0.00000023 BTC"/>
+                        android:text=""/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -218,7 +218,7 @@
                     android:id="@+id/allsilver"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text=""
                     android:textColor="@color/color_EE9707"
                     android:layout_marginLeft="@dimen/dimen_22"/>
             </LinearLayout>
@@ -250,7 +250,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_22"
                     android:textColor="@color/color_EE9707"
-                    android:text="0.00000023 BTC"/>
+                    android:text=""/>
             </LinearLayout>
         </LinearLayout>
             <LinearLayout
@@ -286,7 +286,7 @@
                         android:id="@+id/allbronze"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
+                        android:text=""
                         android:textColor="@color/color_EE9707"
                         android:layout_marginLeft="@dimen/dimen_22"/>
                 </LinearLayout>
@@ -318,7 +318,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dimen_22"
                         android:textColor="@color/color_EE9707"
-                        android:text="0.00000023 BTC"/>
+                        android:text=""/>
                 </LinearLayout>
             </LinearLayout>
 
