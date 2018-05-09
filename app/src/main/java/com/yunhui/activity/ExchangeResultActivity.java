@@ -14,5 +14,11 @@ public class ExchangeResultActivity extends BaseActionBarActivity{
     @Override
     protected void initActivity(Bundle savedInstanceState) {
         setContentView(R.layout.activity_exchange_result);
+        initView();
+    }
+
+    private void initView() {
+        navigationBar.setTitle("BTC兑换结果");
+        navigationBar.setBackground(R.color.color_4F5051);
     }
 }

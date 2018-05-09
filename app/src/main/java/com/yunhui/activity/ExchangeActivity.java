@@ -1,5 +1,6 @@
 package com.yunhui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -8,9 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.loopj.common.exception.BaseException;
+import com.loopj.common.httpEx.HttpRequest;
+import com.loopj.common.httpEx.HttpRequestParams;
+import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
 import com.yunhui.component.image.CircleImageView;
+import com.yunhui.request.RequestUtil;
 import com.yunhui.util.StringUtil;
+import com.yunhui.util.ToastUtil;
 
 import java.math.BigDecimal;
 
@@ -98,7 +105,33 @@ public class ExchangeActivity extends BaseActionBarActivity{
             case R.id.exchangecancle://取消
                 break;
             case R.id.exchangeconfirm://确认兑换
+                if(StringUtil.isEmpty(et_exchangeHiteNum.getText().toString())){
+                    ToastUtil.toast(ExchangeActivity.this,"请输入数量");
+                    return;
+                }
+                exchange();
                 break;
         }
+    }
+
+    private void exchange(){
+        RequestUtil requestUtil = RequestUtil.obtainRequest(ExchangeActivity.this,"user/cloundToBtcoin", HttpRequest.RequestMethod.POST);
+        HttpRequestParams httpRequestParams = requestUtil.getRequestParams();
+        httpRequestParams.put("cloundCoin",et_exchangeHiteNum.getText().toString());
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+                Intent intent = new Intent(ExchangeActivity.this,ExchangeResultActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
     }
 }

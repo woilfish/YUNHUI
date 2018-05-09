@@ -2,21 +2,29 @@ package com.yunhui.fragmenr;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.loopj.common.exception.BaseException;
+import com.loopj.common.httpEx.HttpRequest;
+import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.activity.BuyillMActivity;
 import com.yunhui.activity.ExchangeActivity;
 import com.yunhui.activity.ExtractActivity;
 import com.yunhui.activity.HomeActivity;
 import com.yunhui.R;
 import com.yunhui.activity.InviteCodeActivity;
+import com.yunhui.bean.MyEarnings;
 import com.yunhui.component.image.CircleImageView;
 import com.yunhui.component.linearlayout.LabelItemView;
+import com.yunhui.request.RequestUtil;
 import com.yunhui.util.DateUtil;
+
+import org.json.JSONObject;
 
 /**
  * Created by pengmin on 2018/4/2.
@@ -29,7 +37,6 @@ public class MyFragment extends BaseFragment {
     private View parentView;
     private CircleImageView civ_userPhoto;
     private TextView tv_userPhoneNum;
-    private TextView tv_userName;
     private LabelItemView liv_exchange;
     private LabelItemView liv_myTask;
     private LabelItemView liv_buy;
@@ -37,6 +44,8 @@ public class MyFragment extends BaseFragment {
     private LabelItemView liv_aboutMy;
     private LabelItemView liv_extract;
     private TextView tv_myData;
+    private TextView tv_cloudDrill;
+    private TextView tv_BTC;
 
 
     @Nullable
@@ -48,10 +57,15 @@ public class MyFragment extends BaseFragment {
         return parentView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        allTotalRevenueRequets();
+    }
+
     private void initView() {
         civ_userPhoto = parentView.findViewById(R.id.userphoto);
         tv_userPhoneNum = parentView.findViewById(R.id.userphonenum);
-        tv_userName = parentView.findViewById(R.id.username);
         liv_exchange = parentView.findViewById(R.id.exchange);
         liv_myTask = parentView.findViewById(R.id.myTask);
         liv_buy = parentView.findViewById(R.id.buy);
@@ -59,6 +73,8 @@ public class MyFragment extends BaseFragment {
         liv_aboutMy = parentView.findViewById(R.id.aboutMy);
         tv_myData = parentView.findViewById(R.id.mydate);
         liv_extract = parentView.findViewById(R.id.extract);
+        tv_cloudDrill = parentView.findViewById(R.id.clouddrill);
+        tv_BTC = parentView.findViewById(R.id.BTC);
         tv_myData.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
         liv_exchange.setOnClickListener(this);
         liv_myTask.setOnClickListener(this);
@@ -93,5 +109,34 @@ public class MyFragment extends BaseFragment {
             case R.id.aboutMy:
                 break;
         }
+    }
+
+    private void allTotalRevenueRequets(){
+
+        RequestUtil requestUtil = RequestUtil.obtainRequest(homeActivity,"user/queryUserBenefit", HttpRequest.RequestMethod.POST);
+
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+                JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                if(jsonObject != null && jsonObject.has("total") && jsonObject.has("btcoin")){
+                    final MyEarnings myEarnings = new MyEarnings(jsonObject);
+                    homeActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tv_cloudDrill.setText("云钻:" + myEarnings.getTotal());
+                            tv_BTC.setText("BTC:" + myEarnings.getBtcoin());
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
     }
 }

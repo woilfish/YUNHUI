@@ -83,8 +83,8 @@
             android:layout_height="@dimen/dimen_70"
             android:layout_alignParentRight="true"
             android:text="@string/exchange_hite_all"
-            android:background="@drawable/bg_roundedrectangle"
-            android:textColor="@color/white"/>
+            android:background="@null"
+            android:textColor="@color/color_EE9707"/>
     </RelativeLayout>
 
     <LinearLayout
