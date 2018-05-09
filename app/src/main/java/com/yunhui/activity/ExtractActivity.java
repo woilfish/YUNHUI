@@ -11,8 +11,11 @@ import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.bean.MyEarnings;
+import com.yunhui.component.image.CircleImageView;
 import com.yunhui.request.ExtractRequestFactory;
 import com.yunhui.request.RequestUtil;
+import com.yunhui.util.ToastUtil;
 
 import org.json.JSONObject;
 
@@ -31,6 +34,11 @@ public class ExtractActivity extends BaseActionBarActivity{
     private Button b_extractConfirm;
     private String extractBill;
     private TextView tv_Poundage;
+    private CircleImageView civ_extracteuserphoto;
+    private TextView tv_extracteuserphonenum;
+    private TextView tv_extractclouddrill;
+    private TextView tv_extractBTC;
+    private MyEarnings myEarnings;
 
     @Override
     protected void initActivity(Bundle savedInstanceState) {
@@ -42,6 +50,7 @@ public class ExtractActivity extends BaseActionBarActivity{
     protected void onResume() {
         super.onResume();
         queryPoundage();
+        allTotalRevenueRequets();
     }
 
     private void initView() {
@@ -55,6 +64,10 @@ public class ExtractActivity extends BaseActionBarActivity{
         b_extractCancle = findViewById(R.id.extractcancle);
         b_extractConfirm = findViewById(R.id.extractconfirm);
         tv_Poundage = findViewById(R.id.poundage);
+        civ_extracteuserphoto = findViewById(R.id.extracteuserphoto);
+        tv_extracteuserphonenum = findViewById(R.id.extracteuserphonenum);
+        tv_extractclouddrill = findViewById(R.id.extractclouddrill);
+        tv_extractBTC = findViewById(R.id.extractBTC);
         b_extractAllNum.setOnClickListener(this);
         b_extractSendSMS.setOnClickListener(this);
         b_extractCancle.setOnClickListener(this);
@@ -66,6 +79,11 @@ public class ExtractActivity extends BaseActionBarActivity{
         super.onClick(view);
         switch (view.getId()){
             case R.id.extractAllNum:
+                if(myEarnings != null) {
+                    et_extractNum.setText(myEarnings.getBtcoin());
+                }else{
+                    ToastUtil.toast(ExtractActivity.this,"查询个人收益失败");
+                }
                 break;
             case R.id.extractSendSMS:
                 break;
@@ -119,6 +137,35 @@ public class ExtractActivity extends BaseActionBarActivity{
                         tv_Poundage.setText("您的钱包地址 (手续费:" + jsonObject.optString("fee") + "BTC)");
                     }
                 });
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
+    }
+
+    private void allTotalRevenueRequets(){
+
+        RequestUtil requestUtil = RequestUtil.obtainRequest(ExtractActivity.this,"user/queryUserBenefit", HttpRequest.RequestMethod.POST);
+
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+                JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                if(jsonObject != null && jsonObject.has("total") && jsonObject.has("btcoin")){
+                    myEarnings = new MyEarnings(jsonObject);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tv_extractclouddrill.setText("云钻:" + myEarnings.getTotal());
+                            tv_extractBTC.setText("BTC:" + myEarnings.getBtcoin());
+                        }
+                    });
+                }
             }
 
             @Override

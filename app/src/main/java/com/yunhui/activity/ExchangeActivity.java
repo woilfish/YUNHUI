@@ -113,7 +113,11 @@ public class ExchangeActivity extends BaseActionBarActivity{
         super.onClick(view);
         switch (view.getId()){
             case R.id.exchangehiteall://全部兑换
-                et_exchangeHiteNum.setText(myEarnings.getTotal());
+                if(myEarnings != null) {
+                    et_exchangeHiteNum.setText(myEarnings.getTotal());
+                }else{
+                    ToastUtil.toast(ExchangeActivity.this,"查询个人收益失败");
+                }
                 break;
             case R.id.exchangecancle://取消
                 break;
