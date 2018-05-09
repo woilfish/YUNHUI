@@ -35,4 +35,11 @@ public class ExtractRequestFactory {
         return requestUtil;
     }
 
+    public static RequestUtil querttPoundage(Context context,String billId){
+        RequestUtil requestUtil = RequestUtil.obtainRequest(context,"user/queryFee", HttpRequest.RequestMethod.POST);
+        HttpRequestParams httpRequestParams = requestUtil.getRequestParams();
+//        httpRequestParams.put("billId",billId);
+        return requestUtil;
+    }
+
 }

@@ -60,7 +60,7 @@
 
     <string name="extract_top_hite">提取BTC</string>
     <string name="extract_all_num">全部BTC</string>
-    <string name="extract_wallet">您的钱包地址（手续费0.002 BTC）</string>
+    <string name="extract_wallet">您的钱包地址</string>
     <string name="extract_SMS">短信验证码</string>
     <string name="extract__hite_confirm">确认提取</string>
 

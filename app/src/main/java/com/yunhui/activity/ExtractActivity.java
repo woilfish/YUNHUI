@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
@@ -29,11 +30,18 @@ public class ExtractActivity extends BaseActionBarActivity{
     private Button b_extractCancle;
     private Button b_extractConfirm;
     private String extractBill;
+    private TextView tv_Poundage;
 
     @Override
     protected void initActivity(Bundle savedInstanceState) {
         setContentView(R.layout.activity_extract);
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        queryPoundage();
     }
 
     private void initView() {
@@ -46,6 +54,7 @@ public class ExtractActivity extends BaseActionBarActivity{
         b_extractSendSMS = findViewById(R.id.extractSendSMS);
         b_extractCancle = findViewById(R.id.extractcancle);
         b_extractConfirm = findViewById(R.id.extractconfirm);
+        tv_Poundage = findViewById(R.id.poundage);
         b_extractAllNum.setOnClickListener(this);
         b_extractSendSMS.setOnClickListener(this);
         b_extractCancle.setOnClickListener(this);
@@ -84,6 +93,30 @@ public class ExtractActivity extends BaseActionBarActivity{
                         Intent smsIntent = new Intent(ExtractActivity.this,SendSMSActivity.class);
                         smsIntent.putExtra("BIllID",extractBill);
                         startActivity(smsIntent);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
+    }
+
+    private void queryPoundage(){
+        RequestUtil requestUtil = ExtractRequestFactory.querttPoundage(ExtractActivity.this,extractBill);
+
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+                final JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tv_Poundage.setText("您的钱包地址 (手续费:" + jsonObject.optString("fee") + "BTC)");
                     }
                 });
             }
