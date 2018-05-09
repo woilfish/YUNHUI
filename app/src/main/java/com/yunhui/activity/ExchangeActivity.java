@@ -1,6 +1,8 @@
 package com.yunhui.activity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,6 +10,9 @@ import android.widget.TextView;
 
 import com.yunhui.R;
 import com.yunhui.component.image.CircleImageView;
+import com.yunhui.util.StringUtil;
+
+import java.math.BigDecimal;
 
 /**
  * Created by pengmin on 2018/4/16.
@@ -28,6 +33,7 @@ public class ExchangeActivity extends BaseActionBarActivity{
     private EditText et_exchangePassword;
     private Button b_exchangeCancle;
     private Button b_exchangeConfirm;
+    private BigDecimal bigDecimal = new BigDecimal("0.000000065");
 
 
     @Override
@@ -55,6 +61,32 @@ public class ExchangeActivity extends BaseActionBarActivity{
         b_exchangeHiteAll.setOnClickListener(this);
         b_exchangeCancle.setOnClickListener(this);
         b_exchangeConfirm.setOnClickListener(this);
+
+        et_exchangeHiteNum.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(StringUtil.isEmpty(et_exchangeHiteNum.getText().toString())){
+                    return;
+                }
+                final BigDecimal bigDecimalNum = new BigDecimal(et_exchangeHiteNum.getText().toString());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tv_exchangePay.setText("共兑换 " + bigDecimal.multiply(bigDecimalNum).toPlainString() + " BTC");
+                    }
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override

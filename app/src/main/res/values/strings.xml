@@ -47,7 +47,7 @@
     <string name="earnings_gold">黄金矿机</string>
     <string name="earnings_dayearn">每日云钻</string>
 
-    <string name="exchange_hite_top">云钻兑换BTC(100云钻=0.00035BTC)</string>
+    <string name="exchange_hite_top">云钻兑换BTC(1000云钻=0.000065BTC)</string>
     <string name="exchange_hite_num">请您输入云钻数量</string>
     <string name="exchange_hite_all">全部云钻</string>
     <string name="exchange_hite_password">您的密码</string>
