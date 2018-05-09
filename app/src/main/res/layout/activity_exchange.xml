@@ -9,34 +9,61 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dimen_200"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:background="@color/color_2b2e34"
+        android:gravity="center_vertical">
+
         <com.yunhui.component.image.CircleImageView
             android:id="@+id/exchangeuserphoto"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_centerInParent="true" />
+            android:layout_width="@dimen/dimen_160"
+            android:layout_height="@dimen/dimen_160"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/icon_log"
+            android:layout_marginLeft="@dimen/dimen_20"/>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="128dp"
+            android:layout_height="@dimen/dimen_160"
+            android:layout_marginLeft="@dimen/dimen_30"
+            android:gravity="center_vertical"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/exchangeuserphonenum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="13633491655"/>
-            <TextView
-                android:id="@+id/exchangeusername"
-                android:layout_width="wrap_content"
+                android:text="13633491655"
+                android:textColor="@color/color_959697"
+                android:textSize="@dimen/font_size_normal" />
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="无敌寂寞"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/exchangeclouddrill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="云钻:"
+                    android:textColor="@color/color_959697"
+                    android:textSize="@dimen/font_size_normal" />
+                <TextView
+                    android:id="@+id/exchangeBTC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BTC:"
+                    android:textColor="@color/color_959697"
+                    android:textSize="@dimen/font_size_normal"
+                    android:layout_marginLeft="@dimen/dimen_30"/>
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_30">
 
         <TextView
             android:id="@+id/exchangehitetop"

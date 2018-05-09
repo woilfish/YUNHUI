@@ -14,10 +14,13 @@ import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.HttpRequestParams;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.bean.MyEarnings;
 import com.yunhui.component.image.CircleImageView;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.StringUtil;
 import com.yunhui.util.ToastUtil;
+
+import org.json.JSONObject;
 
 import java.math.BigDecimal;
 
@@ -30,8 +33,9 @@ public class ExchangeActivity extends BaseActionBarActivity{
 
     private CircleImageView civ_exchangeUserPhoto;
     private TextView tv_exchangeUserPhoneNum;
-    private TextView tv_exchangeUserName;
     private TextView tv_exchangeHiteTop;
+    private TextView tv_exchangeclouddrill;
+    private TextView tv_exchangeBTC;
     private EditText et_exchangeHiteNum;
     private TextView tv_exchangePay;
     private Button b_exchangeHiteAll;
@@ -40,6 +44,7 @@ public class ExchangeActivity extends BaseActionBarActivity{
     private EditText et_exchangePassword;
     private Button b_exchangeCancle;
     private Button b_exchangeConfirm;
+    private MyEarnings myEarnings;
     private BigDecimal bigDecimal = new BigDecimal("0.000000065");
 
 
@@ -49,12 +54,17 @@ public class ExchangeActivity extends BaseActionBarActivity{
         initView();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        allTotalRevenueRequets();
+    }
+
     private void initView() {
         navigationBar.setTitle("BTC兑换");
         navigationBar.setBackground(R.color.color_4F5051);
         civ_exchangeUserPhoto = findViewById(R.id.exchangeuserphoto);
         tv_exchangeUserPhoneNum = findViewById(R.id.exchangeuserphonenum);
-        tv_exchangeUserName = findViewById(R.id.exchangeusername);
         tv_exchangeHiteTop = findViewById(R.id.exchangehitetop);
         et_exchangeHiteNum = findViewById(R.id.exchangehitenum);
         tv_exchangePay = findViewById(R.id.exchangepay);
@@ -64,6 +74,8 @@ public class ExchangeActivity extends BaseActionBarActivity{
         et_exchangePassword = findViewById(R.id.exchangepassword);
         b_exchangeCancle = findViewById(R.id.exchangecancle);
         b_exchangeConfirm = findViewById(R.id.exchangeconfirm);
+        tv_exchangeclouddrill = findViewById(R.id.exchangeclouddrill);
+        tv_exchangeBTC = findViewById(R.id.exchangeBTC);
 
         b_exchangeHiteAll.setOnClickListener(this);
         b_exchangeCancle.setOnClickListener(this);
@@ -101,6 +113,7 @@ public class ExchangeActivity extends BaseActionBarActivity{
         super.onClick(view);
         switch (view.getId()){
             case R.id.exchangehiteall://全部兑换
+                et_exchangeHiteNum.setText(myEarnings.getTotal());
                 break;
             case R.id.exchangecancle://取消
                 break;
@@ -125,6 +138,35 @@ public class ExchangeActivity extends BaseActionBarActivity{
                 Intent intent = new Intent(ExchangeActivity.this,ExchangeResultActivity.class);
                 startActivity(intent);
                 finish();
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
+    }
+
+    private void allTotalRevenueRequets(){
+
+        RequestUtil requestUtil = RequestUtil.obtainRequest(ExchangeActivity.this,"user/queryUserBenefit", HttpRequest.RequestMethod.POST);
+
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+                JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                if(jsonObject != null && jsonObject.has("total") && jsonObject.has("btcoin")){
+                    myEarnings = new MyEarnings(jsonObject);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tv_exchangeclouddrill.setText("云钻:" + myEarnings.getTotal());
+                            tv_exchangeBTC.setText("BTC:" + myEarnings.getBtcoin());
+                        }
+                    });
+                }
             }
 
             @Override
