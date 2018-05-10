@@ -1,8 +1,11 @@
 package com.yunhui.bean;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pengmin on 2018/5/9.
@@ -12,6 +15,7 @@ public class MyEarnings implements Serializable{
 
     private String total;
     private String btcoin;
+    private List<MyMillInfo> myMillInfos = null;
 
     private MyEarnings() {
     }
@@ -32,6 +36,16 @@ public class MyEarnings implements Serializable{
         if(jsonObject.has("btcoin")){
             this.setBtcoin(jsonObject.optString("btcoin"));
         }
+        if(jsonObject.has("list")){
+            JSONArray jsonArray = jsonObject.optJSONArray("list");
+            if(jsonArray.length() > 0){
+                myMillInfos = new ArrayList<>();
+                for(int i = 0;i < jsonArray.length();i++){
+                    MyMillInfo myMillInfo = new MyMillInfo(jsonArray.optJSONObject(i));
+                    myMillInfos.add(myMillInfo);
+                }
+            }
+        }
     }
 
     public String getTotal() {
@@ -48,5 +62,13 @@ public class MyEarnings implements Serializable{
 
     public void setBtcoin(String btcoin) {
         this.btcoin = btcoin;
+    }
+
+    public List<MyMillInfo> getMyMillInfos() {
+        return myMillInfos;
+    }
+
+    public void setMyMillInfos(List<MyMillInfo> myMillInfos) {
+        this.myMillInfos = myMillInfos;
     }
 }

@@ -74,6 +74,31 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
                     MyEarnings myEarnings = (MyEarnings) msg.obj;
                     tv_allTotalRevenue.setText(myEarnings.getTotal());
                     tv_earningshiteday.setText(myEarnings.getTotal() + " BTC");
+                    if(myEarnings.getMyMillInfos() == null || myEarnings.getMyMillInfos().size() == 0){
+                        l_bronze.setVisibility(View.GONE);
+                        l_silver.setVisibility(View.GONE);
+                        l_gold.setVisibility(View.GONE);
+                    }else{
+                        for(int i = 0;i < myEarnings.getMyMillInfos().size();i++){
+                            switch (Integer.parseInt(myEarnings.getMyMillInfos().get(i).getPrdId())){
+                                case 1:
+                                    l_bronze.setVisibility(View.VISIBLE);
+                                    tv_allBronze.setText(myEarnings.getMyMillInfos().get(i).getCount());
+                                    tv_bronzeNum.setText(myEarnings.getMyMillInfos().get(i).getBenefit());
+                                    break;
+                                case 2:
+                                    l_silver.setVisibility(View.VISIBLE);
+                                    tv_allSilver.setText(myEarnings.getMyMillInfos().get(i).getCount());
+                                    tv_silverNum.setText(myEarnings.getMyMillInfos().get(i).getBenefit());
+                                    break;
+                                case 3:
+                                    l_gold.setVisibility(View.VISIBLE);
+                                    tv_allGold.setText(myEarnings.getMyMillInfos().get(i).getCount());
+                                    tv_goldNum.setText(myEarnings.getMyMillInfos().get(i).getBenefit());
+                                    break;
+                            }
+                        }
+                    }
                     break;
             }
         }
@@ -126,7 +151,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
         productMachineAdapter = new ProductMachineAdapter(homeActivity,productMachines,onClickListener);
         rlv_earningsrefeesh.setAdapter(productMachineAdapter);
         rlv_earningsrefeesh.setOnRefreshListViewListener(this);
-        rlv_earningsrefeesh.setPullRefreshEnable(true);
+        rlv_earningsrefeesh.setPullRefreshEnable(false);
         rlv_earningsrefeesh.setPullLoadEnable(false);
     }
 
