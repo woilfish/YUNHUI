@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
+import com.yunhui.YhApplication;
 import com.yunhui.activity.BuyillMActivity;
 import com.yunhui.activity.ExchangeActivity;
 import com.yunhui.activity.ExtractActivity;
@@ -66,6 +67,7 @@ public class MyFragment extends BaseFragment {
     private void initView() {
         civ_userPhoto = parentView.findViewById(R.id.userphoto);
         tv_userPhoneNum = parentView.findViewById(R.id.userphonenum);
+        tv_userPhoneNum.setText(YhApplication.getInstance().getUserInfo().getMobile());
         liv_exchange = parentView.findViewById(R.id.exchange);
         liv_myTask = parentView.findViewById(R.id.myTask);
         liv_buy = parentView.findViewById(R.id.buy);

@@ -14,6 +14,7 @@ import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.HttpRequestParams;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.YhApplication;
 import com.yunhui.bean.MyEarnings;
 import com.yunhui.component.image.CircleImageView;
 import com.yunhui.request.RequestUtil;
@@ -65,6 +66,7 @@ public class ExchangeActivity extends BaseActionBarActivity{
         navigationBar.setBackground(R.color.color_4F5051);
         civ_exchangeUserPhoto = findViewById(R.id.exchangeuserphoto);
         tv_exchangeUserPhoneNum = findViewById(R.id.exchangeuserphonenum);
+        tv_exchangeUserPhoneNum.setText(YhApplication.getInstance().getUserInfo().getMobile());
         tv_exchangeHiteTop = findViewById(R.id.exchangehitetop);
         et_exchangeHiteNum = findViewById(R.id.exchangehitenum);
         tv_exchangePay = findViewById(R.id.exchangepay);

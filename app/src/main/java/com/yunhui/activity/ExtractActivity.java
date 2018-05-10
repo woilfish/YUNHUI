@@ -11,6 +11,7 @@ import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.YhApplication;
 import com.yunhui.bean.MyEarnings;
 import com.yunhui.component.image.CircleImageView;
 import com.yunhui.request.ExtractRequestFactory;
@@ -66,6 +67,7 @@ public class ExtractActivity extends BaseActionBarActivity{
         tv_Poundage = findViewById(R.id.poundage);
         civ_extracteuserphoto = findViewById(R.id.extracteuserphoto);
         tv_extracteuserphonenum = findViewById(R.id.extracteuserphonenum);
+        tv_extracteuserphonenum.setText(YhApplication.getInstance().getUserInfo().getMobile());
         tv_extractclouddrill = findViewById(R.id.extractclouddrill);
         tv_extractBTC = findViewById(R.id.extractBTC);
         b_extractAllNum.setOnClickListener(this);

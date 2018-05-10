@@ -163,7 +163,7 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
 
     private void createPayBill(){
 
-        RequestUtil requestUtil = BuyRequestFactory.createPayBill(BuyillMInfoActivity.this,"0.01","CZ",productMachine.getId(),tv_num.getText().toString());
+        RequestUtil requestUtil = BuyRequestFactory.createPayBill(BuyillMInfoActivity.this,String.valueOf(0.01 * buyNum),"CZ",productMachine.getId(),tv_num.getText().toString());
         requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
             @Override
             public void onSuccess(HttpRequest request) {
