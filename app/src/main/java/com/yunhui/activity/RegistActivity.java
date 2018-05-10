@@ -56,6 +56,8 @@ public class RegistActivity extends BaseActionBarActivity{
      * 初始化view
      */
     private void initView() {
+        navigationBar.setTitle("注册");
+        navigationBar.setBackground(R.color.color_4F5051);
         et_registphonenum = findViewById(R.id.registphonenum);
         et_registvalidation = findViewById(R.id.registvalidation);
         et_registpassword = findViewById(R.id.registpassword);
@@ -115,6 +117,9 @@ public class RegistActivity extends BaseActionBarActivity{
                 }
                 break;
             case R.id.registloginenter://登录
+                Intent intent = new Intent(RegistActivity.this,LoginActivity.class);
+                startActivity(intent);
+                RegistActivity.this.finish();
                 break;
         }
     }

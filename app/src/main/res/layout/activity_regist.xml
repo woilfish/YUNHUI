@@ -25,7 +25,7 @@
                     android:layout_gravity="center"
                     android:textAlignment="center"
                     android:textColor="@color/color_959697"
-                    android:textSize="@dimen/font_size_normal"/>
+                    android:textSize="@dimen/font_size_large"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

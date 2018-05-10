@@ -47,6 +47,8 @@ public class RetrievePasswordNextActivity extends BaseActionBarActivity {
      * 初始化View
      */
     private void initView() {
+        navigationBar.setTitle("找回密码");
+        navigationBar.setBackground(R.color.color_4F5051);
         et_retrievepasswordvalidation = findViewById(R.id.retrievepasswordvalidation);
         et_retrievepasswordpassword = findViewById(R.id.retrievepasswordpassword);
         et_retrievepasswordconfirmpassword = findViewById(R.id.retrievepasswordconfirmpassword);
