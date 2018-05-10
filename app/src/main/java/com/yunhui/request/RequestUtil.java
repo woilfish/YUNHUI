@@ -2,6 +2,7 @@ package com.yunhui.request;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.util.DebugUtils;
 import android.util.Log;
@@ -177,9 +178,9 @@ public class RequestUtil  extends HttpRequest{
         }
 
         //todo 添加公共参数
-        params.put("deviceModel", DeviceUtil.getPhoneModel());
+        params.put("deviceModel", Build.MODEL);
         params.put("deviceId",DeviceUtil.getDeviceId(context));
-        params.put("platform",DeviceUtil.getPhoneType());
+        params.put("platform","android");
         params.put("channel","10000001");
         if(YhApplication.getInstance().getUserInfo() != null) {
             params.put("token", YhApplication.getInstance().getUserInfo().getToken());

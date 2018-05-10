@@ -1,5 +1,6 @@
 package com.yunhui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +11,9 @@ import com.loopj.common.httpEx.DefaultHttpResponseHandler;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.YhApplication;
 import com.yunhui.bean.RequestRegistBean;
+import com.yunhui.bean.UserInfo;
 import com.yunhui.encryption.CommonEncrypt;
 import com.yunhui.request.RegistRequestFactory;
 import com.yunhui.request.RequestUtil;
@@ -129,7 +132,13 @@ public class RegistActivity extends BaseActionBarActivity{
             public void onSuccess(HttpRequest request) {
                 super.onSuccess(request);
 
-                ToastUtil.toast(RegistActivity.this,"注册成功");
+                JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                UserInfo userInfo = new UserInfo(jsonObject);
+                YhApplication.getInstance().setUserInfo(userInfo);
+                Intent intent = new Intent(RegistActivity.this,HomeActivity.class);
+                startActivity(intent);
+                RegistActivity.this.setResult(RESULT_OK);
+                RegistActivity.this.finish();
             }
 
             @Override

@@ -13,7 +13,7 @@
     <string name="regist_validation">请输入验证码</string>
     <string name="regist_password">请输入您的密码</string>
     <string name="regist_confirm_password">请确认您的密码</string>
-    <string name="regist_invite_code">请输入邀请码（必选）</string>
+    <string name="regist_invite_code">请输入邀请码（选填）</string>
     <string name="regist_regist_enter">注册进入云慧助手</string>
     <string name="regist_login_login">手机账号密码登录</string>
     <string name="regist_phonenum_toast">您输入的手机号码不合法</string>

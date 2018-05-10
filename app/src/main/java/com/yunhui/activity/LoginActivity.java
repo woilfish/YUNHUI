@@ -70,13 +70,20 @@ public class LoginActivity extends BaseActionBarActivity{
                 break;
             case R.id.login_regist://注册
                 Intent registIntent = new Intent(LoginActivity.this,RegistActivity.class);
-                startActivity(registIntent);
+//                startActivity(registIntent);
+                startActivityForResult(registIntent,100);
                 break;
             case R.id.login_forgetpassword://忘记密码
                 Intent forgetPasswordIntent = new Intent(LoginActivity.this,RetrievePasswordActivity.class);
                 startActivity(forgetPasswordIntent);
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        LoginActivity.this.finish();
     }
 
     private void login(){

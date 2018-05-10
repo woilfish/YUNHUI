@@ -78,7 +78,7 @@
                             android:id="@+id/userphonenum"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="13633491655"
+                            android:text=""
                             android:textColor="@color/color_959697"
                             android:textSize="@dimen/font_size_normal" />
                         <LinearLayout

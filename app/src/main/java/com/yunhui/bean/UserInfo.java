@@ -11,6 +11,7 @@ public class UserInfo {
     private long time;
     private String userId;
     private String token;
+    private String mobile;
 
     public UserInfo() {
     }
@@ -28,6 +29,9 @@ public class UserInfo {
         }
         if(jsonObject.has("token")){
             this.setToken(jsonObject.optString("token"));
+        }
+        if(jsonObject.has("mobile")){
+            this.setMobile(jsonObject.optString("mobile"));
         }
     }
 
@@ -53,5 +57,13 @@ public class UserInfo {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }
