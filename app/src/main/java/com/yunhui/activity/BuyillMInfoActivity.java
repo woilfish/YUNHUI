@@ -17,6 +17,7 @@ import com.yunhui.R;
 import com.yunhui.YhApplication;
 import com.yunhui.bean.ProductMachine;
 import com.yunhui.bean.UserInfo;
+import com.yunhui.component.dialog.AlertDialog;
 import com.yunhui.pay.AlRunnable;
 import com.yunhui.pay.PayResult;
 import com.yunhui.request.BuyRequestFactory;
@@ -51,6 +52,7 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
     private String billId;
     private String signData;
     private int buyNum = 1;
+    private AlertDialog alertDialog;
 
     private Handler handler = new Handler(){
         @Override
@@ -67,7 +69,8 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        Toast.makeText(BuyillMInfoActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(BuyillMInfoActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        showAlertDialog();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         Toast.makeText(BuyillMInfoActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
@@ -212,5 +215,27 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
             }
         });
         requestUtil.execute();
+    }
+
+    private void showAlertDialog(){
+        alertDialog = new AlertDialog();
+        alertDialog.setButtons("确定");
+        alertDialog.setButtonsTextColor(R.color.color_EE9707);
+        alertDialog.setTitle("提示");
+        alertDialog.setMessage("恭喜您，购买成功！");
+        alertDialog.setDialogDelegate(new AlertDialog.AlertDialogDelegate(){
+            @Override
+            public void onButtonClick(AlertDialog dialog, View view, int index) {
+                super.onButtonClick(dialog, view, index);
+                switch (index){
+                    case 0:
+                        alertDialog.dismiss();
+                        BuyillMInfoActivity.this.setResult(RESULT_OK);
+                        BuyillMInfoActivity.this.finish();
+                        break;
+                }
+            }
+        });
+        alertDialog.show(BuyillMInfoActivity.this.getSupportFragmentManager());
     }
 }

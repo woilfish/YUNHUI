@@ -29,6 +29,7 @@ import com.yunhui.bean.ProductMachine;
 import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.DateUtil;
+import com.yunhui.util.StringUtil;
 import com.yunhui.util.ToastUtil;
 
 import org.json.JSONObject;
@@ -80,6 +81,9 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
                         l_gold.setVisibility(View.GONE);
                     }else{
                         for(int i = 0;i < myEarnings.getMyMillInfos().size();i++){
+                            if(StringUtil.isEmpty(myEarnings.getMyMillInfos().get(i).getPrdId())){
+                                continue;
+                            }
                             switch (Integer.parseInt(myEarnings.getMyMillInfos().get(i).getPrdId())){
                                 case 1:
                                     l_bronze.setVisibility(View.VISIBLE);
@@ -111,7 +115,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
             int postion = (Integer) btn.getTag();
             Intent intent = new Intent(homeActivity, BuyillMInfoActivity.class);
             intent.putExtra("millInfo",productMachines.get(postion));
-            startActivity(intent);
+            startActivityForResult(intent,9999);
         }
     };
 

@@ -14,6 +14,7 @@ import com.yunhui.R;
 import com.yunhui.YhApplication;
 import com.yunhui.bean.RequestRegistBean;
 import com.yunhui.bean.UserInfo;
+import com.yunhui.component.dialog.AlertDialog;
 import com.yunhui.encryption.CommonEncrypt;
 import com.yunhui.request.RegistRequestFactory;
 import com.yunhui.request.RequestUtil;
@@ -42,6 +43,7 @@ public class RegistActivity extends BaseActionBarActivity{
     private Button b_registloginenter;
     private int smsTime = 60;
     private Timer timer;
+    private AlertDialog alertDialog;
 
 
     @Override
@@ -140,10 +142,7 @@ public class RegistActivity extends BaseActionBarActivity{
                 JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
                 UserInfo userInfo = new UserInfo(jsonObject);
                 YhApplication.getInstance().setUserInfo(userInfo);
-                Intent intent = new Intent(RegistActivity.this,HomeActivity.class);
-                startActivity(intent);
-                RegistActivity.this.setResult(RESULT_OK);
-                RegistActivity.this.finish();
+                showAlertDialog();
             }
 
             @Override
@@ -196,4 +195,27 @@ public class RegistActivity extends BaseActionBarActivity{
         timer.schedule(timerTask,0,1000);
     }
 
+    private void showAlertDialog(){
+        alertDialog = new AlertDialog();
+        alertDialog.setButtons("登录");
+        alertDialog.setButtonsTextColor(R.color.color_EE9707);
+        alertDialog.setTitle("提示");
+        alertDialog.setMessage("恭喜您，注册成功！");
+        alertDialog.setDialogDelegate(new AlertDialog.AlertDialogDelegate(){
+            @Override
+            public void onButtonClick(AlertDialog dialog, View view, int index) {
+                super.onButtonClick(dialog, view, index);
+                switch (index){
+                    case 0:
+                        alertDialog.dismiss();
+                        Intent intent = new Intent(RegistActivity.this,HomeActivity.class);
+                        startActivity(intent);
+                        RegistActivity.this.setResult(RESULT_OK);
+                        RegistActivity.this.finish();
+                        break;
+                }
+            }
+        });
+        alertDialog.show(RegistActivity.this.getSupportFragmentManager());
+    }
 }
