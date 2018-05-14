@@ -2,6 +2,7 @@ package com.yunhui.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
@@ -151,6 +152,29 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
             updateTab(view, i, currentId);
         }
 
+    }
+
+    /**
+     * 跳转到某一选项下，供外部调用
+     *
+     * @param index  0首页，1卡包，2生活，3我
+     * @param bundle 传递的参数
+     */
+    public void toTabItem(int index, Bundle bundle) {
+        currentId = index;
+        onTabChanged(currentId);
+        switch (index) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+        //切换到相应界面
+        mTabHost.setCurrentTab(index);
     }
 
     /**

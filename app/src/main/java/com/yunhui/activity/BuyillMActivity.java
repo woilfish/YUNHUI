@@ -51,7 +51,7 @@ public class BuyillMActivity extends BaseActionBarActivity implements RefreshLis
             int postion = (Integer) btn.getTag();
             Intent intent = new Intent(BuyillMActivity.this, BuyillMInfoActivity.class);
             intent.putExtra("millInfo",productMachines.get(postion));
-            startActivity(intent);
+            startActivityForResult(intent,8888);
         }
     };
 
@@ -86,6 +86,16 @@ public class BuyillMActivity extends BaseActionBarActivity implements RefreshLis
     @Override
     public void onLoadMore() {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 8888:
+                BuyillMActivity.this.finish();
+                break;
+        }
     }
 
     private void productMachineRequest(){

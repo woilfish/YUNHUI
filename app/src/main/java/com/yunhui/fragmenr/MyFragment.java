@@ -102,13 +102,23 @@ public class MyFragment extends BaseFragment {
                 break;
             case R.id.buy:
                 Intent buyIntent = new Intent(homeActivity, BuyillMActivity.class);
-                startActivity(buyIntent);
+                startActivityForResult(buyIntent,7777);
                 break;
             case R.id.myInvitation:
                 Intent myInvitationIntent = new Intent(homeActivity, InviteCodeActivity.class);
                 startActivity(myInvitationIntent);
                 break;
             case R.id.aboutMy:
+                break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 7777:
+                homeActivity.toTabItem(2,null);
                 break;
         }
     }
