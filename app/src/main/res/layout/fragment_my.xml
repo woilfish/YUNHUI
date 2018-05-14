@@ -147,7 +147,8 @@
                     app:rightArrowVisibility="VISIBLE"
                     app:rightTextVisibility="VISIBLE"
                     app:rightTextSize="@dimen/wallet_left_font_size"
-                    app:rightTextColor="@color/font_gray"/>
+                    app:rightTextColor="@color/font_gray"
+                    android:visibility="gone"/>
 
                 <com.yunhui.component.linearlayout.LabelItemView
                     android:id="@+id/buy"

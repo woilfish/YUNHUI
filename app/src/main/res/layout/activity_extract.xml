@@ -169,7 +169,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="@dimen/dimen_40">
+        android:layout_marginTop="@dimen/dimen_60">
         <Button
             android:id="@+id/extractcancle"
             android:layout_width="wrap_content"
@@ -177,10 +177,11 @@
             android:text="@string/exchange_hite_cancle"
             android:background="@drawable/bg_roundedrectangle"
             android:textColor="@color/white"
-            android:layout_marginRight="@dimen/dimen_40"/>
+            android:layout_marginRight="@dimen/dimen_40"
+            android:visibility="gone"/>
         <Button
             android:id="@+id/extractconfirm"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_80"
             android:text="@string/extract__hite_confirm"
             android:background="@drawable/bg_roundedrectangle"
