@@ -74,7 +74,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
                 case 2:
                     MyEarnings myEarnings = (MyEarnings) msg.obj;
                     tv_allTotalRevenue.setText(myEarnings.getTotal());
-                    tv_earningshiteday.setText(myEarnings.getTotal() + " BTC");
+                    tv_earningshiteday.setText(myEarnings.getBtcoin());
                     if(myEarnings.getMyMillInfos() == null || myEarnings.getMyMillInfos().size() == 0){
                         l_bronze.setVisibility(View.GONE);
                         l_silver.setVisibility(View.GONE);

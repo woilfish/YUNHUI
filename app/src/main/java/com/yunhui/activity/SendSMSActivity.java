@@ -1,6 +1,7 @@
 package com.yunhui.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -82,6 +83,8 @@ public class SendSMSActivity extends BaseActionBarActivity{
             @Override
             public void onSuccess(HttpRequest request) {
                 super.onSuccess(request);
+                Intent intent = new Intent(SendSMSActivity.this,ExchangeResultActivity.class);
+                startActivity(intent);
                 SendSMSActivity.this.finish();
             }
 

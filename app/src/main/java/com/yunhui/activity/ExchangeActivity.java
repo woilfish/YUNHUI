@@ -128,6 +128,14 @@ public class ExchangeActivity extends BaseActionBarActivity{
                     ToastUtil.toast(ExchangeActivity.this,"请输入数量");
                     return;
                 }
+                if(Integer.parseInt(et_exchangeHiteNum.getText().toString()) < 1000){
+                    ToastUtil.toast(ExchangeActivity.this,"兑换BTC最低云钻数量1000");
+                    return;
+                }
+                if(Integer.parseInt(et_exchangeHiteNum.getText().toString()) > Integer.parseInt(myEarnings.getTotal())){
+                    ToastUtil.toast(ExchangeActivity.this,"您输入的云钻数量已超出了您的全部云钻,请重新输入");
+                    return;
+                }
                 exchange();
                 break;
         }
@@ -141,14 +149,17 @@ public class ExchangeActivity extends BaseActionBarActivity{
             @Override
             public void onSuccess(HttpRequest request) {
                 super.onSuccess(request);
-                Intent intent = new Intent(ExchangeActivity.this,ExchangeResultActivity.class);
-                startActivity(intent);
-                finish();
+//                Intent intent = new Intent(ExchangeActivity.this,ExchangeResultActivity.class);
+//                startActivity(intent);
+//                finish();
+                ToastUtil.toast(ExchangeActivity.this,"兑换BTC成功");
+                allTotalRevenueRequets();
             }
 
             @Override
             public void onFailure(HttpRequest request, BaseException exception) {
                 super.onFailure(request, exception);
+                ToastUtil.toast(ExchangeActivity.this,"兑换BTC失败");
             }
         });
         requestUtil.execute();
