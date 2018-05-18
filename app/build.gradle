@@ -73,6 +73,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.0'
     implementation 'com.umeng.analytics:analytics:6.1.2'
     implementation 'com.meituan.android.walle:library:1.1.6'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation project(':request')
     implementation project(':encryption')
     implementation project(':zxing')

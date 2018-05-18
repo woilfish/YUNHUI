@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.yunhui.R;
 import com.yunhui.bean.TaskInfo;
 
@@ -73,11 +74,12 @@ public class TaskAdapter extends BaseAdapter{
             viewHolder = (ViewHolder) convertView.getTag();
         }
         TaskInfo taskInfo = getItem(position);
-        viewHolder.tv_dayTime.setText("第一天");
+//        viewHolder.tv_dayTime.setText("第一天");
         viewHolder.tv_appName.setText(taskInfo.getAppname());
         // 通常将position设置为tag，方便之后判断点击的button是哪一个
         viewHolder.b_appDownload.setTag(position);
         viewHolder.b_appDownload.setOnClickListener(this.onClickListener);
+        Picasso.with(context).load(getItem(position).getIconUrl()).resize(50,50).centerCrop().error(R.mipmap.icon_log).into(viewHolder.im_appIcon);
         return convertView;
     }
 

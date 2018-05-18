@@ -22,6 +22,7 @@ public class TaskInfo {
     private String applink;
     private String createtime;
     private String updatetime;
+    private String iconUrl;
 
     private static List<TaskInfo> taskInfos = new ArrayList<>();
 
@@ -56,6 +57,9 @@ public class TaskInfo {
         }
         if(jsonObject.has("updatetime")){
             this.setUpdatetime(jsonObject.optString("updatetime"));
+        }
+        if(jsonObject.has("iconUrl")){
+            this.setIconUrl(jsonObject.optString("iconUrl"));
         }
     }
 
@@ -137,5 +141,13 @@ public class TaskInfo {
 
     public void setUpdatetime(String updatetime) {
         this.updatetime = updatetime;
+    }
+
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
     }
 }
