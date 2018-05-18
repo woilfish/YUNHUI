@@ -46,6 +46,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.ExchangeResultActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.AboutAppActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- ALPay-->
         <activity

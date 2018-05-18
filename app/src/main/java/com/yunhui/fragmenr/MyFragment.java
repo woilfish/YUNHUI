@@ -13,6 +13,7 @@ import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.YhApplication;
+import com.yunhui.activity.AboutAppActivity;
 import com.yunhui.activity.BuyillMActivity;
 import com.yunhui.activity.ExchangeActivity;
 import com.yunhui.activity.ExtractActivity;
@@ -109,6 +110,8 @@ public class MyFragment extends BaseFragment {
                 startActivity(myInvitationIntent);
                 break;
             case R.id.aboutMy:
+                Intent aboutIntent = new Intent(homeActivity, AboutAppActivity.class);
+                startActivity(aboutIntent);
                 break;
         }
     }

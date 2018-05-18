@@ -94,4 +94,6 @@
     <string name="core_download_lakala_complete_prompt">下载云慧助手完成,确定安装</string>
     <string name="core_download_lakala_fail">下载云慧助手失败</string>
     <string name="core_install">安装</string>
+    
+    <string name="about_app_text">云慧助手是一款基于区块链技术的共享云挖矿的APP，让普通用户足不出户享受数字化资产带来的收益，并且免除专业矿机造成的电费消耗和噪音困扰，使得大众用户在云慧助手上充值或者购买云矿机实现挖矿带来的收益和效率，帮助用户实现数字资产的选择配置和原始积累，也可以通过云慧提供的任务环节获取固定量的数字资产。</string>
 </resources>
