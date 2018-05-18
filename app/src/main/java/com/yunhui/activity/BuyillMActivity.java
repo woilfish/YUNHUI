@@ -74,7 +74,7 @@ public class BuyillMActivity extends BaseActionBarActivity implements RefreshLis
         productMachineAdapter = new ProductMachineAdapter(BuyillMActivity.this,productMachines,onClickListener);
         rlv_BuyRef.setAdapter(productMachineAdapter);
         rlv_BuyRef.setOnRefreshListViewListener(this);
-        rlv_BuyRef.setPullRefreshEnable(true);
+        rlv_BuyRef.setPullRefreshEnable(false);
         rlv_BuyRef.setPullLoadEnable(false);
     }
 

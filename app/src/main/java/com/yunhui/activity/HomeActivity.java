@@ -1,15 +1,18 @@
 package com.yunhui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTabHost;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yunhui.R;
 import com.yunhui.component.NavigationBar;
@@ -18,6 +21,9 @@ import com.yunhui.fragmenr.ConsultingFragment;
 import com.yunhui.fragmenr.EarningsFragment;
 import com.yunhui.fragmenr.MyFragment;
 import com.yunhui.fragmenr.TaskFragment;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomeActivity extends BaseActionBarActivity implements View.OnClickListener{
 
@@ -38,6 +44,8 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
         R.mipmap.consult_select,R.mipmap.task_select,R.mipmap.earnings_select,R.mipmap.my_select
     };
     public boolean isNewMessage = false;
+
+    private boolean isExit;
 
 
     @Override
@@ -183,5 +191,40 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
      */
     public NavigationBar getNavigationBar() {
         return navigationBar;
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            exitByDoubleClick();
+        }
+        return false;
+    }
+
+    private void exitByDoubleClick() {
+        Timer tExit=null;
+        if(!isExit){
+            isExit=true;
+            Toast.makeText(HomeActivity.this,"再按一次退出程序", Toast.LENGTH_SHORT).show();
+            tExit=new Timer();
+            tExit.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isExit=false;//取消退出
+                }
+            },2000);// 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
+        }else{
+            finish();
+            System.exit(0);
+        }
     }
 }
