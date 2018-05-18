@@ -16,9 +16,12 @@ import com.yunhui.bean.MyEarnings;
 import com.yunhui.component.image.CircleImageView;
 import com.yunhui.request.ExtractRequestFactory;
 import com.yunhui.request.RequestUtil;
+import com.yunhui.util.StringUtil;
 import com.yunhui.util.ToastUtil;
 
 import org.json.JSONObject;
+
+import java.math.BigDecimal;
 
 /**
  * Created by pengmin on 2018/5/1.
@@ -40,6 +43,7 @@ public class ExtractActivity extends BaseActionBarActivity{
     private TextView tv_extractclouddrill;
     private TextView tv_extractBTC;
     private MyEarnings myEarnings;
+    private String free;
 
     @Override
     protected void initActivity(Bundle savedInstanceState) {
@@ -93,6 +97,22 @@ public class ExtractActivity extends BaseActionBarActivity{
                 ExtractActivity.this.finish();
                 break;
             case R.id.extractconfirm:
+                if(StringUtil.isEmpty(et_extractNum.getText().toString())){
+                    ToastUtil.toast(ExtractActivity.this,"请输入BTC数量");
+                    return;
+                }
+                if(StringUtil.isEmpty(et_extractWallet.getText().toString())){
+                    ToastUtil.toast(ExtractActivity.this,"请钱包地址");
+                    return;
+                }
+                if(new BigDecimal(et_extractNum.getText().toString()).compareTo(new BigDecimal(free)) == -1){
+                    ToastUtil.toast(ExtractActivity.this,"您输入的BTC必须要大约手续费才可以提取");
+                    return;
+                }
+                if(new BigDecimal(et_extractNum.getText().toString()).compareTo(new BigDecimal(myEarnings.getBtcoin())) == 1){
+                    ToastUtil.toast(ExtractActivity.this,"您输入的BTC已经超过了您的BTC,请重新输入");
+                    return;
+                }
                 createExtractBill();
                 break;
         }
@@ -133,6 +153,7 @@ public class ExtractActivity extends BaseActionBarActivity{
             public void onSuccess(HttpRequest request) {
                 super.onSuccess(request);
                 final JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                free = jsonObject.optString("fee");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

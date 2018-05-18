@@ -63,6 +63,7 @@
     <string name="extract_wallet">您的钱包地址</string>
     <string name="extract_SMS">短信验证码</string>
     <string name="extract__hite_confirm">确认提取</string>
+    <string name="extract_hite_num">请输入BTC数量</string>
 
 
     <!--自定义下拉刷新上滑加载ListView-->

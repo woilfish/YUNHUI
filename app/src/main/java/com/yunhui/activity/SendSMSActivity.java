@@ -16,6 +16,9 @@ import com.yunhui.request.ExtractRequestFactory;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.StringUtil;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by pengmin on 2018/5/7.
  */
@@ -26,6 +29,8 @@ public class SendSMSActivity extends BaseActionBarActivity{
     private Button b_SendSMS;
     private Button b_doneSMS;
     private String billId;
+    private int smsTime = 60;
+    private Timer timer;
 
     @Override
     protected void initActivity(Bundle savedInstanceState) {
@@ -49,7 +54,9 @@ public class SendSMSActivity extends BaseActionBarActivity{
         super.onClick(view);
         switch (view.getId()){
             case R.id.SendSMS:
+                startTimer();
                 sendExtractSms();
+                b_SendSMS.setEnabled(false);
                 break;
             case R.id.doneSms:
                 if(StringUtil.isEmpty(et_SMS.getText().toString())){
@@ -94,5 +101,30 @@ public class SendSMSActivity extends BaseActionBarActivity{
             }
         });
         requestUtil.execute();
+    }
+
+    private void startTimer(){
+        timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(smsTime == 1){
+                            b_SendSMS.setText("重新发送");
+                            smsTime = 60;
+                            timer.cancel();
+                            b_SendSMS.setEnabled(true);
+                            return;
+                        }
+                        smsTime --;
+                        b_SendSMS.setText(String.valueOf(smsTime));
+                    }
+                });
+
+            }
+        };
+        timer.schedule(timerTask,0,1000);
     }
 }
