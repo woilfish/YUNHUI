@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+
+    <files-path path="/data/user/0/com.yunhui/files" name="TaskApk"/>
+
+    <files-path path="." name="TaskApk"/>
+
+</paths>

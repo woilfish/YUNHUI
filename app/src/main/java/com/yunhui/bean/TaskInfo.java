@@ -23,6 +23,9 @@ public class TaskInfo {
     private String createtime;
     private String updatetime;
     private String iconUrl;
+    private boolean isDownload;
+    private int progress;
+    private String type = "下载";
 
     private static List<TaskInfo> taskInfos = new ArrayList<>();
 
@@ -149,5 +152,29 @@ public class TaskInfo {
 
     public void setIconUrl(String iconUrl) {
         this.iconUrl = iconUrl;
+    }
+
+    public boolean isDownload() {
+        return isDownload;
+    }
+
+    public void setDownload(boolean download) {
+        isDownload = download;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

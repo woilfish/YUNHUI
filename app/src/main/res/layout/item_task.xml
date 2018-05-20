@@ -1,47 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dimen_200"
+    android:layout_height="wrap_content"
     android:background="@color/color_2b2e34"
+    android:orientation="vertical"
     android:padding="@dimen/dimen_20">
-    <TextView
-        android:id="@+id/appDayTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:textColor="@color/color_959697"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/daytime"
-        android:gravity="center"
-        tools:ignore="UnknownId">
-        <ImageView
-            android:id="@+id/imageAppIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_log"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/appName"
+            android:id="@+id/appDayTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_959697"
-            android:layout_marginLeft="@dimen/dimen_20"
-            android:text=""/>
-    </LinearLayout>
-    <Button
-        android:id="@+id/appDownload"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dimen_80"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="下载"
-        android:background="@drawable/bg_roundedrectangle"
-        android:textColor="@color/white"/>
-</RelativeLayout>
+            android:text=""
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/color_959697"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/daytime"
+            android:gravity="center"
+            tools:ignore="UnknownId">
+            <ImageView
+                android:id="@+id/imageAppIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_log"/>
+            <TextView
+                android:id="@+id/appName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_959697"
+                android:layout_marginLeft="@dimen/dimen_20"
+                android:text=""/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/appDownload"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_80"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text=""
+            android:background="@drawable/bg_roundedrectangle"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/download_pb"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:focusable="false" />
+</LinearLayout>
