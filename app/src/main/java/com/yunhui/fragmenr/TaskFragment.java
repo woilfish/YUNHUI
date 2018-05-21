@@ -229,6 +229,7 @@ public class TaskFragment extends BaseFragment implements RefreshListView.OnRefr
                     public void onSuccess(ResponseInfo<File> responseInfo) {
                         LogUtil.printE("下载成功","OK");
                         taskInfoList.get(postion).setType("下载完成");
+//                        taskInfoList.get(postion).setDownload(true);
                         taskAdapter.refreshData(taskInfoList);
                         installApk(file);
                     }
