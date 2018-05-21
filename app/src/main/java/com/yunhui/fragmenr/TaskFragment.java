@@ -98,9 +98,18 @@ public class TaskFragment extends BaseFragment implements RefreshListView.OnRefr
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         homeActivity = (HomeActivity) getActivity();
-        parentView = inflater.inflate(R.layout.fragment_task,null);
-        initView();
-        queryTaskList();
+
+        if(parentView == null) {
+            parentView = inflater.inflate(R.layout.fragment_task, null);
+            initView();
+            queryTaskList();
+        }
+        // 缓存的rootView需要判断是否已经被加过parent，如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
+        ViewGroup parent = (ViewGroup) parentView.getParent();
+        if (parent != null)
+        {
+            parent.removeView(parentView);
+        }
         return parentView;
     }
 
@@ -204,8 +213,13 @@ public class TaskFragment extends BaseFragment implements RefreshListView.OnRefr
                         int progress = (int) Math.ceil(i);
                         taskInfoList.get(postion).setProgress(progress);
 
+                        int firtPosition = rlv_taskList.getFirstVisiblePosition();
+                        LogUtil.printE("first",firtPosition + "");
+                        int lastPosition = rlv_taskList.getLastVisiblePosition();
+                        LogUtil.printE("last",lastPosition + "");
+
                         if (postion >= rlv_taskList.getFirstVisiblePosition() && postion <= rlv_taskList.getLastVisiblePosition()) {
-                            int positionInListView = postion - rlv_taskList.getFirstVisiblePosition();
+                            int positionInListView = postion - rlv_taskList.getFirstVisiblePosition() + 1;
                             ProgressBar item = (ProgressBar) rlv_taskList.getChildAt(positionInListView).findViewById(R.id.download_pb);
                             item.setProgress(progress);
                         }

@@ -37,7 +37,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_959697"
                 android:layout_marginLeft="@dimen/dimen_20"
-                android:text=""/>
+                android:text=""
+                android:textSize="@dimen/font_size_normal"/>
         </LinearLayout>
         <Button
             android:id="@+id/appDownload"
