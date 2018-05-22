@@ -24,6 +24,7 @@ import com.loopj.common.httpEx.DefaultHttpResponseHandler;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.HttpRequestParams;
 import com.loopj.common.httpEx.HttpResponseHandler;
+import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.util.LogUtil;
 import com.yunhui.util.ToastUtil;
 
@@ -191,6 +192,7 @@ public class RequestUtil  extends HttpRequest{
 
                 if (loginDialog !=null) loginDialog.dismissAllowingStateLoss();
                 loginDialog = null;
+                ActivityQueueManager.getInstance().finishAllActivity();
                 Intent intent = new Intent(context.getApplicationContext(), LoginActivity.class);
                 context.startActivity(intent);
             }
