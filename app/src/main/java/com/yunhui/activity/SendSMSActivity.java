@@ -12,6 +12,7 @@ import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.request.ExtractRequestFactory;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.StringUtil;
@@ -37,6 +38,13 @@ public class SendSMSActivity extends BaseActionBarActivity{
         setContentView(R.layout.activity_send_sms);
         billId = getIntent().getStringExtra("BIllID");
         initView();
+        ActivityQueueManager.getInstance().pushActivity(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityQueueManager.getInstance().popActivity(this);
     }
 
     private void initView() {

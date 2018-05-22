@@ -21,6 +21,7 @@ import com.yunhui.fragmenr.ConsultingFragment;
 import com.yunhui.fragmenr.EarningsFragment;
 import com.yunhui.fragmenr.MyFragment;
 import com.yunhui.fragmenr.TaskFragment;
+import com.yunhui.manager.ActivityQueueManager;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -52,6 +53,7 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView(savedInstanceState);
+        ActivityQueueManager.getInstance().pushActivity(this);
     }
 
     @Override
@@ -185,6 +187,12 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
         mTabHost.setCurrentTab(index);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityQueueManager.getInstance().popActivity(this);
+    }
+
     /**
      * 获取导航栏
      * @return
@@ -223,7 +231,7 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
                 }
             },2000);// 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
         }else{
-            finish();
+            ActivityQueueManager.getInstance().doFinishAll();
             System.exit(0);
         }
     }

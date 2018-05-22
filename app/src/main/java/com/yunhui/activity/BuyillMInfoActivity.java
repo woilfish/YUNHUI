@@ -18,6 +18,7 @@ import com.yunhui.YhApplication;
 import com.yunhui.bean.ProductMachine;
 import com.yunhui.bean.UserInfo;
 import com.yunhui.component.dialog.AlertDialog;
+import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.pay.AlRunnable;
 import com.yunhui.pay.PayResult;
 import com.yunhui.request.BuyRequestFactory;
@@ -86,6 +87,13 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
         productMachine = (ProductMachine) getIntent().getSerializableExtra("millInfo");
         initView();
         initData();
+        ActivityQueueManager.getInstance().pushActivity(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityQueueManager.getInstance().popActivity(this);
     }
 
     private void initData() {

@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.yunhui.R;
+import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.util.MobileUtil;
 import com.yunhui.util.ToastUtil;
 
@@ -24,6 +25,13 @@ public class RetrievePasswordActivity extends BaseActionBarActivity{
     protected void initActivity(Bundle savedInstanceState) {
         setContentView(R.layout.activity_retrieve_password);
         initView();
+        ActivityQueueManager.getInstance().pushActivity(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityQueueManager.getInstance().popActivity(this);
     }
 
     /**

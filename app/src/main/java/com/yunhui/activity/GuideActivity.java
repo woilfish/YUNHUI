@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.yunhui.R;
 import com.yunhui.adapter.GuideAdapter;
+import com.yunhui.manager.ActivityQueueManager;
 
 /**
  * Created by pengmin on 2018/4/3.
@@ -39,6 +40,7 @@ public class GuideActivity extends BaseActionBarActivity implements ViewPager.On
         hideNavigationBar();
         viewPager = (ViewPager) findViewById(R.id.activity_guide_viewpager);
         mDotContainer   = (LinearLayout) findViewById(R.id.dotContainer);
+        ActivityQueueManager.getInstance().pushActivity(this);
     }
 
     @Override
@@ -47,6 +49,12 @@ public class GuideActivity extends BaseActionBarActivity implements ViewPager.On
         if (null == guideAdapter) {
             initView();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityQueueManager.getInstance().popActivity(this);
     }
 
     /**

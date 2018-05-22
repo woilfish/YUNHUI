@@ -108,7 +108,7 @@ public class RetrievePasswordNextActivity extends BaseActionBarActivity {
             @Override
             public void onSuccess(HttpRequest request) {
                 super.onSuccess(request);
-                ToastUtil.toast(RetrievePasswordNextActivity.this,"密码修改成功");
+                ToastUtil.toast(RetrievePasswordNextActivity.this,"密码修改成功,请重新登录");
                 RetrievePasswordNextActivity.this.setResult(RESULT_OK);
                 RetrievePasswordNextActivity.this.finish();
             }
@@ -116,6 +116,9 @@ public class RetrievePasswordNextActivity extends BaseActionBarActivity {
             @Override
             public void onFailure(HttpRequest request, BaseException exception) {
                 super.onFailure(request, exception);
+                ToastUtil.toast(RetrievePasswordNextActivity.this,"密码修改失败");
+                RetrievePasswordNextActivity.this.setResult(RESULT_OK);
+                RetrievePasswordNextActivity.this.finish();
             }
         });
         requestUtil.execute();

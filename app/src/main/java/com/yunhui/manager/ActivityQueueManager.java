@@ -33,7 +33,7 @@ public class ActivityQueueManager {
      */
     public void pushActivity(Activity activity) {
         mInstance.doPushActivity(activity);
-        Log.v(TAG, "pushActivity size=" + mQueue.size() + " name=" + activity.getLocalClassName());
+        Log.e(TAG, "pushActivity size=" + mQueue.size() + " name=" + activity.getLocalClassName());
     }
 
     /**
@@ -45,7 +45,7 @@ public class ActivityQueueManager {
      */
     public void popActivity(Activity activity) {
         mInstance.doPopActivity(activity);
-        Log.v(TAG, "popActivity size=" + mQueue.size() + " name=" + activity.getLocalClassName());
+        Log.e(TAG, "popActivity size=" + mQueue.size() + " name=" + activity.getLocalClassName());
     }
 
     /**

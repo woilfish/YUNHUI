@@ -14,6 +14,7 @@ import com.yunhui.R;
 import com.yunhui.adapter.ProductMachineAdapter;
 import com.yunhui.bean.ProductMachine;
 import com.yunhui.component.refreshlistview.RefreshListView;
+import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.ToastUtil;
 
@@ -59,12 +60,19 @@ public class BuyillMActivity extends BaseActionBarActivity implements RefreshLis
     protected void initActivity(Bundle savedInstanceState) {
         setContentView(R.layout.activity_buymill);
         initView();
+        ActivityQueueManager.getInstance().pushActivity(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         productMachineRequest();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityQueueManager.getInstance().popActivity(this);
     }
 
     private void initView() {

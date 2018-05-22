@@ -2,14 +2,22 @@ package com.yunhui.request;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.util.DebugUtils;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
 
 import com.loopj.common.exception.BaseException;
+import com.loopj.common.exception.TradeException;
 import com.loopj.common.util.DeviceUtil;
+import com.yunhui.R;
 import com.yunhui.YhApplication;
+import com.yunhui.activity.LoginActivity;
+import com.yunhui.component.dialog.AlertDialog;
 import com.yunhui.component.dialog.ProgressDialog;
 import com.yunhui.config.Config;
 import com.loopj.common.httpEx.DefaultHttpResponseHandler;
@@ -34,6 +42,8 @@ public class RequestUtil  extends HttpRequest{
     private ProgressDialog progressDialog;
     private String progressMessage;
     private boolean autoShowToast = true;
+    private Context context;
+    private static AlertDialog loginDialog;
 
     public RequestUtil(Context context) {
         this(context, new DefaultHttpResponseHandler());
@@ -47,6 +57,7 @@ public class RequestUtil  extends HttpRequest{
         super(responseHandler, context);
         this.isAddCommonParams = isAddPublicParam;
         this.requestParams = new HttpRequestParams();
+        this.context = context;
         setTimeout(95 * 1000); // http 超时时间 95秒
     }
 
@@ -147,7 +158,45 @@ public class RequestUtil  extends HttpRequest{
     @Override
     public void onFailure(BaseException error) {
         super.onFailure(error);
-        autoToastErrorMessage(error.getMessage());
+        //交易失败
+        if (error instanceof TradeException) {
+            if("LS0001".equalsIgnoreCase(((TradeException) error).getTradeCode())){
+                showBusinessDialog(((TradeException) error).getTradeCode(),((TradeException) error).getErrorMessage(),context);
+            }
+        }else{
+            autoToastErrorMessage(error.getMessage());
+        }
+
+    }
+
+    private static synchronized void showBusinessDialog(final String resultCode, String msg, final Context context) {
+        if (loginDialog != null && loginDialog.isVisible()) {
+            return;
+        }
+
+        loginDialog = new AlertDialog();
+        loginDialog.setCancelable(false);
+        loginDialog.setButtonsTextColor(R.color.color_EE9707);
+        loginDialog.setButtons(context.getString(R.string.button_ok));
+        loginDialog.setMessage(msg);
+        loginDialog.setDialogDelegate(new AlertDialog.AlertDialogDelegate() {
+
+            @Override
+            public boolean onKeyEvent(DialogInterface dialog, int keyCode, KeyEvent keyEvent) {
+                return keyCode != KeyEvent.KEYCODE_BACK && super.onKeyEvent(dialog, keyCode, keyEvent);
+            }
+
+            @Override
+            public void onButtonClick(AlertDialog dialog, View view, int index) {
+
+                if (loginDialog !=null) loginDialog.dismissAllowingStateLoss();
+                loginDialog = null;
+                Intent intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        loginDialog.show(((FragmentActivity) context).getSupportFragmentManager());
     }
 
     @Override
@@ -272,5 +321,4 @@ public class RequestUtil  extends HttpRequest{
             ToastUtil.toast(context.getApplicationContext(), msg);
         }
     }
-
 }

@@ -14,6 +14,7 @@ import com.yunhui.R;
 import com.yunhui.YhApplication;
 import com.yunhui.bean.MyEarnings;
 import com.yunhui.component.image.CircleImageView;
+import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.request.ExtractRequestFactory;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.StringUtil;
@@ -49,6 +50,7 @@ public class ExtractActivity extends BaseActionBarActivity{
     protected void initActivity(Bundle savedInstanceState) {
         setContentView(R.layout.activity_extract);
         initView();
+        ActivityQueueManager.getInstance().pushActivity(this);
     }
 
     @Override
@@ -56,6 +58,12 @@ public class ExtractActivity extends BaseActionBarActivity{
         super.onResume();
         queryPoundage();
         allTotalRevenueRequets();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityQueueManager.getInstance().popActivity(this);
     }
 
     private void initView() {

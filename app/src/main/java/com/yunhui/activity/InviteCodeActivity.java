@@ -18,6 +18,7 @@ import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.pengmin.zxing.encode.QREncode;
 import com.yunhui.R;
 import com.yunhui.YhApplication;
+import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.request.RequestUtil;
 
 import org.json.JSONObject;
@@ -52,12 +53,19 @@ public class InviteCodeActivity extends BaseActionBarActivity{
         setContentView(R.layout.activity_invite_code);
         initView();
         generateQrCode();
+        ActivityQueueManager.getInstance().pushActivity(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         queryUserRecommendCount();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityQueueManager.getInstance().popActivity(this);
     }
 
     private void initView() {

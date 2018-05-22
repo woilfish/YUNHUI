@@ -6,6 +6,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.yunhui.R;
+import com.yunhui.manager.ActivityQueueManager;
 
 /**
  * Created by pengmin on 2018/4/3.
@@ -19,10 +20,17 @@ public class SplashActivity extends BaseActionBarActivity{
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//去掉标题栏
         super.onCreate(savedInstanceState);
+        ActivityQueueManager.getInstance().pushActivity(this);
     }
 
     @Override
     protected void initActivity(Bundle savedInstanceState) {
         setContentView(R.layout.activity_splash);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityQueueManager.getInstance().popActivity(this);
     }
 }

@@ -16,6 +16,7 @@ import com.yunhui.bean.RequestRegistBean;
 import com.yunhui.bean.UserInfo;
 import com.yunhui.component.dialog.AlertDialog;
 import com.yunhui.encryption.CommonEncrypt;
+import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.request.RegistRequestFactory;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.MobileUtil;
@@ -52,6 +53,13 @@ public class RegistActivity extends BaseActionBarActivity{
         hideNavigationBar();
         initView();
         listenEvent();
+        ActivityQueueManager.getInstance().pushActivity(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityQueueManager.getInstance().popActivity(this);
     }
 
     /**
