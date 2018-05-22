@@ -131,8 +131,7 @@ public class LoginActivity extends BaseActionBarActivity{
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK)
         {
-//            System.exit(0);
-            ActivityQueueManager.getInstance().doFinishAll();
+            ActivityQueueManager.getInstance().finishAllActivity();
             android.os.Process.killProcess(android.os.Process.myPid());
         }
 
