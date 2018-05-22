@@ -15,6 +15,7 @@ import com.yunhui.request.RegistRequestFactory;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.request.RetrievePasswordFactory;
 import com.yunhui.util.StringUtil;
+import com.yunhui.util.ToastUtil;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -107,6 +108,9 @@ public class RetrievePasswordNextActivity extends BaseActionBarActivity {
             @Override
             public void onSuccess(HttpRequest request) {
                 super.onSuccess(request);
+                ToastUtil.toast(RetrievePasswordNextActivity.this,"密码修改成功");
+                RetrievePasswordNextActivity.this.setResult(RESULT_OK);
+                RetrievePasswordNextActivity.this.finish();
             }
 
             @Override

@@ -14,6 +14,7 @@ import com.yunhui.bean.UserInfo;
 import com.yunhui.component.edittext.ClearEditTextLogin;
 import com.yunhui.component.edittext.ShowPasswordEditText;
 import com.yunhui.encryption.CommonEncrypt;
+import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.request.LoginRequestFactory;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.MobileUtil;
@@ -75,7 +76,7 @@ public class LoginActivity extends BaseActionBarActivity{
                 break;
             case R.id.login_forgetpassword://忘记密码
                 Intent forgetPasswordIntent = new Intent(LoginActivity.this,RetrievePasswordActivity.class);
-                startActivity(forgetPasswordIntent);
+                startActivityForResult(forgetPasswordIntent,200);
                 break;
         }
     }
@@ -83,7 +84,12 @@ public class LoginActivity extends BaseActionBarActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        LoginActivity.this.finish();
+        switch (requestCode){
+            case 100:
+                LoginActivity.this.finish();
+                break;
+        }
+
     }
 
     private void login(){
@@ -111,5 +117,10 @@ public class LoginActivity extends BaseActionBarActivity{
             }
         });
         requestUtil.execute();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

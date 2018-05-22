@@ -43,9 +43,16 @@ public class RetrievePasswordActivity extends BaseActionBarActivity{
         if(MobileUtil.isPhoneNumber(et_retrievepasswordphonenum.getText().toString())){
             Intent nextIntent = new Intent(RetrievePasswordActivity.this,RetrievePasswordNextActivity.class);
             nextIntent.putExtra("Mobile",et_retrievepasswordphonenum.getText().toString());
-            startActivity(nextIntent);
+            startActivityForResult(nextIntent,111);
         }else{
             ToastUtil.toast(RetrievePasswordActivity.this,getString(R.string.regist_phonenum_toast));
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        RetrievePasswordActivity.this.setResult(RESULT_OK);
+        RetrievePasswordActivity.this.finish();
     }
 }
