@@ -10,7 +10,7 @@ public class MyMillInfo {
 
     private String prdId;
     private String count;
-    private String benefit;
+    private Double benefit;
 
     public MyMillInfo() {
     }
@@ -32,7 +32,7 @@ public class MyMillInfo {
             this.setCount(jsonObject.optString("count"));
         }
         if(jsonObject.has("benefit")){
-            this.setBenefit(jsonObject.optString("benefit"));
+            this.setBenefit(jsonObject.optDouble("benefit"));
         }
     }
 
@@ -52,11 +52,11 @@ public class MyMillInfo {
         this.count = count;
     }
 
-    public String getBenefit() {
+    public Double getBenefit() {
         return benefit;
     }
 
-    public void setBenefit(String benefit) {
+    public void setBenefit(Double benefit) {
         this.benefit = benefit;
     }
 }

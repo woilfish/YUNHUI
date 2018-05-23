@@ -61,6 +61,7 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
     private TextView tv_allGold;
     private TextView tv_goldNum;
 
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -88,17 +89,17 @@ public class EarningsFragment extends BaseFragment implements RefreshListView.On
                                 case 1:
                                     l_bronze.setVisibility(View.VISIBLE);
                                     tv_allBronze.setText(myEarnings.getMyMillInfos().get(i).getCount());
-                                    tv_bronzeNum.setText(myEarnings.getMyMillInfos().get(i).getBenefit());
+                                    tv_bronzeNum.setText(String.valueOf((int) (Integer.parseInt(myEarnings.getMyMillInfos().get(i).getCount()) * myEarnings.getMyMillInfos().get(i).getBenefit())));
                                     break;
                                 case 2:
                                     l_silver.setVisibility(View.VISIBLE);
                                     tv_allSilver.setText(myEarnings.getMyMillInfos().get(i).getCount());
-                                    tv_silverNum.setText(myEarnings.getMyMillInfos().get(i).getBenefit());
-                                    break;
+                                    tv_silverNum.setText(String.valueOf((int) (Integer.parseInt(myEarnings.getMyMillInfos().get(i).getCount()) * myEarnings.getMyMillInfos().get(i).getBenefit())));
+                                break;
                                 case 3:
                                     l_gold.setVisibility(View.VISIBLE);
                                     tv_allGold.setText(myEarnings.getMyMillInfos().get(i).getCount());
-                                    tv_goldNum.setText(myEarnings.getMyMillInfos().get(i).getBenefit());
+                                    tv_goldNum.setText(String.valueOf((int) (Integer.parseInt(myEarnings.getMyMillInfos().get(i).getCount()) * myEarnings.getMyMillInfos().get(i).getBenefit())));
                                     break;
                             }
                         }

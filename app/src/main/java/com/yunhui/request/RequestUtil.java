@@ -163,6 +163,8 @@ public class RequestUtil  extends HttpRequest{
         if (error instanceof TradeException) {
             if("LS0001".equalsIgnoreCase(((TradeException) error).getTradeCode())){
                 showBusinessDialog(((TradeException) error).getTradeCode(),((TradeException) error).getErrorMessage(),context);
+            }else{
+                autoToastErrorMessage(error.getMessage());
             }
         }else{
             autoToastErrorMessage(error.getMessage());
