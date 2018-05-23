@@ -1,5 +1,6 @@
 package com.yunhui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -55,6 +56,7 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
     private int buyNum = 1;
     private AlertDialog alertDialog;
 
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -174,7 +176,7 @@ public class BuyillMInfoActivity extends BaseActionBarActivity{
 
     private void createPayBill(){
 
-        RequestUtil requestUtil = BuyRequestFactory.createPayBill(BuyillMInfoActivity.this,String.valueOf(0.01 * buyNum),"CZ",productMachine.getId(),tv_num.getText().toString());
+        RequestUtil requestUtil = BuyRequestFactory.createPayBill(BuyillMInfoActivity.this,String.valueOf(productMachine.getAmout() * buyNum),"CZ",productMachine.getId(),tv_num.getText().toString());
         requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
             @Override
             public void onSuccess(HttpRequest request) {
