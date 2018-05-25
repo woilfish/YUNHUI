@@ -6,8 +6,8 @@
 //注意!!!该任务命指定生成的apk必须唯一,任务变种参见官网介绍,由 productFlavors + buildTypes 的组合构成
 //def taskName = "ProductRelease"   //外网生产环境包,也就是正式包
 //def taskName   = "ProductDebug"     //外网生产环境内部包
-//def taskName   = "Remote_testRelease"      //外网测试环境外部包,代码混淆过,且无日志输出
-def taskName   = "Remote_testDebug"        //外网测试环境内部包
+def taskName   = "Remote_testRelease"      //外网测试环境外部包,代码混淆过,且无日志输出
+//def taskName   = "Remote_testDebug"        //外网测试环境内部包
 //def taskName   = "Inner_testRelease"           //内网测试环境外部包,代码混淆过,且无日志输出,发给测试组测试用
 //def taskName   = "Inner_testDebug"             //内网测试环境内部包
 

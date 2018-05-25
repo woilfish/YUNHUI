@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.yunhui.R;
 import com.yunhui.bean.GuessListBean;
+import com.yunhui.bean.TaskInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,11 @@ public class GuessAdapter extends BaseAdapter{
         }else {
             this.guessListBeans = guessListBeans;
         }
+    }
+
+    public void refreshData(List<GuessListBean> guessListBeans){
+        this.guessListBeans = guessListBeans;
+        notifyDataSetChanged();
     }
 
     @Override

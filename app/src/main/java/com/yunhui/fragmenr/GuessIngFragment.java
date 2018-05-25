@@ -9,18 +9,24 @@ import android.widget.TextView;
 
 import com.yunhui.R;
 import com.yunhui.activity.HomeActivity;
+import com.yunhui.adapter.GuessAdapter;
+import com.yunhui.bean.GuessListBean;
 import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.util.DateUtil;
+
+import java.util.List;
 
 /**
  * 竞猜
  */
-public class GuessIngFragment extends BaseFragment {
+public class GuessIngFragment extends BaseFragment implements RefreshListView.OnRefreshListViewListener{
 
     private HomeActivity homeActivity;
     private View parentView;
     private TextView tv_guessDate;
     private RefreshListView rlv_guessList;
+    private GuessAdapter guessAdapter;
+    private List<GuessListBean> guessListBeans;
 
     @Nullable
     @Override
@@ -36,10 +42,20 @@ public class GuessIngFragment extends BaseFragment {
         tv_guessDate = parentView.findViewById(R.id.guessdate);
         rlv_guessList = parentView.findViewById(R.id.guessList);
         tv_guessDate.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
-//        taskAdapter = new TaskAdapter(homeActivity,taskInfoList,mListener);
-//        rlv_taskList.setAdapter(taskAdapter);
-//        rlv_taskList.setOnRefreshListViewListener(this);
-//        rlv_taskList.setPullRefreshEnable(false);
-//        rlv_taskList.setPullLoadEnable(false);
+        guessAdapter = new GuessAdapter(homeActivity,guessListBeans);
+        rlv_guessList.setAdapter(guessAdapter);
+        rlv_guessList.setOnRefreshListViewListener(this);
+        rlv_guessList.setPullRefreshEnable(false);
+        rlv_guessList.setPullLoadEnable(false);
+    }
+
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public void onLoadMore() {
+
     }
 }
