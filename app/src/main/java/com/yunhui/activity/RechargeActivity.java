@@ -8,25 +8,31 @@ import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
 import com.yunhui.YhApplication;
+import com.yunhui.adapter.RechargeAdapter;
 import com.yunhui.bean.MyEarnings;
+import com.yunhui.bean.RechargeBean;
 import com.yunhui.component.image.CircleImageView;
+import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.request.RequestUtil;
 
 import org.json.JSONObject;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 充值页面
  */
-public class RechargeActivity extends BaseActionBarActivity{
+public class RechargeActivity extends BaseActionBarActivity implements RefreshListView.OnRefreshListViewListener{
 
     private MyEarnings myEarnings;
     private CircleImageView cim_rechargeUserPhoto;
     private TextView tv_rechargeUserPhoneNum;
     private TextView tv_rechargeCloudDrill;
     private TextView tv_rechargeBTC;
+    private List<RechargeBean> rechargeBeans;
+    private RefreshListView rlv_rechargeList;
+    private RechargeAdapter rechargeAdapter;
 
     @Override
     protected void initActivity(Bundle savedInstanceState) {
@@ -43,6 +49,12 @@ public class RechargeActivity extends BaseActionBarActivity{
         tv_rechargeUserPhoneNum.setText(YhApplication.getInstance().getUserInfo().getMobile());
         tv_rechargeCloudDrill = findViewById(R.id.rechargeclouddrill);
         tv_rechargeBTC = findViewById(R.id.rechargeBTC);
+        rlv_rechargeList = findViewById(R.id.rechargeList);
+        rechargeAdapter = new RechargeAdapter(RechargeActivity.this,rechargeBeans);
+        rlv_rechargeList.setAdapter(rechargeAdapter);
+        rlv_rechargeList.setOnRefreshListViewListener(this);
+        rlv_rechargeList.setPullRefreshEnable(false);
+        rlv_rechargeList.setPullLoadEnable(false);
 
     }
 
@@ -85,5 +97,15 @@ public class RechargeActivity extends BaseActionBarActivity{
             }
         });
         requestUtil.execute();
+    }
+
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public void onLoadMore() {
+
     }
 }

@@ -40,6 +40,7 @@ public class MyFragment extends BaseFragment {
     private View parentView;
     private CircleImageView civ_userPhoto;
     private TextView tv_userPhoneNum;
+    private LabelItemView liv_recharge;
     private LabelItemView liv_exchange;
     private LabelItemView liv_myTask;
     private LabelItemView liv_buy;
@@ -73,6 +74,7 @@ public class MyFragment extends BaseFragment {
         liv_exchange = parentView.findViewById(R.id.exchange);
         liv_myTask = parentView.findViewById(R.id.myTask);
         liv_buy = parentView.findViewById(R.id.buy);
+        liv_recharge = parentView.findViewById(R.id.recharge);
         liv_myInvitation = parentView.findViewById(R.id.myInvitation);
         liv_aboutMy = parentView.findViewById(R.id.aboutMy);
         tv_myData = parentView.findViewById(R.id.mydate);
@@ -86,6 +88,7 @@ public class MyFragment extends BaseFragment {
         liv_myInvitation.setOnClickListener(this);
         liv_aboutMy.setOnClickListener(this);
         liv_extract.setOnClickListener(this);
+        liv_recharge.setOnClickListener(this);
     }
 
     @Override

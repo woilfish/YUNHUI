@@ -48,7 +48,7 @@
         <View
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:background="color/color_4F5051"
+            android:background="@color/color_4F5051"
             android:visibility="visible"/>
         <LinearLayout
             android:layout_width="0dp"
@@ -75,7 +75,7 @@
         <View
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:background="color/color_4F5051"
+            android:background="@color/color_4F5051"
             android:visibility="visible"/>
         <LinearLayout
             android:layout_width="0dp"
