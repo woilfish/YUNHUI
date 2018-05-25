@@ -106,6 +106,21 @@
                 </LinearLayout>
 
                 <com.yunhui.component.linearlayout.LabelItemView
+                    android:id="@+id/recharge"
+                    style="@style/item_label_right_text_style"
+                    android:background="@color/color_2b2e34"
+                    android:layout_marginTop="@dimen/dimen_30"
+                    app:labelText="云钻充值"
+                    app:rightText=""
+                    app:labelTextSize="@dimen/wallet_left_font_size"
+                    app:labelTextColor="@color/color_959697"
+                    app:leftIconVisibility="VISIBLE"
+                    app:rightArrowVisibility="VISIBLE"
+                    app:rightTextVisibility="VISIBLE"
+                    app:rightTextSize="@dimen/wallet_left_font_size"
+                    app:rightTextColor="@color/font_gray"/>
+
+                <com.yunhui.component.linearlayout.LabelItemView
                     android:id="@+id/exchange"
                     style="@style/item_label_right_text_style"
                     android:background="@color/color_2b2e34"

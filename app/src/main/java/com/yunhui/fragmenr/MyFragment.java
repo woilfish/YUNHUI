@@ -20,6 +20,7 @@ import com.yunhui.activity.ExtractActivity;
 import com.yunhui.activity.HomeActivity;
 import com.yunhui.R;
 import com.yunhui.activity.InviteCodeActivity;
+import com.yunhui.activity.RechargeActivity;
 import com.yunhui.bean.MyEarnings;
 import com.yunhui.component.image.CircleImageView;
 import com.yunhui.component.linearlayout.LabelItemView;
@@ -91,6 +92,10 @@ public class MyFragment extends BaseFragment {
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()){
+            case R.id.recharge:
+                Intent rechargeIntent = new Intent(homeActivity, RechargeActivity.class);
+                startActivity(rechargeIntent);
+                break;
             case R.id.exchange:
                 Intent exchangeIntent = new Intent(homeActivity, ExchangeActivity.class);
                 startActivity(exchangeIntent);
