@@ -101,8 +101,8 @@ public class TaskFragment extends BaseFragment implements RefreshListView.OnRefr
 
         if(parentView == null) {
             parentView = inflater.inflate(R.layout.fragment_task, null);
-            initView();
-            queryTaskList();
+//            initView();
+//            queryTaskList();
         }
         // 缓存的rootView需要判断是否已经被加过parent，如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
         ViewGroup parent = (ViewGroup) parentView.getParent();
