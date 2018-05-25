@@ -2,7 +2,6 @@ package com.yunhui.encryption;
 
 import android.util.Base64;
 
-import com.yunhui.util.LogUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -100,7 +99,6 @@ public class RSAEncrypt {
             KeyFactory keyFactory       = KeyFactory.getInstance("RSA");
             X509EncodedKeySpec keySpec  = new X509EncodedKeySpec(buffer);
             publicKey                   = (RSAPublicKey) keyFactory.generatePublic(keySpec);
-            LogUtil.printE("PUBLIC",publicKeyStr);
         } catch (NoSuchAlgorithmException e) {
             throw new Exception("无此算法");
         } catch (InvalidKeySpecException e) {
@@ -170,7 +168,6 @@ public class RSAEncrypt {
         try {
             byte[] cipher   = encrypt(publicKey, sourceData);
             result          = byte2HexStr(cipher);
-            LogUtil.printE("PUBLICENCRYPT",result);
         } catch (Exception e) {
             e.printStackTrace();
         }
