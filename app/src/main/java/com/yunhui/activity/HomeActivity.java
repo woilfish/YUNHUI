@@ -19,6 +19,7 @@ import com.yunhui.component.NavigationBar;
 import com.yunhui.controller.FragmentController;
 import com.yunhui.fragmenr.ConsultingFragment;
 import com.yunhui.fragmenr.EarningsFragment;
+import com.yunhui.fragmenr.GuessIngFragment;
 import com.yunhui.fragmenr.MyFragment;
 import com.yunhui.fragmenr.TaskFragment;
 import com.yunhui.manager.ActivityQueueManager;
@@ -33,10 +34,10 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
     private LayoutInflater layoutInflater;
     private int currentId = 0;
     private Class fragmentArray[] = {
-            ConsultingFragment.class, TaskFragment.class, EarningsFragment.class,MyFragment.class
+            ConsultingFragment.class, GuessIngFragment.class, EarningsFragment.class,MyFragment.class
     };
     private String mTextArray[] = {
-            "资讯", "任务", "收益","我的"
+            "资讯", "竞猜", "收益","我的"
     };
     private int mImageViewArray[] = {
         R.mipmap.consult,R.mipmap.task,R.mipmap.earnings,R.mipmap.my
