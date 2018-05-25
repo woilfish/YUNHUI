@@ -24,6 +24,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    lintOptions{
+        abortOnError false
+    }
+
     flavorDimensions 'versionCode'
 
     productFlavors {
@@ -40,12 +44,16 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.signingConfigs
         }
         debug {
             minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
         }
     }
 
