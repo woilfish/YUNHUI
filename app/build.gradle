@@ -45,15 +45,11 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            zipAlignEnabled true
-            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.signingConfigs
         }
         debug {
             minifyEnabled false
-            zipAlignEnabled false
-            shrinkResources false
         }
     }
 
@@ -83,7 +79,7 @@ dependencies {
     implementation 'com.meituan.android.walle:library:1.1.6'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation project(':request')
-    implementation project(':encryption')
+//    implementation project(':encryption')
     implementation project(':zxing')
 }
 

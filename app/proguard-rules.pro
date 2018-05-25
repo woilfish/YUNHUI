@@ -24,12 +24,13 @@
 -optimizationpasses 5
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
--dontoptimize
 -dontpreverify
+-allowaccessmodification
 -verbose
 -ignorewarning
 
-
+-keep class com.pengmin.encryption.YHJniUtils{*;}
+-keep class org.apache.**{*;}
 -keep class com.alipay.android.app.IAlixPay{*;}
 -keep class com.alipay.android.app.IAlixPay$Stub{*;}
 -keep class com.alipay.android.app.IRemoteServiceCallback{*;}
@@ -49,5 +50,3 @@
 -keep class com.alipay.tscenter.** { *; }
 -keep class com.ta.utdid2.** { *;}
 -keep class com.ut.device.** { *;}
--keep class com.loopj.common.**{*;}
--keep class com.pengmin.zxing.**{*;}

@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.pengmin.encryption.YHJniUtils;
 
+
 /**
  * Created by pengmin on 2018/5/5.
  */
@@ -20,7 +21,12 @@ public class CommonEncrypt {
         if (TextUtils.isEmpty(password)){
             return "";
         }
-        String publicKey = YHJniUtils.getString();
+        String publicKey = null;
+        try {
+            publicKey = YHJniUtils.getString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         RSAEncrypt rsaEncrypt = new RSAEncrypt(publicKey);
         return rsaEncrypt.encrypt(password.getBytes()).toUpperCase();
     }
