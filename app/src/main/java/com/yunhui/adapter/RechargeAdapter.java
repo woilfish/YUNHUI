@@ -65,6 +65,9 @@ public class RechargeAdapter extends BaseAdapter{
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
+        RechargeBean rechargeBean = getItem(position);
+        viewHolder.tv_rechargeMoney.setText(rechargeBean.getContent());
         return convertView;
     }
 

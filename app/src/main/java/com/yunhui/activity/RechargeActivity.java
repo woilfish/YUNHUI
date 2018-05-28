@@ -1,6 +1,10 @@
 package com.yunhui.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
 import android.widget.TextView;
 
 import com.loopj.common.exception.BaseException;
@@ -9,6 +13,7 @@ import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
 import com.yunhui.YhApplication;
 import com.yunhui.adapter.RechargeAdapter;
+import com.yunhui.adapter.TaskAdapter;
 import com.yunhui.bean.MyEarnings;
 import com.yunhui.bean.RechargeBean;
 import com.yunhui.component.image.CircleImageView;
@@ -16,6 +21,7 @@ import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.request.RequestUtil;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -33,6 +39,19 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
     private List<RechargeBean> rechargeBeans;
     private RefreshListView rlv_rechargeList;
     private RechargeAdapter rechargeAdapter;
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0000:
+                    rechargeAdapter.refreshData(rechargeBeans);
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void initActivity(Bundle savedInstanceState) {
@@ -58,6 +77,7 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
 
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -68,6 +88,7 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
     protected void onResume() {
         super.onResume();
         allTotalRevenueRequets();
+        queryChargeList();
     }
 
     private void allTotalRevenueRequets(){
@@ -88,6 +109,33 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
                             tv_rechargeBTC.setText("BTC:" + myEarnings.getBtcoin());
                         }
                     });
+                }
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
+    }
+
+    private void queryChargeList(){
+
+        RequestUtil requestUtil = RequestUtil.obtainRequest(RechargeActivity.this,"user/queryChargeList", HttpRequest.RequestMethod.POST);
+
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+                JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                if(jsonObject.has("list")){
+                    JSONArray jsonArray = jsonObject.optJSONArray("list");
+                    RechargeBean rechargeBean = new RechargeBean(jsonArray);
+                    rechargeBeans = rechargeBean.getRechargeBeans();
+                    Message message = new Message();
+                    message.what = 0000;
+                    handler.sendMessage(message);
                 }
             }
 
