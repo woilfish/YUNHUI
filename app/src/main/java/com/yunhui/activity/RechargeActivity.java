@@ -7,6 +7,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
@@ -21,6 +22,7 @@ import com.yunhui.clickinterface.ListItemClickHelp;
 import com.yunhui.component.image.CircleImageView;
 import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.manager.ActivityQueueManager;
+import com.yunhui.request.BuyRequestFactory;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.ToastUtil;
 
@@ -42,9 +44,12 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
     private List<RechargeBean> rechargeBeans;
     private RefreshListView rlv_rechargeList;
     private RechargeAdapter rechargeAdapter;
+    private TextView tv_rechargeWallet;
+    private Button b_rechargepay;
     private int c1 = 0;
     private int c2 = 0;
     private int c3 = 0;
+    private double allTotal = 0.00;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
@@ -72,6 +77,8 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
         cim_rechargeUserPhoto = findViewById(R.id.rechargeuserphoto);
         tv_rechargeUserPhoneNum = findViewById(R.id.rechargeuserphonenum);
         tv_rechargeUserPhoneNum.setText(YhApplication.getInstance().getUserInfo().getMobile());
+        tv_rechargeWallet = findViewById(R.id.rechargeWallet);
+        b_rechargepay = findViewById(R.id.rechargepay);
         tv_rechargeCloudDrill = findViewById(R.id.rechargeclouddrill);
         tv_rechargeBTC = findViewById(R.id.rechargeBTC);
         rlv_rechargeList = findViewById(R.id.rechargeList);
@@ -80,9 +87,16 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
         rlv_rechargeList.setOnRefreshListViewListener(this);
         rlv_rechargeList.setPullRefreshEnable(false);
         rlv_rechargeList.setPullLoadEnable(false);
+        b_rechargepay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createPayBill();
+            }
+        });
 
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onClick(View item, View parent, int position, int which) {
 
@@ -96,12 +110,16 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
                         if(c1 != 0){
                             c1 --;
                             tv_num.setText(String.valueOf(c1));
+                            allTotal = allTotal - rechargeBeans.get(position).getAmount();
+                            tv_rechargeWallet.setText("合计:￥" + String.format("%.2f",allTotal));
                         }
                         break;
                     case R.id.rechargeAdd:
                         if(c1 != 10){
                             c1 ++;
                             tv_num.setText(String.valueOf(c1));
+                            allTotal = allTotal + rechargeBeans.get(position).getAmount() ;
+                            tv_rechargeWallet.setText("合计:￥" + String.format("%.2f",allTotal));
                         }else{
                             ToastUtil.toast(RechargeActivity.this,"购买数量已达今日单笔");
                         }
@@ -115,12 +133,16 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
                         if(c2 != 0){
                             c2 --;
                             tv_num.setText(String.valueOf(c2));
+                            allTotal = allTotal - rechargeBeans.get(position).getAmount();
+                            tv_rechargeWallet.setText("合计:￥" + String.format("%.2f",allTotal));
                         }
                         break;
                     case R.id.rechargeAdd:
                         if(c2 != 10){
                             c2 ++;
                             tv_num.setText(String.valueOf(c2));
+                            allTotal = allTotal + rechargeBeans.get(position).getAmount();
+                            tv_rechargeWallet.setText("合计:￥" + String.format("%.2f",allTotal));
                         }else{
                             ToastUtil.toast(RechargeActivity.this,"购买数量已达今日单笔");
                         }
@@ -134,12 +156,16 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
                         if(c3 != 0){
                             c3 --;
                             tv_num.setText(String.valueOf(c3));
+                            allTotal = allTotal - rechargeBeans.get(position).getAmount();
+                            tv_rechargeWallet.setText("合计:￥" + String.format("%.2f",allTotal));
                         }
                         break;
                     case R.id.rechargeAdd:
                         if(c3 != 10){
                             c3 ++;
                             tv_num.setText(String.valueOf(c3));
+                            allTotal = allTotal + rechargeBeans.get(position).getAmount();
+                            tv_rechargeWallet.setText("合计:￥" + String.format("%.2f",allTotal));
                         }else{
                             ToastUtil.toast(RechargeActivity.this,"购买数量已达今日单笔");
                         }
@@ -219,6 +245,10 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
             }
         });
         requestUtil.execute();
+    }
+
+    private void createPayBill(){
+
     }
 
     @Override
