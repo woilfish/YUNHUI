@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.yunhui.R;
 import com.yunhui.bean.GuessListBean;
 import com.yunhui.bean.RechargeBean;
+import com.yunhui.clickinterface.ListItemClickHelp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +21,12 @@ public class RechargeAdapter extends BaseAdapter{
     private Context context;
     private LayoutInflater layoutInflater;
     private List<RechargeBean> rechargeBeans;
+    private ListItemClickHelp callback;
 
-    public RechargeAdapter(Context context, List<RechargeBean> rechargeBeans) {
+    public RechargeAdapter(Context context, List<RechargeBean> rechargeBeans, ListItemClickHelp callback) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
+        this.callback = callback;
         if(rechargeBeans == null){
             this.rechargeBeans = new ArrayList<>();
         }else {
@@ -52,7 +55,7 @@ public class RechargeAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         ViewHolder viewHolder = null;
         if(convertView == null){
             convertView = layoutInflater.inflate(R.layout.item_recharge,null);
@@ -68,6 +71,24 @@ public class RechargeAdapter extends BaseAdapter{
 
         RechargeBean rechargeBean = getItem(position);
         viewHolder.tv_rechargeMoney.setText(rechargeBean.getContent());
+        final View view = convertView;
+        final int p = position;
+        //获取按钮id
+        final int one = viewHolder.b_rechargeReduction.getId();
+        viewHolder.b_rechargeReduction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback.onClick(view,parent,p,one);
+            }
+        });
+
+        final int two = viewHolder.b_rechargeAdd.getId();
+        viewHolder.b_rechargeAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callback.onClick(view,parent,p,two);
+            }
+        });
         return convertView;
     }
 

@@ -40,10 +40,10 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
             "资讯", "竞猜", "收益","我的"
     };
     private int mImageViewArray[] = {
-        R.mipmap.consult,R.mipmap.task,R.mipmap.earnings,R.mipmap.my
+        R.mipmap.consult,R.mipmap.guess,R.mipmap.earnings,R.mipmap.my
     };
     private int mImageViewArraySelected[] = {
-        R.mipmap.consult_select,R.mipmap.task_select,R.mipmap.earnings_select,R.mipmap.my_select
+        R.mipmap.consult_select,R.mipmap.guess_select,R.mipmap.earnings_select,R.mipmap.my_select
     };
     public boolean isNewMessage = false;
 

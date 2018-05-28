@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.loopj.common.exception.BaseException;
@@ -16,10 +17,12 @@ import com.yunhui.adapter.RechargeAdapter;
 import com.yunhui.adapter.TaskAdapter;
 import com.yunhui.bean.MyEarnings;
 import com.yunhui.bean.RechargeBean;
+import com.yunhui.clickinterface.ListItemClickHelp;
 import com.yunhui.component.image.CircleImageView;
 import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.request.RequestUtil;
+import com.yunhui.util.ToastUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,7 +32,7 @@ import java.util.List;
 /**
  * 充值页面
  */
-public class RechargeActivity extends BaseActionBarActivity implements RefreshListView.OnRefreshListViewListener{
+public class RechargeActivity extends BaseActionBarActivity implements RefreshListView.OnRefreshListViewListener,ListItemClickHelp{
 
     private MyEarnings myEarnings;
     private CircleImageView cim_rechargeUserPhoto;
@@ -39,6 +42,9 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
     private List<RechargeBean> rechargeBeans;
     private RefreshListView rlv_rechargeList;
     private RechargeAdapter rechargeAdapter;
+    private int c1 = 0;
+    private int c2 = 0;
+    private int c3 = 0;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
@@ -69,13 +75,81 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
         tv_rechargeCloudDrill = findViewById(R.id.rechargeclouddrill);
         tv_rechargeBTC = findViewById(R.id.rechargeBTC);
         rlv_rechargeList = findViewById(R.id.rechargeList);
-        rechargeAdapter = new RechargeAdapter(RechargeActivity.this,rechargeBeans);
+        rechargeAdapter = new RechargeAdapter(RechargeActivity.this,rechargeBeans,this);
         rlv_rechargeList.setAdapter(rechargeAdapter);
         rlv_rechargeList.setOnRefreshListViewListener(this);
         rlv_rechargeList.setPullRefreshEnable(false);
         rlv_rechargeList.setPullLoadEnable(false);
 
     }
+
+    @Override
+    public void onClick(View item, View parent, int position, int which) {
+
+        TextView tv_num = item.findViewById(R.id.rechargeNum);
+
+        switch (position){
+            case 0:
+                switch (which){
+                    case R.id.rechargeReduction:
+
+                        if(c1 != 0){
+                            c1 --;
+                            tv_num.setText(String.valueOf(c1));
+                        }
+                        break;
+                    case R.id.rechargeAdd:
+                        if(c1 != 10){
+                            c1 ++;
+                            tv_num.setText(String.valueOf(c1));
+                        }else{
+                            ToastUtil.toast(RechargeActivity.this,"购买数量已达今日单笔");
+                        }
+                        break;
+                }
+                break;
+            case 1:
+                switch (which){
+                    case R.id.rechargeReduction:
+
+                        if(c2 != 0){
+                            c2 --;
+                            tv_num.setText(String.valueOf(c2));
+                        }
+                        break;
+                    case R.id.rechargeAdd:
+                        if(c2 != 10){
+                            c2 ++;
+                            tv_num.setText(String.valueOf(c2));
+                        }else{
+                            ToastUtil.toast(RechargeActivity.this,"购买数量已达今日单笔");
+                        }
+                        break;
+                }
+                break;
+            case 2:
+                switch (which){
+                    case R.id.rechargeReduction:
+
+                        if(c3 != 0){
+                            c3 --;
+                            tv_num.setText(String.valueOf(c3));
+                        }
+                        break;
+                    case R.id.rechargeAdd:
+                        if(c3 != 10){
+                            c3 ++;
+                            tv_num.setText(String.valueOf(c3));
+                        }else{
+                            ToastUtil.toast(RechargeActivity.this,"购买数量已达今日单笔");
+                        }
+                        break;
+                }
+                break;
+        }
+
+    }
+
 
 
     @Override
@@ -156,4 +230,6 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
     public void onLoadMore() {
 
     }
+
+
 }
