@@ -27,6 +27,8 @@ public class GuessListBean {
     private String odds_a;
     private String createtime;
     private String updatetime;
+    private String match_date_str;
+    private String time_endsale_str;
 
     private List<GuessListBean> guessListBeans;
 
@@ -111,6 +113,12 @@ public class GuessListBean {
         }
         if(jsonObject.has("updatetime")){
             this.setUpdatetime(jsonObject.optString("updatetime"));
+        }
+        if(jsonObject.has("match_date_str")){
+            this.setMatch_date_str(jsonObject.optString("match_date_str"));
+        }
+        if(jsonObject.has("time_endsale_str")){
+            this.setTime_endsale_str(jsonObject.optString("time_endsale_str"));
         }
     }
 
@@ -264,5 +272,21 @@ public class GuessListBean {
 
     public void setGuessListBeans(List<GuessListBean> guessListBeans) {
         this.guessListBeans = guessListBeans;
+    }
+
+    public String getMatch_date_str() {
+        return match_date_str;
+    }
+
+    public void setMatch_date_str(String match_date_str) {
+        this.match_date_str = match_date_str;
+    }
+
+    public String getTime_endsale_str() {
+        return time_endsale_str;
+    }
+
+    public void setTime_endsale_str(String time_endsale_str) {
+        this.time_endsale_str = time_endsale_str;
     }
 }

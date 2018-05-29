@@ -46,7 +46,7 @@ public class DateUtil {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return timeFormat.format(date);
     }
 
