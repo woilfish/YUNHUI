@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.yunhui.R;
 import com.yunhui.bean.GuessListBean;
 import com.yunhui.bean.TaskInfo;
+import com.yunhui.util.DateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,11 +62,19 @@ public class GuessAdapter extends BaseAdapter{
             viewHolder.tv_firstOdds = convertView.findViewById(R.id.firstodds);
             viewHolder.tv_secondTeam = convertView.findViewById(R.id.secondteam);
             viewHolder.tv_secondOdds = convertView.findViewById(R.id.secondodds);
+            viewHolder.tv_flat = convertView.findViewById(R.id.flat);
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        GuessListBean guessListBean = getItem(position);
+        viewHolder.tv_guessTitle.setText(DateUtil.getTime(guessListBean.getMath_date()) + "比赛开始 " + DateUtil.getTime(guessListBean.getTime_endsale()) + "停止竞猜");
+        viewHolder.tv_firstTeam.setText(guessListBean.getHome_team());
+        viewHolder.tv_firstOdds.setText(guessListBean.getOdds_h());
+        viewHolder.tv_flat.setText(guessListBean.getOdds_d());
+        viewHolder.tv_secondTeam.setText(guessListBean.getAway_team());
+        viewHolder.tv_secondOdds.setText(guessListBean.getOdds_a());
 
         return convertView;
     }

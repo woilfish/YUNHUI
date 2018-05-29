@@ -1,6 +1,7 @@
 package com.yunhui.util;
 
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,6 +35,19 @@ public class DateUtil {
         if (w < 0)
             w = 0;
         return weekDays[w];
+    }
+
+    public static String getTime(String time){
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        Date date = null;
+        try {
+            date = dateFormat.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return timeFormat.format(date);
     }
 
 }
