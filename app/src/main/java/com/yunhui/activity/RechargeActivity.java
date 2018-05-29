@@ -285,7 +285,7 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
         if(c1 != 0){
             JSONObject jsonObjectC1= new JSONObject();
             try {
-                jsonObjectC1.put("id","c1");
+                jsonObjectC1.put("id",rechargeBeans.get(0).getId());
                 jsonObjectC1.put("num",String.valueOf(c1));
                 jsonArray.put(jsonObjectC1);
             } catch (JSONException e) {
@@ -296,7 +296,7 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
         if(c2 != 0){
             JSONObject jsonObjectC2= new JSONObject();
             try {
-                jsonObjectC2.put("id","c2");
+                jsonObjectC2.put("id",rechargeBeans.get(1).getId());
                 jsonObjectC2.put("num",String.valueOf(c2));
                 jsonArray.put(jsonObjectC2);
             } catch (JSONException e) {
@@ -306,7 +306,7 @@ public class RechargeActivity extends BaseActionBarActivity implements RefreshLi
         if(c3 != 0){
             JSONObject jsonObjectC3= new JSONObject();
             try {
-                jsonObjectC3.put("id","c3");
+                jsonObjectC3.put("id",rechargeBeans.get(2).getId());
                 jsonObjectC3.put("num",String.valueOf(c3));
                 jsonArray.put(jsonObjectC3);
             } catch (JSONException e) {
