@@ -88,6 +88,11 @@ public class GuessAdapter extends BaseAdapter{
             viewHolder.l_homeTeam.setBackground(context.getResources().getDrawable(R.drawable.bg_left));
             viewHolder.tv_firstTeam.setTextColor(context.getResources().getColor(R.color.white));
             viewHolder.tv_firstOdds.setTextColor(context.getResources().getColor(R.color.white));
+            viewHolder.l_flatTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+            viewHolder.tv_flat.setTextColor(context.getResources().getColor(R.color.color_959697));
+            viewHolder.tv_flatT.setTextColor(context.getResources().getColor(R.color.color_959697));
+            viewHolder.tv_secondTeam.setTextColor(context.getResources().getColor(R.color.color_959697));
+            viewHolder.tv_secondOdds.setTextColor(context.getResources().getColor(R.color.color_959697));
         }else {
             viewHolder.l_homeTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
             viewHolder.tv_firstTeam.setTextColor(context.getResources().getColor(R.color.color_959697));
@@ -97,6 +102,12 @@ public class GuessAdapter extends BaseAdapter{
             viewHolder.l_flatTeam.setBackgroundColor(context.getResources().getColor(R.color.color_EE9707));
             viewHolder.tv_flat.setTextColor(context.getResources().getColor(R.color.white));
             viewHolder.tv_flatT.setTextColor(context.getResources().getColor(R.color.white));
+            viewHolder.l_homeTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+            viewHolder.tv_firstTeam.setTextColor(context.getResources().getColor(R.color.color_959697));
+            viewHolder.tv_firstOdds.setTextColor(context.getResources().getColor(R.color.color_959697));
+            viewHolder.l_visitingTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+            viewHolder.tv_secondTeam.setTextColor(context.getResources().getColor(R.color.color_959697));
+            viewHolder.tv_secondOdds.setTextColor(context.getResources().getColor(R.color.color_959697));
         }else {
             viewHolder.l_flatTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
             viewHolder.tv_flat.setTextColor(context.getResources().getColor(R.color.color_959697));
@@ -106,6 +117,12 @@ public class GuessAdapter extends BaseAdapter{
             viewHolder.l_visitingTeam.setBackground(context.getResources().getDrawable(R.drawable.bg_right));
             viewHolder.tv_secondTeam.setTextColor(context.getResources().getColor(R.color.white));
             viewHolder.tv_secondOdds.setTextColor(context.getResources().getColor(R.color.white));
+            viewHolder.l_homeTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+            viewHolder.tv_firstTeam.setTextColor(context.getResources().getColor(R.color.color_959697));
+            viewHolder.tv_firstOdds.setTextColor(context.getResources().getColor(R.color.color_959697));
+            viewHolder.l_flatTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+            viewHolder.tv_flat.setTextColor(context.getResources().getColor(R.color.color_959697));
+            viewHolder.tv_flatT.setTextColor(context.getResources().getColor(R.color.color_959697));
         }else {
             viewHolder.l_visitingTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
             viewHolder.tv_secondTeam.setTextColor(context.getResources().getColor(R.color.color_959697));

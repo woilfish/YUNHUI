@@ -169,11 +169,21 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
                     tv_firstTeam.setTextColor(getResources().getColor(R.color.color_959697));
                     tv_firstOdds.setTextColor(getResources().getColor(R.color.color_959697));
                     guessListBeans.get(position).setHome(false);
+                    guessListBeans.get(position).setFlat(false);
+                    guessListBeans.get(position).setVisiting(false);
                 }else {
                     l_homeTeam.setBackground(getResources().getDrawable(R.drawable.bg_left));
                     tv_firstTeam.setTextColor(getResources().getColor(R.color.white));
                     tv_firstOdds.setTextColor(getResources().getColor(R.color.white));
+                    l_flatTeam.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    tv_flat.setTextColor(getResources().getColor(R.color.color_959697));
+                    tv_flatT.setTextColor(getResources().getColor(R.color.color_959697));
+                    l_visitingTeam.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    tv_secondTeam.setTextColor(getResources().getColor(R.color.color_959697));
+                    tv_secondOdds.setTextColor(getResources().getColor(R.color.color_959697));
                     guessListBeans.get(position).setHome(true);
+                    guessListBeans.get(position).setFlat(false);
+                    guessListBeans.get(position).setVisiting(false);
                 }
                 break;
             case R.id.flatTeam:
@@ -182,11 +192,21 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
                     tv_flat.setTextColor(getResources().getColor(R.color.color_959697));
                     tv_flatT.setTextColor(getResources().getColor(R.color.color_959697));
                     guessListBeans.get(position).setFlat(false);
+                    guessListBeans.get(position).setHome(false);
+                    guessListBeans.get(position).setVisiting(false);
                 }else {
                     l_flatTeam.setBackgroundColor(getResources().getColor(R.color.color_EE9707));
                     tv_flat.setTextColor(getResources().getColor(R.color.white));
                     tv_flatT.setTextColor(getResources().getColor(R.color.white));
+                    l_visitingTeam.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    tv_secondTeam.setTextColor(getResources().getColor(R.color.color_959697));
+                    tv_secondOdds.setTextColor(getResources().getColor(R.color.color_959697));
+                    l_homeTeam.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    tv_firstTeam.setTextColor(getResources().getColor(R.color.color_959697));
+                    tv_firstOdds.setTextColor(getResources().getColor(R.color.color_959697));
                     guessListBeans.get(position).setFlat(true);
+                    guessListBeans.get(position).setHome(false);
+                    guessListBeans.get(position).setVisiting(false);
                 }
                 break;
             case R.id.visitingTeam:
@@ -195,11 +215,21 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
                     tv_secondTeam.setTextColor(getResources().getColor(R.color.color_959697));
                     tv_secondOdds.setTextColor(getResources().getColor(R.color.color_959697));
                     guessListBeans.get(position).setVisiting(false);
+                    guessListBeans.get(position).setHome(false);
+                    guessListBeans.get(position).setFlat(false);
                 }else {
                     l_visitingTeam.setBackground(getResources().getDrawable(R.drawable.bg_right));
                     tv_secondTeam.setTextColor(getResources().getColor(R.color.white));
                     tv_secondOdds.setTextColor(getResources().getColor(R.color.white));
+                    l_homeTeam.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    tv_firstTeam.setTextColor(getResources().getColor(R.color.color_959697));
+                    tv_firstOdds.setTextColor(getResources().getColor(R.color.color_959697));
+                    l_flatTeam.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    tv_flat.setTextColor(getResources().getColor(R.color.color_959697));
+                    tv_flatT.setTextColor(getResources().getColor(R.color.color_959697));
                     guessListBeans.get(position).setVisiting(true);
+                    guessListBeans.get(position).setHome(false);
+                    guessListBeans.get(position).setFlat(false);
                 }
                 break;
         }
