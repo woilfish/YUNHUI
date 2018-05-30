@@ -1,6 +1,7 @@
 package com.yunhui.fragmenr;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,6 +18,7 @@ import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.activity.BettingActivity;
 import com.yunhui.activity.HomeActivity;
 import com.yunhui.adapter.GuessAdapter;
 import com.yunhui.bean.GuessListBean;
@@ -30,6 +32,7 @@ import com.yunhui.util.ToastUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +47,8 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
     private RefreshListView rlv_guessList;
     private GuessAdapter guessAdapter;
     private List<GuessListBean> guessListBeans;
-    private List<String> positions = new ArrayList<>();
+    private List<GuessListBean> guessListBeansSelect;
+    private List<Integer> positions;
     private Button b_guessOk;
 
     @SuppressLint("HandlerLeak")
@@ -65,6 +69,7 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         homeActivity = (HomeActivity) getActivity();
         parentView = inflater.inflate(R.layout.fragment_guess,null);
+        positions = new ArrayList<>();
         initView();
         return parentView;
     }
@@ -116,8 +121,14 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
         b_guessOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(positions.size() > 2){
-
+                if(positions.size() >= 2){
+                    guessListBeansSelect = new ArrayList<>();
+                    for(int i = 0;i < positions.size();i++){
+                        guessListBeansSelect.add(guessListBeans.get(positions.get(i)));
+                    }
+                    Intent bettingIntent = new Intent(homeActivity, BettingActivity.class);
+                    bettingIntent.putExtra("list",(Serializable)guessListBeansSelect);
+                    startActivity(bettingIntent);
                 }else{
                     ToastUtil.toast(homeActivity,"至少选择2场比赛才可以下注");
                 }
@@ -157,9 +168,9 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
         }
 
         if(judgeHas(position) && judgeOnClick(guessListBeans.get(position))){
-            positions.remove(String.valueOf(position));
+            positions.remove(position);
         }else{
-            positions.add(String.valueOf(position));
+            positions.add(position);
         }
 
         switch (which){
@@ -244,7 +255,7 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
     }
 
     public boolean judgeHas(int position){
-        if(positions.contains(String.valueOf(position))){
+        if(positions.contains(position)){
             return true;
         }
         return false;

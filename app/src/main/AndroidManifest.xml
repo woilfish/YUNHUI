@@ -50,6 +50,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.RechargeActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.BettingActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- ALPay-->
         <activity

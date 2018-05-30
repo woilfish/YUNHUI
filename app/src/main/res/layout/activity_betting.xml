@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/AppTheThemeColor">
+
+    <LinearLayout
+        android:id="@+id/bettingTop"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_200"
+        android:orientation="horizontal"
+        android:background="@color/color_2b2e34"
+        android:gravity="center_vertical"
+        android:layout_alignParentTop="true">
+
+        <com.yunhui.component.image.CircleImageView
+            android:id="@+id/bettingeuserphoto"
+            android:layout_width="@dimen/dimen_160"
+            android:layout_height="@dimen/dimen_160"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/icon_log"
+            android:layout_marginLeft="@dimen/dimen_20"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_160"
+            android:layout_marginLeft="@dimen/dimen_30"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/bettiinguserphonenum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/color_959697"
+                android:textSize="@dimen/font_size_normal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/bettingclouddrill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="云钻:"
+                    android:textColor="@color/color_959697"
+                    android:textSize="@dimen/font_size_normal" />
+                <TextView
+                    android:id="@+id/bettingBTC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BTC:"
+                    android:textColor="@color/color_959697"
+                    android:textSize="@dimen/font_size_normal"
+                    android:layout_marginLeft="@dimen/dimen_30"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/bettingBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_20">
+            <TextView
+                android:id="@+id/betting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="共 1 注"
+                android:textSize="@dimen/font_size_normal"
+                android:textColor="@color/color_959697"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="买"
+                    android:textSize="@dimen/font_size_normal"
+                    android:textColor="@color/color_959697"
+                    android:layout_marginRight="@dimen/dimen_10"/>
+
+                <Button
+                    android:id="@+id/bettingReduction"
+                    android:layout_width="@dimen/dimen_70"
+                    android:layout_height="@dimen/dimen_70"
+                    android:background="@drawable/bg_ectangle"
+                    android:text="—"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_large"/>
+
+                <TextView
+                    android:id="@+id/bettingNum"
+                    android:layout_width="@dimen/dimen_80"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_ectangle_text"
+                    android:textColor="@color/white"
+                    android:text="0"
+                    android:gravity="center"/>
+                <Button
+                    android:id="@+id/bettingAdd"
+                    android:layout_width="@dimen/dimen_70"
+                    android:layout_height="@dimen/dimen_70"
+                    android:background="@drawable/bg_ectangle"
+                    android:text="+"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_large"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="倍"
+                    android:textSize="@dimen/font_size_normal"
+                    android:textColor="@color/color_959697"
+                    android:layout_marginLeft="@dimen/dimen_10"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+        <VideoView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_959697"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dimen_20">
+            <TextView
+                android:id="@+id/allMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="合计 1000 云钻"
+                android:textColor="@color/color_959697"
+                android:textSize="@dimen/font_size_normal"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"/>
+            <Button
+                android:id="@+id/bettingOk"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_80"
+                android:layout_alignParentRight="true"
+                android:text="确认购买"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_roundedrectangle"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <com.yunhui.component.refreshlistview.RefreshListView
+        android:id="@+id/bettingList"
+        android:layout_below="@id/bettingTop"
+        android:layout_above="@id/bettingBottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:divider="@color/l_gray"
+        android:dividerHeight="1dp"
+        android:scrollbars="none"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_20"
+        android:layout_marginBottom="@dimen/dimen_10"
+        android:visibility="visible"/>
+</RelativeLayout>
