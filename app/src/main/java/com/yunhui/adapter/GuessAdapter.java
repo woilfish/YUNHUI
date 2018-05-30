@@ -67,6 +67,7 @@ public class GuessAdapter extends BaseAdapter{
             viewHolder.tv_secondTeam = convertView.findViewById(R.id.secondteam);
             viewHolder.tv_secondOdds = convertView.findViewById(R.id.secondodds);
             viewHolder.tv_flat = convertView.findViewById(R.id.flat);
+            viewHolder.tv_flatT = convertView.findViewById(R.id.flatT);
             viewHolder.l_homeTeam = convertView.findViewById(R.id.homeTeam);
             viewHolder.l_flatTeam = convertView.findViewById(R.id.flatTeam);
             viewHolder.l_visitingTeam = convertView.findViewById(R.id.visitingTeam);
@@ -85,18 +86,30 @@ public class GuessAdapter extends BaseAdapter{
 
         if(guessListBean.isHome()){
             viewHolder.l_homeTeam.setBackground(context.getResources().getDrawable(R.drawable.bg_left));
+            viewHolder.tv_firstTeam.setTextColor(context.getResources().getColor(R.color.white));
+            viewHolder.tv_firstOdds.setTextColor(context.getResources().getColor(R.color.white));
         }else {
             viewHolder.l_homeTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+            viewHolder.tv_firstTeam.setTextColor(context.getResources().getColor(R.color.color_959697));
+            viewHolder.tv_firstOdds.setTextColor(context.getResources().getColor(R.color.color_959697));
         }
         if(guessListBean.isFlat()){
             viewHolder.l_flatTeam.setBackgroundColor(context.getResources().getColor(R.color.color_EE9707));
+            viewHolder.tv_flat.setTextColor(context.getResources().getColor(R.color.white));
+            viewHolder.tv_flatT.setTextColor(context.getResources().getColor(R.color.white));
         }else {
             viewHolder.l_flatTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+            viewHolder.tv_flat.setTextColor(context.getResources().getColor(R.color.color_959697));
+            viewHolder.tv_flatT.setTextColor(context.getResources().getColor(R.color.color_959697));
         }
         if(guessListBean.isVisiting()){
             viewHolder.l_visitingTeam.setBackground(context.getResources().getDrawable(R.drawable.bg_right));
+            viewHolder.tv_secondTeam.setTextColor(context.getResources().getColor(R.color.white));
+            viewHolder.tv_secondOdds.setTextColor(context.getResources().getColor(R.color.white));
         }else {
             viewHolder.l_visitingTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+            viewHolder.tv_secondTeam.setTextColor(context.getResources().getColor(R.color.color_959697));
+            viewHolder.tv_secondOdds.setTextColor(context.getResources().getColor(R.color.color_959697));
         }
 
         final View view = convertView;
@@ -128,7 +141,7 @@ public class GuessAdapter extends BaseAdapter{
     }
 
     class ViewHolder{
-        private TextView tv_guessTitle,tv_firstTeam,tv_firstOdds,tv_flat,tv_secondTeam,tv_secondOdds;
+        private TextView tv_guessTitle,tv_firstTeam,tv_firstOdds,tv_flat,tv_flatT,tv_secondTeam,tv_secondOdds;
         private LinearLayout l_homeTeam,l_flatTeam,l_visitingTeam;
     }
 }

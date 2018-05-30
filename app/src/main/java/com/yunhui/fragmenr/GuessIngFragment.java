@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,10 +25,12 @@ import com.yunhui.clickinterface.ListItemClickHelp;
 import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.DateUtil;
+import com.yunhui.util.ToastUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,6 +44,8 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
     private RefreshListView rlv_guessList;
     private GuessAdapter guessAdapter;
     private List<GuessListBean> guessListBeans;
+    private List<String> positions = new ArrayList<>();
+    private Button b_guessOk;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
@@ -101,12 +106,23 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
 
         tv_guessDate = parentView.findViewById(R.id.guessdate);
         rlv_guessList = parentView.findViewById(R.id.guessList);
+        b_guessOk = parentView.findViewById(R.id.guessOk);
         tv_guessDate.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
         guessAdapter = new GuessAdapter(homeActivity,guessListBeans,this);
         rlv_guessList.setAdapter(guessAdapter);
         rlv_guessList.setOnRefreshListViewListener(this);
         rlv_guessList.setPullRefreshEnable(false);
         rlv_guessList.setPullLoadEnable(false);
+        b_guessOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(positions.size() > 2){
+
+                }else{
+                    ToastUtil.toast(homeActivity,"至少选择2场比赛才可以下注");
+                }
+            }
+        });
     }
 
     @Override
@@ -125,42 +141,82 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
         LinearLayout l_homeTeam = null;
         LinearLayout l_flatTeam = null;
         LinearLayout l_visitingTeam = null;
+        TextView tv_firstTeam = null,tv_firstOdds = null,tv_flat = null,tv_flatT = null,tv_secondTeam = null,tv_secondOdds = null;
 
         if (position >= rlv_guessList.getFirstVisiblePosition() && position <= rlv_guessList.getLastVisiblePosition()) {
             int positionInListView = position - rlv_guessList.getFirstVisiblePosition() + 1;
             l_homeTeam = rlv_guessList.getChildAt(positionInListView).findViewById(R.id.homeTeam);
             l_flatTeam= rlv_guessList.getChildAt(positionInListView).findViewById(R.id.flatTeam);
             l_visitingTeam = rlv_guessList.getChildAt(positionInListView).findViewById(R.id.visitingTeam);
+            tv_firstTeam = rlv_guessList.getChildAt(positionInListView).findViewById(R.id.firstteam);
+            tv_firstOdds = rlv_guessList.getChildAt(positionInListView).findViewById(R.id.firstodds);
+            tv_flat = rlv_guessList.getChildAt(positionInListView).findViewById(R.id.flat);
+            tv_flatT = rlv_guessList.getChildAt(positionInListView).findViewById(R.id.flatT);
+            tv_secondTeam = rlv_guessList.getChildAt(positionInListView).findViewById(R.id.secondteam);
+            tv_secondOdds = rlv_guessList.getChildAt(positionInListView).findViewById(R.id.secondodds);
+        }
+
+        if(judgeHas(position) && judgeOnClick(guessListBeans.get(position))){
+            positions.remove(String.valueOf(position));
+        }else{
+            positions.add(String.valueOf(position));
         }
 
         switch (which){
             case R.id.homeTeam:
                 if(guessListBeans.get(position).isHome()){
                     l_homeTeam.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    tv_firstTeam.setTextColor(getResources().getColor(R.color.color_959697));
+                    tv_firstOdds.setTextColor(getResources().getColor(R.color.color_959697));
                     guessListBeans.get(position).setHome(false);
                 }else {
                     l_homeTeam.setBackground(getResources().getDrawable(R.drawable.bg_left));
+                    tv_firstTeam.setTextColor(getResources().getColor(R.color.white));
+                    tv_firstOdds.setTextColor(getResources().getColor(R.color.white));
                     guessListBeans.get(position).setHome(true);
                 }
                 break;
             case R.id.flatTeam:
                 if(guessListBeans.get(position).isFlat()){
                     l_flatTeam.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    tv_flat.setTextColor(getResources().getColor(R.color.color_959697));
+                    tv_flatT.setTextColor(getResources().getColor(R.color.color_959697));
                     guessListBeans.get(position).setFlat(false);
                 }else {
                     l_flatTeam.setBackgroundColor(getResources().getColor(R.color.color_EE9707));
+                    tv_flat.setTextColor(getResources().getColor(R.color.white));
+                    tv_flatT.setTextColor(getResources().getColor(R.color.white));
                     guessListBeans.get(position).setFlat(true);
                 }
                 break;
             case R.id.visitingTeam:
                 if(guessListBeans.get(position).isVisiting()){
                     l_visitingTeam.setBackgroundColor(getResources().getColor(R.color.transparent));
+                    tv_secondTeam.setTextColor(getResources().getColor(R.color.color_959697));
+                    tv_secondOdds.setTextColor(getResources().getColor(R.color.color_959697));
                     guessListBeans.get(position).setVisiting(false);
                 }else {
                     l_visitingTeam.setBackground(getResources().getDrawable(R.drawable.bg_right));
+                    tv_secondTeam.setTextColor(getResources().getColor(R.color.white));
+                    tv_secondOdds.setTextColor(getResources().getColor(R.color.white));
                     guessListBeans.get(position).setVisiting(true);
                 }
                 break;
         }
+    }
+
+    public boolean judgeOnClick(GuessListBean guessListBean){
+
+        if(!guessListBean.isHome() && !guessListBean.isFlat() && !guessListBean.isVisiting()){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean judgeHas(int position){
+        if(positions.contains(String.valueOf(position))){
+            return true;
+        }
+        return false;
     }
 }
