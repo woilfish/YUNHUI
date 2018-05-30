@@ -52,6 +52,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.BettingActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.GuessSendSMSActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- ALPay-->
         <activity

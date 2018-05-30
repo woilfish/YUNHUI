@@ -1,5 +1,6 @@
 package com.yunhui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
+import com.loopj.common.httpEx.HttpRequestParams;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
 import com.yunhui.YhApplication;
@@ -22,6 +24,8 @@ import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.ToastUtil;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -103,6 +107,11 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
                 }
                 break;
             case R.id.bettingOk:
+                if(buyNum * 100 < Integer.parseInt(myEarnings.getTotal())){
+                    createGuessBill();
+                }else{
+                    ToastUtil.toast(BettingActivity.this,"您使用的云钻数量大于您的云钻数量");
+                }
                 break;
         }
     }
@@ -154,6 +163,65 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
             }
         });
         requestUtil.execute();
+    }
+
+    private void createGuessBill(){
+
+        RequestUtil requestUtil = RequestUtil.obtainRequest(BettingActivity.this,"user/guessTeams", HttpRequest.RequestMethod.POST);
+
+        HttpRequestParams requestParams = requestUtil.getRequestParams();
+        requestParams.put("amount",String.valueOf(buyNum * 100));
+        requestParams.put("num","1");
+        JSONArray jsonArray = new JSONArray();
+        for(int i = 0;i < guessListBeans.size();i++){
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("id",guessListBeans.get(i).getId());
+                if(guessListBeans.get(i).isHome()){
+                    jsonObject.put("oadd",guessListBeans.get(i).getOdds_h());
+                }
+                if(guessListBeans.get(i).isFlat()){
+                    jsonObject.put("oadd",guessListBeans.get(i).getOdds_d());
+                }
+                if(guessListBeans.get(i).isVisiting()){
+                    jsonObject.put("oadd",guessListBeans.get(i).getOdds_a());
+                }
+                jsonArray.put(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        requestParams.put("list",jsonArray);
+
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+                JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                if(jsonObject.has("billid")){
+                    Intent sendGuessSms = new Intent(BettingActivity.this,GuessSendSMSActivity.class);
+                    sendGuessSms.putExtra("billid",jsonObject.optString("billid"));
+                    startActivityForResult(sendGuessSms,012345);
+                }
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 012345:
+                BettingActivity.this.finish();
+                break;
+        }
     }
 
     @Override
