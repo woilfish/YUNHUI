@@ -1,6 +1,8 @@
 package com.yunhui.activity;
 
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import com.yunhui.component.image.CircleImageView;
 import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.request.RequestUtil;
+import com.yunhui.util.ToastUtil;
 
 import org.json.JSONObject;
 
@@ -39,6 +42,8 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
     private Button b_bettingOk;
     private GuessAdapter guessAdapter;
     private List<GuessListBean> guessListBeans;
+    private int count = 1;
+    private int buyNum = 0;
     @Override
     protected void initActivity(Bundle savedInstanceState) {
         setContentView(R.layout.activity_betting);
@@ -71,6 +76,10 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
         rlv_bettingList.setOnRefreshListViewListener(this);
         rlv_bettingList.setPullRefreshEnable(false);
         rlv_bettingList.setPullLoadEnable(false);
+
+        SpannableString spanableInfo = new SpannableString("共 " + count + " 注 ");
+        spanableInfo.setSpan(null, 1, String.valueOf(count).length() + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tv_betting.setText(spanableInfo);
     }
 
     @Override
@@ -78,12 +87,30 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
         super.onClick(view);
         switch (view.getId()){
             case R.id.bettingReduction:
+                if(buyNum != 0){
+                    buyNum --;
+                    tv_bettingNum.setText(String.valueOf(buyNum));
+                    showAllMoney(buyNum);
+                }
                 break;
             case R.id.bettingAdd:
+                if(buyNum != 10){
+                    buyNum ++;
+                    tv_bettingNum.setText(String.valueOf(buyNum));
+                    showAllMoney(buyNum);
+                }else{
+                    ToastUtil.toast(BettingActivity.this,"已达当前下注的最大购买");
+                }
                 break;
             case R.id.bettingOk:
                 break;
         }
+    }
+
+    public void showAllMoney(int buyNum){
+        SpannableString spanableInfo = new SpannableString("合计 " + buyNum * 100 + " 云钻 ");
+        spanableInfo.setSpan(null, 2, String.valueOf(buyNum * 100).length() + 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tv_allMoney.setText(spanableInfo);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.yunhui.activity;
 
+import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,6 +34,8 @@ public class InviteCodeActivity extends BaseActionBarActivity{
     private TextView tv_inviteSuccessCode;
     private TextView tv_inviteCode;
     private ImageView im_inviteQrCode;
+
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
