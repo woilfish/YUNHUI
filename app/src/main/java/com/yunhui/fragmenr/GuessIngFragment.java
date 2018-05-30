@@ -167,11 +167,7 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
             tv_secondOdds = rlv_guessList.getChildAt(positionInListView).findViewById(R.id.secondodds);
         }
 
-        if(judgeHas(position) && judgeOnClick(guessListBeans.get(position))){
-            positions.remove(position);
-        }else{
-            positions.add(position);
-        }
+
 
         switch (which){
             case R.id.homeTeam:
@@ -243,6 +239,12 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
                     guessListBeans.get(position).setFlat(false);
                 }
                 break;
+        }
+
+        if(judgeHas(position) && judgeOnClick(guessListBeans.get(position))){
+            positions.remove(position);
+        }else if(!judgeHas(position) && !judgeOnClick(guessListBeans.get(position))){
+            positions.add(position);
         }
     }
 
