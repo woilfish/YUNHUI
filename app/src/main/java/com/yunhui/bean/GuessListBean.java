@@ -29,6 +29,9 @@ public class GuessListBean {
     private String updatetime;
     private String match_date_str;
     private String time_endsale_str;
+    private boolean home;
+    private boolean flat;
+    private boolean visiting;
 
     private List<GuessListBean> guessListBeans;
 
@@ -288,5 +291,29 @@ public class GuessListBean {
 
     public void setTime_endsale_str(String time_endsale_str) {
         this.time_endsale_str = time_endsale_str;
+    }
+
+    public boolean isHome() {
+        return home;
+    }
+
+    public void setHome(boolean home) {
+        this.home = home;
+    }
+
+    public boolean isFlat() {
+        return flat;
+    }
+
+    public void setFlat(boolean flat) {
+        this.flat = flat;
+    }
+
+    public boolean isVisiting() {
+        return visiting;
+    }
+
+    public void setVisiting(boolean visiting) {
+        this.visiting = visiting;
     }
 }

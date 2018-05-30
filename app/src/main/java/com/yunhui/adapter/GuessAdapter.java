@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yunhui.R;
 import com.yunhui.bean.GuessListBean;
 import com.yunhui.bean.TaskInfo;
+import com.yunhui.clickinterface.ListItemClickHelp;
 import com.yunhui.util.DateUtil;
 
 import java.util.ArrayList;
@@ -20,10 +22,12 @@ public class GuessAdapter extends BaseAdapter{
     private Context context;
     private LayoutInflater layoutInflater;
     private List<GuessListBean> guessListBeans;
+    private ListItemClickHelp callBack;
 
-    public GuessAdapter(Context context, List<GuessListBean> guessListBeans) {
+    public GuessAdapter(Context context, List<GuessListBean> guessListBeans,ListItemClickHelp callback) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
+        this.callBack = callback;
         if(guessListBeans == null){
             this.guessListBeans = new ArrayList<>();
         }else {
@@ -52,7 +56,7 @@ public class GuessAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         ViewHolder viewHolder = null;
         if(convertView == null){
             convertView = layoutInflater.inflate(R.layout.item_guess,null);
@@ -63,6 +67,9 @@ public class GuessAdapter extends BaseAdapter{
             viewHolder.tv_secondTeam = convertView.findViewById(R.id.secondteam);
             viewHolder.tv_secondOdds = convertView.findViewById(R.id.secondodds);
             viewHolder.tv_flat = convertView.findViewById(R.id.flat);
+            viewHolder.l_homeTeam = convertView.findViewById(R.id.homeTeam);
+            viewHolder.l_flatTeam = convertView.findViewById(R.id.flatTeam);
+            viewHolder.l_visitingTeam = convertView.findViewById(R.id.visitingTeam);
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
@@ -76,10 +83,52 @@ public class GuessAdapter extends BaseAdapter{
         viewHolder.tv_secondTeam.setText(guessListBean.getAway_team());
         viewHolder.tv_secondOdds.setText(guessListBean.getOdds_a());
 
+        if(guessListBean.isHome()){
+            viewHolder.l_homeTeam.setBackground(context.getResources().getDrawable(R.drawable.bg_left));
+        }else {
+            viewHolder.l_homeTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+        }
+        if(guessListBean.isFlat()){
+            viewHolder.l_flatTeam.setBackgroundColor(context.getResources().getColor(R.color.color_EE9707));
+        }else {
+            viewHolder.l_flatTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+        }
+        if(guessListBean.isVisiting()){
+            viewHolder.l_visitingTeam.setBackground(context.getResources().getDrawable(R.drawable.bg_right));
+        }else {
+            viewHolder.l_visitingTeam.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+        }
+
+        final View view = convertView;
+        final int p = position;
+        //获取按钮id
+        final int one = viewHolder.l_homeTeam.getId();
+        viewHolder.l_homeTeam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callBack.onClick(view,parent,p,one);
+            }
+        });
+        final int two = viewHolder.l_flatTeam.getId();
+        viewHolder.l_flatTeam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callBack.onClick(view,parent,p,two);
+            }
+        });
+        final int three = viewHolder.l_visitingTeam.getId();
+        viewHolder.l_visitingTeam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callBack.onClick(view,parent,p,three);
+            }
+        });
+
         return convertView;
     }
 
     class ViewHolder{
         private TextView tv_guessTitle,tv_firstTeam,tv_firstOdds,tv_flat,tv_secondTeam,tv_secondOdds;
+        private LinearLayout l_homeTeam,l_flatTeam,l_visitingTeam;
     }
 }

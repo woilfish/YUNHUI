@@ -6,6 +6,7 @@
 
     <!-- 应用主题颜色 -->
     <color name="AppTheThemeColor">#1E2225</color>
+    <color name="transparent">#00000000</color>
 
 
     <color name="color_gray_f7f5f5">#f7f5f5</color>
