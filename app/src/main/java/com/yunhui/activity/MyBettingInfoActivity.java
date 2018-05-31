@@ -18,6 +18,7 @@ public class MyBettingInfoActivity extends BaseActionBarActivity implements List
     private TextView tv_type;
     private TextView tv_billNum;
     private TextView tv_info;
+    private TextView tv_earnings;
     private RefreshListView rlv_mtBettingInfoList;
     private GuessAdapter guessAdapter;
 
@@ -42,6 +43,7 @@ public class MyBettingInfoActivity extends BaseActionBarActivity implements List
         tv_type = findViewById(R.id.type);
         tv_billNum = findViewById(R.id.billNum);
         tv_info = findViewById(R.id.info);
+        tv_earnings = findViewById(R.id.earnings);
         rlv_mtBettingInfoList = findViewById(R.id.mtBettingInfoList);
         tv_money.setText(myBettingInfo.getNum() + "注" + "   " + myBettingInfo.getTimes() + "倍" +"   云钻" + myBettingInfo.getAmount());
         tv_type.setText(myBettingInfo.getGuessListBeans().size() + " 串 "  + "1");
@@ -55,6 +57,7 @@ public class MyBettingInfoActivity extends BaseActionBarActivity implements List
         if("3".equals(myBettingInfo.getQrystate())){
             tv_info.setText("未中奖");
         }
+        tv_earnings.setText("云钻" + myBettingInfo.getTotalbenefit());
         guessAdapter = new GuessAdapter(MyBettingInfoActivity.this,myBettingInfo.getGuessListBeans(),this);
         rlv_mtBettingInfoList.setAdapter(guessAdapter);
         rlv_mtBettingInfoList.setOnRefreshListViewListener(this);

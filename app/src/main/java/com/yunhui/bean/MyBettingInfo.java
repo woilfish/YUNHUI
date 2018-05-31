@@ -19,6 +19,7 @@ public class MyBettingInfo implements Serializable{
     private String updatetime;
     private String times;
     private String qrystate;
+    private String totalbenefit;
     private List<GuessListBean> guessListBeans;
     private List<MyBettingInfo> myBettingInfos;
 
@@ -75,6 +76,9 @@ public class MyBettingInfo implements Serializable{
         }
         if(jsonObject.has("qrystate")){
             this.setQrystate(jsonObject.optString("qrystate"));
+        }
+        if(jsonObject.has("totalbenefit")){
+            this.setTotalbenefit(jsonObject.optString("totalbenefit"));
         }
         if(jsonObject.has("list")){
             JSONArray jsonArray = jsonObject.optJSONArray("list");
@@ -169,5 +173,13 @@ public class MyBettingInfo implements Serializable{
 
     public void setQrystate(String qrystate) {
         this.qrystate = qrystate;
+    }
+
+    public String getTotalbenefit() {
+        return totalbenefit;
+    }
+
+    public void setTotalbenefit(String totalbenefit) {
+        this.totalbenefit = totalbenefit;
     }
 }
