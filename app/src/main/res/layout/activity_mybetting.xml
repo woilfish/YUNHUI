@@ -6,8 +6,6 @@
 
     <com.yunhui.component.refreshlistview.RefreshListView
         android:id="@+id/myBettingList"
-        android:layout_below="@+id/guessIns"
-        android:layout_above="@+id/guessBottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"

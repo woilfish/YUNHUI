@@ -30,6 +30,7 @@ public class GuessListBean implements Serializable{
     private String updatetime;
     private String match_date_str;
     private String time_endsale_str;
+    private String oadd;
     private boolean home;
     private boolean flat;
     private boolean visiting;
@@ -123,6 +124,9 @@ public class GuessListBean implements Serializable{
         }
         if(jsonObject.has("time_endsale_str")){
             this.setTime_endsale_str(jsonObject.optString("time_endsale_str"));
+        }
+        if(jsonObject.has("oadd")){
+            this.setOadd(jsonObject.optString("oadd"));
         }
     }
 
@@ -316,5 +320,13 @@ public class GuessListBean implements Serializable{
 
     public void setVisiting(boolean visiting) {
         this.visiting = visiting;
+    }
+
+    public String getOadd() {
+        return oadd;
+    }
+
+    public void setOadd(String oadd) {
+        this.oadd = oadd;
     }
 }
