@@ -74,11 +74,11 @@ public class ProductMachineAdapter extends BaseAdapter{
         }
         ProductMachine productMachine = getItem(position);
 
-        if("3".equals(productMachine.getId())){
+//        if("3".equals(productMachine.getId())){
             viewHolder.tv_itemrarningstitle.setText(productMachine.getTitle()+ "-" + productMachine.getAmout() + "元/年");
-        }else {
-            viewHolder.tv_itemrarningstitle.setText(productMachine.getTitle()+ "-" + productMachine.getAmout());
-        }
+//        }else {
+//            viewHolder.tv_itemrarningstitle.setText(productMachine.getTitle()+ "-" + productMachine.getAmout());
+//        }
         viewHolder.tv_itemrarningsinfo.setText(productMachine.getDayBenifit());
         viewHolder.tv_itemrarning.setText(productMachine.getTotalBenifit());
         viewHolder.tv_itemrarningday.setText(productMachine.getCircle());

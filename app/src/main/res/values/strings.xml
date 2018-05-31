@@ -56,7 +56,7 @@
     
     <string name="invite_code_hite">我的邀请码</string>
     <string name="invite_code_qrcode_hite">我的二维码</string>
-    <string name="invite_code_warmprompt_hite">温馨提示：保存二维码照片，发给好友，好友注册云慧助手，每个好友奖励10钻石，最多推荐10个好友</string>
+    <string name="invite_code_warmprompt_hite">温馨提示：保存二维码照片，发给好友，好友注册云慧助手，每个好友奖励1000钻石，最多推荐10个好友</string>
 
     <string name="extract_top_hite">提取BTC</string>
     <string name="extract_all_num">全部BTC</string>
