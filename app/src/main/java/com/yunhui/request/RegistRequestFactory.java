@@ -5,6 +5,7 @@ import android.content.Context;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.HttpRequestParams;
 import com.yunhui.bean.RequestRegistBean;
+import com.yunhui.util.StringUtil;
 
 /**
  * Created by pengmin on 2018/4/18.
@@ -27,6 +28,9 @@ public class RegistRequestFactory {
         requestParams.put("confirmPassword",requestRegistBean.getConfirmPassword());
         requestParams.put("userName",requestRegistBean.getUserName());
         requestParams.put("identifier",requestRegistBean.getIdentifler());
+        if(StringUtil.isNotEmpty(requestRegistBean.getInviteCode())) {
+            requestParams.put("inviteCode",requestRegistBean.getInviteCode());
+        }
 
         return requestUtil;
     }

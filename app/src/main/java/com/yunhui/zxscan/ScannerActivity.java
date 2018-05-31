@@ -2,9 +2,14 @@ package com.yunhui.zxscan;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -48,6 +53,7 @@ public class ScannerActivity extends BaseActionBarActivity implements OnScannerC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        openPermissions();
     }
 
     @Override
@@ -94,6 +100,39 @@ public class ScannerActivity extends BaseActionBarActivity implements OnScannerC
     }
 
 
+    public void openPermissions(){
+        if (Build.VERSION.SDK_INT>22){
+            if (ContextCompat.checkSelfPermission(ScannerActivity.this,
+                    android.Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED){
+                //先判断有没有权限 ，没有就在这里进行权限的申请
+                ActivityCompat.requestPermissions(ScannerActivity.this,
+                        new String[]{android.Manifest.permission.CAMERA},7654);
+
+            }else {
+                //说明已经获取到摄像头权限了 想干嘛干嘛
+            }
+        }else {
+//这个说明系统版本在6.0之下，不需要动态获取权限。
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 7654:
+                if (grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                    //这里已经获取到了摄像头的权限，想干嘛干嘛了可以
+
+                }else {
+                    //这里是拒绝给APP摄像头权限，给个提示什么的说明一下都可以。
+                    Toast.makeText(ScannerActivity.this,"请手动打开相机权限",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
     @Override
     protected void onResume() {

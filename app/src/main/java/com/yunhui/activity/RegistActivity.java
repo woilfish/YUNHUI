@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.zxing.client.result.ParsedResultType;
 import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.DefaultHttpResponseHandler;
 import com.loopj.common.httpEx.HttpRequest;
@@ -21,6 +22,8 @@ import com.yunhui.request.RegistRequestFactory;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.MobileUtil;
 import com.yunhui.util.ToastUtil;
+import com.yunhui.zxscan.ScannerActivity;
+import com.yunhui.zxscan.ScannerEnum;
 
 import org.json.JSONObject;
 
@@ -42,6 +45,7 @@ public class RegistActivity extends BaseActionBarActivity{
     private Button b_registsendvalidation;
     private Button b_registenter;
     private Button b_registloginenter;
+    private Button b_scanner;
     private int smsTime = 60;
     private Timer timer;
     private AlertDialog alertDialog;
@@ -76,9 +80,11 @@ public class RegistActivity extends BaseActionBarActivity{
         b_registsendvalidation = findViewById(R.id.registsendvalidation);
         b_registenter = findViewById(R.id.registenter);
         b_registloginenter = findViewById(R.id.registloginenter);
+        b_scanner = findViewById(R.id.scanner);
         b_registenter.setOnClickListener(this);
         b_registloginenter.setOnClickListener(this);
         b_registsendvalidation.setOnClickListener(this);
+        b_scanner.setOnClickListener(this);
     }
 
     /**
@@ -131,6 +137,24 @@ public class RegistActivity extends BaseActionBarActivity{
                 startActivity(intent);
                 RegistActivity.this.finish();
                 break;
+            case R.id.scanner:
+                Intent intent1 = new Intent(RegistActivity.this, ScannerActivity.class);
+                startActivityForResult(intent1,1234);
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 1234:
+                    Bundle bundle = data.getExtras();
+                    if(ScannerEnum.TEXT == bundle.getSerializable("type")){
+                        et_registinvitecode.setText(bundle.getString("SNCode"));
+                    }
+
+                break;
         }
     }
 
@@ -141,6 +165,7 @@ public class RegistActivity extends BaseActionBarActivity{
         requestRegistBean.setCode(et_registvalidation.getText().toString());
         requestRegistBean.setPassword(CommonEncrypt.loginEncrypt(et_registpassword.getText().toString()));
         requestRegistBean.setConfirmPassword(CommonEncrypt.loginEncrypt(et_registconfirmpassword.getText().toString()));
+        requestRegistBean.setInviteCode(et_registinvitecode.getText().toString());
         RequestUtil requestUtil = RegistRequestFactory.createRegistRequest(RegistActivity.this,requestRegistBean);
         requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
             @Override

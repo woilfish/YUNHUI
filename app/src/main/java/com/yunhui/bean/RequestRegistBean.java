@@ -13,6 +13,7 @@ public class RequestRegistBean {
     private String confirmPassword;
     private String userName;
     private String identifler;
+    private String inviteCode;
 
     public RequestRegistBean() {
     }
@@ -63,5 +64,14 @@ public class RequestRegistBean {
 
     public void setIdentifler(String identifler) {
         this.identifler = identifler;
+    }
+
+
+    public String getInviteCode() {
+        return inviteCode;
+    }
+
+    public void setInviteCode(String inviteCode) {
+        this.inviteCode = inviteCode;
     }
 }

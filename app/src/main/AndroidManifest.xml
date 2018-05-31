@@ -58,6 +58,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.MyBettingInfoActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".zxscan.ScannerActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- ALPay-->
         <activity
