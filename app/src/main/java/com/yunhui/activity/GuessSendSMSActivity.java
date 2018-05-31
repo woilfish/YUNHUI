@@ -14,6 +14,7 @@ import com.yunhui.R;
 import com.yunhui.manager.ActivityQueueManager;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.util.StringUtil;
+import com.yunhui.util.ToastUtil;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -98,6 +99,7 @@ public class GuessSendSMSActivity extends BaseActionBarActivity{
             @Override
             public void onSuccess(HttpRequest request) {
                 super.onSuccess(request);
+                ToastUtil.toast(GuessSendSMSActivity.this,"投注成功");
                 setResult(RESULT_OK);
                 GuessSendSMSActivity.this.finish();
             }

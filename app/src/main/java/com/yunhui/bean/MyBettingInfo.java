@@ -17,6 +17,7 @@ public class MyBettingInfo implements Serializable{
     private String status;
     private String createtime;
     private String updatetime;
+    private String times;
     private List<GuessListBean> guessListBeans;
     private List<MyBettingInfo> myBettingInfos;
 
@@ -67,6 +68,9 @@ public class MyBettingInfo implements Serializable{
         }
         if(jsonObject.has("updatetime")){
             this.setUpdatetime(jsonObject.optString("updatetime"));
+        }
+        if(jsonObject.has("times")){
+            this.setTimes(jsonObject.optString("times"));
         }
         if(jsonObject.has("list")){
             JSONArray jsonArray = jsonObject.optJSONArray("list");
@@ -145,5 +149,13 @@ public class MyBettingInfo implements Serializable{
 
     public void setMyBettingInfos(List<MyBettingInfo> myBettingInfos) {
         this.myBettingInfos = myBettingInfos;
+    }
+
+    public String getTimes() {
+        return times;
+    }
+
+    public void setTimes(String times) {
+        this.times = times;
     }
 }

@@ -25,7 +25,7 @@ import java.util.List;
 public class MyBettingActivity extends BaseActionBarActivity implements RefreshListView.OnRefreshListViewListener{
 
     private RefreshListView refreshListView;
-    private int page = 1;
+    private int page = 0;
     private int pageSize = 10;
     private List<MyBettingInfo> myBettingInfos = new ArrayList<>();
     private MyBettingAdapter myBettingAdapter;
@@ -34,13 +34,14 @@ public class MyBettingActivity extends BaseActionBarActivity implements RefreshL
     protected void initActivity(Bundle savedInstanceState) {
         setContentView(R.layout.activity_mybetting);
         ActivityQueueManager.getInstance().pushActivity(this);
+        myBettingInfos.clear();
+        queryGuessList();
         initView();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        queryGuessList();
     }
 
     private void initView() {
@@ -56,7 +57,7 @@ public class MyBettingActivity extends BaseActionBarActivity implements RefreshL
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MyBettingActivity.this,MyBettingInfoActivity.class);
-                intent.putExtra("info",myBettingInfos.get(position));
+                intent.putExtra("info",myBettingInfos.get(position - 1));
                 startActivity(intent);
             }
         });

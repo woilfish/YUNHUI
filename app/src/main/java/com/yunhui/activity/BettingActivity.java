@@ -172,6 +172,7 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
         HttpRequestParams requestParams = requestUtil.getRequestParams();
         requestParams.put("amount",String.valueOf(buyNum * 100));
         requestParams.put("num","1");
+        requestParams.put("times",String.valueOf(buyNum));
         JSONArray jsonArray = new JSONArray();
         for(int i = 0;i < guessListBeans.size();i++){
             JSONObject jsonObject = new JSONObject();

@@ -127,6 +127,15 @@ public class GuessListBean implements Serializable{
         }
         if(jsonObject.has("oadd")){
             this.setOadd(jsonObject.optString("oadd"));
+            if(jsonObject.optString("oadd").equals(jsonObject.optString("odds_h"))){
+                this.setHome(true);
+            }
+            if(jsonObject.optString("oadd").equals(jsonObject.optString("odds_d"))){
+                this.setFlat(true);
+            }
+            if(jsonObject.optString("oadd").equals(jsonObject.optString("odds_a"))){
+                this.setVisiting(true);
+            }
         }
     }
 
