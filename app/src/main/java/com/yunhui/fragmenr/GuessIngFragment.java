@@ -48,7 +48,7 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
     private GuessAdapter guessAdapter;
     private List<GuessListBean> guessListBeans;
     private List<GuessListBean> guessListBeansSelect;
-    private List<Integer> positions;
+    private List<String> positions;
     private Button b_guessOk;
 
     @SuppressLint("HandlerLeak")
@@ -124,7 +124,7 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
                 if(positions.size() >= 2){
                     guessListBeansSelect = new ArrayList<>();
                     for(int i = 0;i < positions.size();i++){
-                        guessListBeansSelect.add(guessListBeans.get(positions.get(i)));
+                        guessListBeansSelect.add(guessListBeans.get(Integer.parseInt(positions.get(i))));
                     }
                     Intent bettingIntent = new Intent(homeActivity, BettingActivity.class);
                     bettingIntent.putExtra("list",(Serializable)guessListBeansSelect);
@@ -242,9 +242,9 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
         }
 
         if(judgeHas(position) && judgeOnClick(guessListBeans.get(position))){
-            positions.remove(position);
+            positions.remove(String.valueOf(position));
         }else if(!judgeHas(position) && !judgeOnClick(guessListBeans.get(position))){
-            positions.add(position);
+            positions.add(String.valueOf(position));
         }
     }
 
@@ -257,7 +257,7 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
     }
 
     public boolean judgeHas(int position){
-        if(positions.contains(position)){
+        if(positions.contains(String.valueOf(position))){
             return true;
         }
         return false;

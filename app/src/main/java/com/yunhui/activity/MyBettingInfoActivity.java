@@ -46,7 +46,15 @@ public class MyBettingInfoActivity extends BaseActionBarActivity implements List
         tv_money.setText(myBettingInfo.getNum() + "注" + "   云钻" + myBettingInfo.getAmount());
         tv_type.setText(myBettingInfo.getGuessListBeans().size() + " 串 "  + "1");
         tv_billNum.setText(myBettingInfo.getJnlid());
-//        tv_info.setText();
+        if("1".equals(myBettingInfo.getQrystate())){
+            tv_info.setText("待开奖");
+        }
+        if("2".equals(myBettingInfo.getQrystate())){
+            tv_info.setText("已中奖");
+        }
+        if("3".equals(myBettingInfo.getQrystate())){
+            tv_info.setText("未中奖");
+        }
         guessAdapter = new GuessAdapter(MyBettingInfoActivity.this,myBettingInfo.getGuessListBeans(),this);
         rlv_mtBettingInfoList.setAdapter(guessAdapter);
         rlv_mtBettingInfoList.setOnRefreshListViewListener(this);

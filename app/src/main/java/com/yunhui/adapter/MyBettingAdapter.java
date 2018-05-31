@@ -1,6 +1,7 @@
 package com.yunhui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,17 @@ public class MyBettingAdapter extends BaseAdapter{
         MyBettingInfo myBettingInfo = getItem(position);
         viewHolder.tv_myBettingdate.setText(DateUtil.getTime(myBettingInfo.getCreatetime()));
         viewHolder.tv_myBettinghite.setText(myBettingInfo.getGuessListBeans().size() + " 串 " + 1);
+        if("1".equals(myBettingInfo.getQrystate())){
+            viewHolder.tv_myBettingResult.setText("待开奖");
+        }
+        if("2".equals(myBettingInfo.getQrystate())){
+            viewHolder.tv_myBettingResult.setText("已中奖");
+            viewHolder.tv_myBettingResult.setTextColor(context.getResources().getColor(R.color.red));
+        }
+        if("3".equals(myBettingInfo.getQrystate())){
+            viewHolder.tv_myBettingResult.setText("未中奖");
+            viewHolder.tv_myBettingResult.setTextColor(context.getResources().getColor(R.color.black));
+        }
 
 
         return convertView;
