@@ -180,6 +180,20 @@
                     app:rightTextColor="@color/font_gray"/>
 
                 <com.yunhui.component.linearlayout.LabelItemView
+                    android:id="@+id/myBetting"
+                    android:background="@color/color_2b2e34"
+                    style="@style/item_label_right_text_style"
+                    app:labelText="我的投注"
+                    app:rightText=""
+                    app:labelTextSize="@dimen/wallet_left_font_size"
+                    app:labelTextColor="@color/color_959697"
+                    app:leftIconVisibility="VISIBLE"
+                    app:rightArrowVisibility="VISIBLE"
+                    app:rightTextVisibility="VISIBLE"
+                    app:rightTextSize="@dimen/wallet_left_font_size"
+                    app:rightTextColor="@color/font_gray"/>
+
+                <com.yunhui.component.linearlayout.LabelItemView
                     android:id="@+id/myInvitation"
                     android:background="@color/color_2b2e34"
                     style="@style/item_label_right_text_style"

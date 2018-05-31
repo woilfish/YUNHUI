@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/AppTheThemeColor">
+
+    <com.yunhui.component.refreshlistview.RefreshListView
+        android:id="@+id/myBettingList"
+        android:layout_below="@+id/guessIns"
+        android:layout_above="@+id/guessBottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:divider="@color/l_gray"
+        android:dividerHeight="1dp"
+        android:scrollbars="none"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_20"
+        android:layout_marginBottom="@dimen/dimen_10"
+        android:visibility="visible"/>
+
+</LinearLayout>

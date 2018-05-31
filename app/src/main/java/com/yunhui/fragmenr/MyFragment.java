@@ -20,6 +20,7 @@ import com.yunhui.activity.ExtractActivity;
 import com.yunhui.activity.HomeActivity;
 import com.yunhui.R;
 import com.yunhui.activity.InviteCodeActivity;
+import com.yunhui.activity.MyBettingActivity;
 import com.yunhui.activity.RechargeActivity;
 import com.yunhui.bean.MyEarnings;
 import com.yunhui.component.image.CircleImageView;
@@ -47,6 +48,7 @@ public class MyFragment extends BaseFragment {
     private LabelItemView liv_myInvitation;
     private LabelItemView liv_aboutMy;
     private LabelItemView liv_extract;
+    private LabelItemView liv_myBetting;
     private TextView tv_myData;
     private TextView tv_cloudDrill;
     private TextView tv_BTC;
@@ -80,6 +82,7 @@ public class MyFragment extends BaseFragment {
         tv_myData = parentView.findViewById(R.id.mydate);
         liv_extract = parentView.findViewById(R.id.extract);
         tv_cloudDrill = parentView.findViewById(R.id.clouddrill);
+        liv_myBetting = parentView.findViewById(R.id.myBetting);
         tv_BTC = parentView.findViewById(R.id.BTC);
         tv_myData.setText(DateUtil.getCurrentDate() + " " + DateUtil.getWeekOfDate());
         liv_exchange.setOnClickListener(this);
@@ -89,6 +92,7 @@ public class MyFragment extends BaseFragment {
         liv_aboutMy.setOnClickListener(this);
         liv_extract.setOnClickListener(this);
         liv_recharge.setOnClickListener(this);
+        liv_myBetting.setOnClickListener(this);
     }
 
     @Override
@@ -120,6 +124,10 @@ public class MyFragment extends BaseFragment {
             case R.id.aboutMy:
                 Intent aboutIntent = new Intent(homeActivity, AboutAppActivity.class);
                 startActivity(aboutIntent);
+                break;
+            case R.id.myBetting:
+                Intent myBettingIntent = new Intent(homeActivity, MyBettingActivity.class);
+                startActivity(myBettingIntent);
                 break;
         }
     }
