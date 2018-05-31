@@ -4,10 +4,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyBettingInfo {
+public class MyBettingInfo implements Serializable{
 
     private String jnlid;
     private String userid;

@@ -1,7 +1,10 @@
 package com.yunhui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
@@ -49,6 +52,14 @@ public class MyBettingActivity extends BaseActionBarActivity implements RefreshL
         refreshListView.setOnRefreshListViewListener(this);
         refreshListView.setPullRefreshEnable(true);
         refreshListView.setPullLoadEnable(true);
+        refreshListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MyBettingActivity.this,MyBettingInfoActivity.class);
+                intent.putExtra("info",myBettingInfos.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
