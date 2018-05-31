@@ -81,6 +81,8 @@ public class MyBettingActivity extends BaseActionBarActivity implements RefreshL
             @Override
             public void onSuccess(HttpRequest request) {
                 super.onSuccess(request);
+                refreshListView.stopLoadMore();
+                refreshListView.stopRefresh();
                 JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
                 if(jsonObject.has("list") && jsonObject.optJSONArray("list").length() > 0){
                     MyBettingInfo myBettingInfo = new MyBettingInfo(jsonObject.optJSONArray("list"));
@@ -89,8 +91,6 @@ public class MyBettingActivity extends BaseActionBarActivity implements RefreshL
                         @Override
                         public void run() {
                             myBettingAdapter.refreshData(myBettingInfos);
-                            refreshListView.stopLoadMore();
-                            refreshListView.stopRefresh();
                         }
                     });
                 }
@@ -99,6 +99,8 @@ public class MyBettingActivity extends BaseActionBarActivity implements RefreshL
             @Override
             public void onFailure(HttpRequest request, BaseException exception) {
                 super.onFailure(request, exception);
+                refreshListView.stopLoadMore();
+                refreshListView.stopRefresh();
             }
         });
         requestUtil.execute();

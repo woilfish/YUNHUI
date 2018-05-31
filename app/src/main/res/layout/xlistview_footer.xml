@@ -20,5 +20,6 @@
         android:layout_centerInParent="true"
         android:text="@string/xlistview_footer_hint_normal"
         android:textSize="12sp"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:textColor="@color/color_959697"/>
 </RelativeLayout>
