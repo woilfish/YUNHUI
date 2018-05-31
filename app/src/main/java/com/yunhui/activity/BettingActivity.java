@@ -98,7 +98,7 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
                 }
                 break;
             case R.id.bettingAdd:
-                if(buyNum != 10){
+                if(buyNum != 100){
                     buyNum ++;
                     tv_bettingNum.setText(String.valueOf(buyNum));
                     showAllMoney(buyNum);
