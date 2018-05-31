@@ -43,7 +43,7 @@ public class MyBettingInfoActivity extends BaseActionBarActivity implements List
         tv_billNum = findViewById(R.id.billNum);
         tv_info = findViewById(R.id.info);
         rlv_mtBettingInfoList = findViewById(R.id.mtBettingInfoList);
-        tv_money.setText(myBettingInfo.getNum() + "注" + "   云钻" + myBettingInfo.getAmount());
+        tv_money.setText(myBettingInfo.getNum() + "注" + "   " + myBettingInfo.getTimes() + "倍" +"   云钻" + myBettingInfo.getAmount());
         tv_type.setText(myBettingInfo.getGuessListBeans().size() + " 串 "  + "1");
         tv_billNum.setText(myBettingInfo.getJnlid());
         if("1".equals(myBettingInfo.getQrystate())){

@@ -15,15 +15,9 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"/>
 
-    <TextView
-        android:id="@+id/myBettinghite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/color_959697"
-        android:textSize="@dimen/font_size_normal"
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true"/>
+
     <LinearLayout
+        android:id="@+id/left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -42,4 +36,16 @@
             android:src="@mipmap/l_right_arrow"
             android:layout_marginLeft="@dimen/dimen_10"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/myBettinghite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="@color/color_959697"
+        android:textSize="@dimen/font_size_normal"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/myBettingdate"
+        android:layout_toLeftOf="@+id/left"
+        android:paddingRight="@dimen/dimen_20"/>
 </RelativeLayout>

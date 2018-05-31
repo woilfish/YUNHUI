@@ -50,4 +50,17 @@ public class DateUtil {
         return timeFormat.format(date);
     }
 
+    public static String getMTime(String time){
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        Date date = null;
+        try {
+            date = dateFormat.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        return timeFormat.format(date);
+    }
+
 }
