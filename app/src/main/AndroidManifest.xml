@@ -60,6 +60,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".zxscan.ScannerActivity"
             android:screenOrientation="portrait"/>
+        <service android:name=".service.AppUpdateService"/>
 
         <!-- ALPay-->
         <activity

@@ -14,9 +14,14 @@ import com.loopj.common.exception.BaseException;
 import com.loopj.common.httpEx.HttpRequest;
 import com.loopj.common.httpEx.IHttpRequestEvents;
 import com.yunhui.R;
+import com.yunhui.bean.UpdateAppInfo;
 import com.yunhui.component.dialog.AlertDialog;
 import com.yunhui.request.RequestUtil;
 import com.yunhui.service.AppUpdateService;
+import com.yunhui.util.AppUtil;
+import com.yunhui.util.ToastUtil;
+
+import org.json.JSONObject;
 
 import java.io.File;
 
@@ -63,6 +68,15 @@ public class AppUpdateController implements ServiceConnection{
             @Override
             public void onSuccess(HttpRequest request) {
                 super.onSuccess(request);
+                JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
+                if(jsonObject.has("updateurl")){
+                    if(!AppUtil.getAppVersionName(context).equals(jsonObject.optString("serverVersion"))) {
+                        ForceUpdate = jsonObject.optString("lastForce").equals("1");
+                        ClientUrl = jsonObject.optString("updateurl");
+                        UpdateAppInfo updateAppInfo = new UpdateAppInfo(jsonObject);
+                        showUpdateDialog("APP版本升级", updateAppInfo.getUpgradeinfo());
+                    }
+                }
             }
 
             @Override
@@ -85,7 +99,7 @@ public class AppUpdateController implements ServiceConnection{
         alertDialog.setTitleColor(R.color.white);
         alertDialog.setTitle(descTitle);
         alertDialog.setMessage(clientDesc);
-        alertDialog.setButtons(new String[]{context.getString(R.string.com_noupdate), context.getString(R.string.plat_upgrade)});
+        alertDialog.setButtons(new String[]{context.getString(R.string.plat_upgrade)});
         alertDialog.setButtonsTextColor(R.color.color_white_8c8fa3,0);
         alertDialog.setDialogDelegate(new AlertDialog.AlertDialogDelegate() {
 
@@ -95,8 +109,6 @@ public class AppUpdateController implements ServiceConnection{
                 dialog.dismiss();
                 switch (index) {
                     case 0:
-                        break;
-                    case 1:
                         startDownload();
                         break;
                 }
@@ -166,7 +178,7 @@ public class AppUpdateController implements ServiceConnection{
         AlertDialog alertDialog = new AlertDialog();
         alertDialog.setTitle(context.getString(R.string.core_download_lakala_complete_prompt));
         alertDialog.setMessage(context.getString(R.string.core_download_lakala_complete_prompt));
-        alertDialog.setButtons(new String[]{context.getString(R.string.ui_cancel), context.getString(R.string.ui_certain)});
+        alertDialog.setButtons(new String[]{context.getString(R.string.ui_certain)});
         alertDialog.setButtonsTextColor(R.color.color_white_8c8fa3,0);
         alertDialog.setDialogDelegate(new AlertDialog.AlertDialogDelegate() {
 
@@ -174,10 +186,7 @@ public class AppUpdateController implements ServiceConnection{
             public void onButtonClick(AlertDialog dialog, View view, int index) {
                 super.onButtonClick(dialog, view, index);
                 dialog.dismiss();
-                if (index == 0 && ForceUpdate) {
-
-                }
-                else if (index == 1) {
+                if (index == 0) {
                     bindService.installApk(file);
                 }
             }

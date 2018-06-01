@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.yunhui.R;
 import com.yunhui.component.NavigationBar;
+import com.yunhui.controller.AppUpdateController;
 import com.yunhui.controller.FragmentController;
 import com.yunhui.fragmenr.ConsultingFragment;
 import com.yunhui.fragmenr.EarningsFragment;
@@ -60,6 +61,13 @@ public class HomeActivity extends BaseActionBarActivity implements View.OnClickL
     @Override
     protected void initActivity(Bundle savedInstanceState) {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //检查app版本
+        new AppUpdateController(this).checkAppUpdate();
     }
 
     /**
