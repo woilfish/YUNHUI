@@ -62,7 +62,7 @@ public class AppUpdateController implements ServiceConnection{
      */
     public void checkAppUpdate(){
 
-        RequestUtil request = RequestUtil.obtainRequest(context,"", HttpRequest.RequestMethod.POST);
+        RequestUtil request = RequestUtil.obtainRequest(context,"user/queryAppVersion", HttpRequest.RequestMethod.POST);
 
         request.setIHttpRequestEvents(new IHttpRequestEvents(){
             @Override
