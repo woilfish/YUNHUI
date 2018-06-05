@@ -70,7 +70,7 @@ public class AppUpdateController implements ServiceConnection{
                 super.onSuccess(request);
                 JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
                 if(jsonObject.has("updateurl")){
-                    if(!AppUtil.getAppVersionName(context).equals(jsonObject.optString("serverVersion"))) {
+                    if(!AppUtil.getAppVersionCode(context).trim().equals(jsonObject.optString("serverVersion").trim())) {
                         ForceUpdate = jsonObject.optString("lastForce").equals("1");
                         ClientUrl = jsonObject.optString("updateurl");
                         UpdateAppInfo updateAppInfo = new UpdateAppInfo(jsonObject);
