@@ -7,8 +7,10 @@ import android.app.Service;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
 import com.loopj.common.http.AsyncHttpClient;
@@ -343,10 +345,34 @@ public class AppUpdateService extends Service{
      * 安装下载后的apk文件
      */
     public void installApk(File file) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setAction(android.content.Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.setAction(android.content.Intent.ACTION_VIEW);
+//        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+//        startActivity(intent);
+
+        Intent intent =new Intent(Intent.ACTION_VIEW);
+
+        //判断是否是AndroidN以及更高的版本
+
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.N) {
+
+            Uri contentUri = FileProvider.getUriForFile(this.getApplicationContext(),"com.yunhui.fileProvider",file);
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            intent.setDataAndType(contentUri,"application/vnd.android.package-archive");
+
+        }else{
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            intent.setDataAndType(Uri.fromFile(file),"application/vnd.android.package-archive");
+
+        }
+
         startActivity(intent);
     }
 
