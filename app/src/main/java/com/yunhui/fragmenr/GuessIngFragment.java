@@ -69,7 +69,6 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         homeActivity = (HomeActivity) getActivity();
         parentView = inflater.inflate(R.layout.fragment_guess,null);
-        positions = new ArrayList<>();
         initView();
         return parentView;
     }
@@ -77,6 +76,7 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
     @Override
     public void onResume() {
         super.onResume();
+        positions = new ArrayList<>();
         queryTeams();
     }
 
