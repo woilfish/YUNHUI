@@ -97,7 +97,7 @@
     <string name="core_download_lakala_fail">下载云慧助手失败</string>
     <string name="core_install">安装</string>
 
-    <string name="guess_hite">云慧助手竞猜可用云钻进行竞猜,每注100云钻</string>
+    <string name="guess_hite">云慧助手竞猜可用云钻进行竞猜,每注1000云钻</string>
 
     <string name="recharge_hite">充值送云钻，多充多送</string>
     

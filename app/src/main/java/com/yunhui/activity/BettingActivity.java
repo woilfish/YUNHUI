@@ -48,6 +48,7 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
     private List<GuessListBean> guessListBeans;
     private int count = 1;
     private int buyNum = 0;
+    private int num = 1000;
     @Override
     protected void initActivity(Bundle savedInstanceState) {
         setContentView(R.layout.activity_betting);
@@ -107,7 +108,7 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
                 }
                 break;
             case R.id.bettingOk:
-                if(buyNum * 100 < Integer.parseInt(myEarnings.getTotal())){
+                if(buyNum * num < Integer.parseInt(myEarnings.getTotal())){
                     createGuessBill();
                 }else{
                     ToastUtil.toast(BettingActivity.this,"您使用的云钻数量大于您的云钻数量");
@@ -117,8 +118,8 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
     }
 
     public void showAllMoney(int buyNum){
-        SpannableString spanableInfo = new SpannableString("合计 " + buyNum * 100 + " 云钻 ");
-        spanableInfo.setSpan(null, 2, String.valueOf(buyNum * 100).length() + 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        SpannableString spanableInfo = new SpannableString("合计 " + buyNum * num + " 云钻 ");
+        spanableInfo.setSpan(null, 2, String.valueOf(buyNum * num).length() + 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         tv_allMoney.setText(spanableInfo);
     }
 
@@ -170,7 +171,7 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
         RequestUtil requestUtil = RequestUtil.obtainRequest(BettingActivity.this,"user/guessTeams", HttpRequest.RequestMethod.POST);
 
         HttpRequestParams requestParams = requestUtil.getRequestParams();
-        requestParams.put("amount",String.valueOf(buyNum * 100));
+        requestParams.put("amount",String.valueOf(buyNum * num));
         requestParams.put("num","1");
         requestParams.put("times",String.valueOf(buyNum));
         JSONArray jsonArray = new JSONArray();

@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/AppTheThemeColor"
-    android:padding="@dimen/dimen_20">
+    android:background="@color/AppTheThemeColor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,7 +62,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_30">
+        android:layout_marginTop="@dimen/dimen_30"
+        android:paddingLeft="@dimen/dimen_20"
+        android:paddingRight="@dimen/dimen_20">
 
         <TextView
             android:id="@+id/exchangehitetop"
@@ -77,7 +78,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/dimen_10">
+        android:layout_marginTop="@dimen/dimen_10"
+        android:paddingLeft="@dimen/dimen_20"
+        android:paddingRight="@dimen/dimen_20">
         <EditText
             android:id="@+id/exchangehitenum"
             android:layout_width="match_parent"
@@ -95,7 +98,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10">
+        android:layout_marginTop="@dimen/dimen_10"
+        android:paddingLeft="@dimen/dimen_20"
+        android:paddingRight="@dimen/dimen_20">
         <TextView
             android:id="@+id/exchangepay"
             android:layout_width="wrap_content"
@@ -174,7 +179,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="@dimen/dimen_60">
+        android:layout_marginTop="@dimen/dimen_60"
+        android:paddingLeft="@dimen/dimen_20"
+        android:paddingRight="@dimen/dimen_20">
         <Button
             android:id="@+id/exchangecancle"
             android:layout_width="wrap_content"

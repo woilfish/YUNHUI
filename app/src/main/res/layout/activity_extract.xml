@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/AppTheThemeColor"
-    android:padding="@dimen/dimen_20">
+    android:background="@color/AppTheThemeColor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -169,7 +168,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="@dimen/dimen_60">
+        android:layout_marginTop="@dimen/dimen_60"
+        android:paddingLeft="@dimen/dimen_20"
+        android:paddingRight="@dimen/dimen_20">
         <Button
             android:id="@+id/extractcancle"
             android:layout_width="wrap_content"

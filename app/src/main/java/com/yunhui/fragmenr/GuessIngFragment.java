@@ -91,11 +91,15 @@ public class GuessIngFragment extends BaseFragment implements RefreshListView.On
                 JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
                 if(jsonObject.has("teams")){
                     JSONArray jsonArray = jsonObject.optJSONArray("teams");
-                    GuessListBean guessListBean = new GuessListBean(jsonArray);
-                    guessListBeans = guessListBean.getGuessListBeans();
-                    Message message = new Message();
-                    message.what = 000000;
-                    handler.sendMessage(message);
+                    if(jsonArray.length() > 0) {
+                        GuessListBean guessListBean = new GuessListBean(jsonArray);
+                        guessListBeans = guessListBean.getGuessListBeans();
+                        Message message = new Message();
+                        message.what = 000000;
+                        handler.sendMessage(message);
+                    }else{
+                        ToastUtil.toast(homeActivity,"当前没有竞猜比赛，稍后再试");
+                    }
                 }
             }
 
