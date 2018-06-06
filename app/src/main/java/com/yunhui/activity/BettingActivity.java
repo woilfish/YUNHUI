@@ -108,6 +108,10 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
                 }
                 break;
             case R.id.bettingOk:
+                if(buyNum == 0){
+                    ToastUtil.toast(BettingActivity.this,"请选择您购买的倍数");
+                    return;
+                }
                 if(buyNum * num <= Integer.parseInt(myEarnings.getTotal())){
                     createGuessBill();
                 }else{
