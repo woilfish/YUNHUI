@@ -79,10 +79,10 @@ public class GuessAdapter extends BaseAdapter{
         GuessListBean guessListBean = getItem(position);
         viewHolder.tv_guessTitle.setText(DateUtil.getTime(guessListBean.getMath_date()) + "比赛开始     " + DateUtil.getMTime(guessListBean.getTime_endsale()) + "停止竞猜");
         viewHolder.tv_firstTeam.setText(guessListBean.getHome_team());
-        viewHolder.tv_firstOdds.setText(guessListBean.getOdds_h());
-        viewHolder.tv_flat.setText(guessListBean.getOdds_d());
+        viewHolder.tv_firstOdds.setText("主胜 " + guessListBean.getOdds_h());
+        viewHolder.tv_flat.setText("平 " + guessListBean.getOdds_d());
         viewHolder.tv_secondTeam.setText(guessListBean.getAway_team());
-        viewHolder.tv_secondOdds.setText(guessListBean.getOdds_a());
+        viewHolder.tv_secondOdds.setText("主负 " + guessListBean.getOdds_a());
 
         if(guessListBean.isHome()){
             viewHolder.l_homeTeam.setBackground(context.getResources().getDrawable(R.drawable.bg_left));
