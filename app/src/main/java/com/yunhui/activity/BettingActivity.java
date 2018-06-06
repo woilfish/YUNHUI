@@ -108,7 +108,7 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
                 }
                 break;
             case R.id.bettingOk:
-                if(buyNum * num < Integer.parseInt(myEarnings.getTotal())){
+                if(buyNum * num <= Integer.parseInt(myEarnings.getTotal())){
                     createGuessBill();
                 }else{
                     ToastUtil.toast(BettingActivity.this,"您使用的云钻数量大于您的云钻数量");
