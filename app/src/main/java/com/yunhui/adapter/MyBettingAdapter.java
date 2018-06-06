@@ -71,6 +71,7 @@ public class MyBettingAdapter extends BaseAdapter{
         viewHolder.tv_myBettinghite.setText(myBettingInfo.getGuessListBeans().size() + " 串 " + 1);
         if("1".equals(myBettingInfo.getQrystate())){
             viewHolder.tv_myBettingResult.setText("待开奖");
+            viewHolder.tv_myBettingResult.setTextColor(context.getResources().getColor(R.color.color_959697));
         }
         if("2".equals(myBettingInfo.getQrystate())){
             viewHolder.tv_myBettingResult.setText("已中奖");
@@ -78,7 +79,7 @@ public class MyBettingAdapter extends BaseAdapter{
         }
         if("3".equals(myBettingInfo.getQrystate())){
             viewHolder.tv_myBettingResult.setText("未中奖");
-            viewHolder.tv_myBettingResult.setTextColor(context.getResources().getColor(R.color.black));
+            viewHolder.tv_myBettingResult.setTextColor(context.getResources().getColor(R.color.color_EE9707));
         }
 
 
