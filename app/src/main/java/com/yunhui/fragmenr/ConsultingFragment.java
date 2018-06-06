@@ -1,5 +1,6 @@
 package com.yunhui.fragmenr;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -38,9 +39,10 @@ public class ConsultingFragment extends BaseFragment implements RefreshListView.
     private TextView tv_consultdate;
     private RefreshListView rlv_refreshList;
     private ConsultingAdapter consultingAdapter;
-    private int pageNo = 1;
+    private int pageNo = 0;
     private List<ConsultingInfo> consultingInfos;
     private boolean isRefOrLoad = true;
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -92,7 +94,7 @@ public class ConsultingFragment extends BaseFragment implements RefreshListView.
 
     @Override
     public void onRefresh() {
-        pageNo = 1;
+        pageNo = 0;
         isRefOrLoad = true;
         consultingInforRequest();
     }
