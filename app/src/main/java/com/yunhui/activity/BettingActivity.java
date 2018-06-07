@@ -18,6 +18,7 @@ import com.yunhui.adapter.GuessAdapter;
 import com.yunhui.bean.GuessListBean;
 import com.yunhui.bean.MyEarnings;
 import com.yunhui.clickinterface.ListItemClickHelp;
+import com.yunhui.component.dialog.AlertDialog;
 import com.yunhui.component.image.CircleImageView;
 import com.yunhui.component.refreshlistview.RefreshListView;
 import com.yunhui.manager.ActivityQueueManager;
@@ -49,6 +50,7 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
     private int count = 1;
     private int buyNum = 0;
     private int num = 1000;
+    private AlertDialog alertDialog;
     @Override
     protected void initActivity(Bundle savedInstanceState) {
         setContentView(R.layout.activity_betting);
@@ -205,9 +207,10 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
                 super.onSuccess(request);
                 JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
                 if(jsonObject.has("billid")){
-                    Intent sendGuessSms = new Intent(BettingActivity.this,GuessSendSMSActivity.class);
-                    sendGuessSms.putExtra("billid",jsonObject.optString("billid"));
-                    startActivityForResult(sendGuessSms,012345);
+//                    Intent sendGuessSms = new Intent(BettingActivity.this,GuessSendSMSActivity.class);
+//                    sendGuessSms.putExtra("billid",jsonObject.optString("billid"));
+//                    startActivityForResult(sendGuessSms,012345);
+                    showAlertDialog(jsonObject.optString("billid"));
                 }
             }
 
@@ -243,5 +246,49 @@ public class BettingActivity extends BaseActionBarActivity implements View.OnCli
     @Override
     public void onLoadMore() {
 
+    }
+
+    private void showAlertDialog(final String billId){
+        alertDialog = new AlertDialog();
+        alertDialog.setButtons("取消","确定");
+        alertDialog.setButtonsTextColor(R.color.color_959697,R.color.color_EE9707);
+        alertDialog.setTitle("确认投注");
+        alertDialog.setMessage("您确认购买投注竞猜？");
+        alertDialog.setDialogDelegate(new AlertDialog.AlertDialogDelegate(){
+            @Override
+            public void onButtonClick(AlertDialog dialog, View view, int index) {
+                super.onButtonClick(dialog, view, index);
+                switch (index){
+                    case 0:
+                        alertDialog.dismiss();
+                        break;
+                    case 1:
+                        extract(billId);
+                        break;
+                }
+            }
+        });
+        alertDialog.show(BettingActivity.this.getSupportFragmentManager());
+    }
+
+    private void extract(String billId){
+        RequestUtil requestUtil = RequestUtil.obtainRequest(BettingActivity.this,"user/guessPay", HttpRequest.RequestMethod.POST);
+        HttpRequestParams httpRequestParams = requestUtil.getRequestParams();
+        httpRequestParams.put("billId",billId);
+        requestUtil.setIHttpRequestEvents(new IHttpRequestEvents(){
+            @Override
+            public void onSuccess(HttpRequest request) {
+                super.onSuccess(request);
+                alertDialog.dismiss();
+                ToastUtil.toast(BettingActivity.this,"投注成功");
+                BettingActivity.this.finish();
+            }
+
+            @Override
+            public void onFailure(HttpRequest request, BaseException exception) {
+                super.onFailure(request, exception);
+            }
+        });
+        requestUtil.execute();
     }
 }
