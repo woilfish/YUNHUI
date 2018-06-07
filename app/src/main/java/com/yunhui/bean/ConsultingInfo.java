@@ -62,7 +62,7 @@ public class ConsultingInfo {
     }
 
     public static List<ConsultingInfo> initAttrWithJson(JSONArray jsonArray, int pageNo) {
-        if(pageNo == 1){
+        if(pageNo == 0){
             consultingInfos.clear();
         }
         for(int i = 0;i < jsonArray.length();i++){

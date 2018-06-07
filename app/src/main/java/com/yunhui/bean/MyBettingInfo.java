@@ -21,20 +21,22 @@ public class MyBettingInfo implements Serializable{
     private String qrystate;
     private String totalbenefit;
     private List<GuessListBean> guessListBeans;
-    private List<MyBettingInfo> myBettingInfos;
+    private List<MyBettingInfo> myBettingInfos = new ArrayList<>();
 
-    public MyBettingInfo(JSONArray jsonArray){
-        this.initAttrWithJson(jsonArray);
+    public MyBettingInfo(JSONArray jsonArray,int pageNo){
+        this.initAttrWithJson(jsonArray,pageNo);
     }
 
     private MyBettingInfo(JSONObject jsonObject) {
         this.initAttrWithJsonObject(jsonObject);
     }
 
-    private void initAttrWithJson(JSONArray jsonArray) {
+    private void initAttrWithJson(JSONArray jsonArray,int pageNo) {
 
+        if(pageNo == 0){
+            myBettingInfos.clear();
+        }
         if(jsonArray.length() > 0){
-            myBettingInfos = new ArrayList<>();
             for(int i = 0;i < jsonArray.length();i++){
                 MyBettingInfo myBettingInfo = null;
                 try {

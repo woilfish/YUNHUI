@@ -97,7 +97,7 @@ public class MyBettingActivity extends BaseActionBarActivity implements RefreshL
                 refreshListView.stopRefresh();
                 JSONObject jsonObject = (JSONObject) request.getResponseHandler().getResultData();
                 if(jsonObject.has("list") && jsonObject.optJSONArray("list").length() > 0){
-                    MyBettingInfo myBettingInfo = new MyBettingInfo(jsonObject.optJSONArray("list"));
+                    MyBettingInfo myBettingInfo = new MyBettingInfo(jsonObject.optJSONArray("list"),page);
                     myBettingInfos.addAll(myBettingInfo.getMyBettingInfos());
                     runOnUiThread(new Runnable() {
                         @Override
